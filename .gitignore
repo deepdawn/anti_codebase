@@ -1,0 +1,25 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+ENV/
+
+# Data and Results (Large Files)
+base_data/
+results/
+
+# Environment Variables
+.env
+.env.*
+!.env.github
+!.env.teams
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.idea/
+.vscode/
