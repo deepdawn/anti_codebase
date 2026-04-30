@@ -22,7 +22,7 @@
 ## 🛠 주요 기술 스택 및 도구
 - **언어**: Python, SQL
 - **분석/모델링**: Random Forest, Gradient Boosting, Regression, A/B Testing 등
-- **데이터베이스**: 내부 `bysql` DB (MySQL)
+- **데이터베이스**: 내부 `mysql` DB (MySQL)
 - **협업**: MS Teams 연합 (분석 결과 자동 공유)
 - **AI 어시스턴트**: Antigravity (Planning & Fast Mode 활용)
 
