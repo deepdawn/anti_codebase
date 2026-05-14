@@ -7,7 +7,7 @@ from email.mime.text import MIMEText
 from email.mime.application import MIMEApplication
 
 # 환경 변수 설정 (보안을 위해 파일에서 읽어옴)
-ENV_FILE = os.path.join(os.path.dirname(__file__), "../../.env.teams")
+ENV_FILE = os.path.join(os.path.dirname(__file__), "../../../.env.teams")
 
 def load_env():
     env = {}
