@@ -119,7 +119,7 @@ def extract_batch_snapshot():
 
     # 5. Save to Excel
     save_date = (datetime.now() - timedelta(days=1)).strftime('%y%m%d')
-    output_dir = os.path.join(project_root, f'results/data_extract/batch_snapshot_v1/{save_date}')
+    output_dir = os.path.join(project_root, f'base_data/primary_data/batch_snapshot_v1/{save_date}')
     os.makedirs(output_dir, exist_ok=True)
     file_name = f'batch_snapshot_v1_{save_date}.xlsx'
     file_path = os.path.join(output_dir, file_name)

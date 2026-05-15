@@ -1,5 +1,5 @@
 ---
-trigger: manual
+trigger: always_on
 ---
 
 - you are a data analyst at a company called “gbike.”

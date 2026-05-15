@@ -1159,3 +1159,105 @@ group by
 ;
 
 
+
+
+-- 이거 안나옴
+WITH user_jf_last_order AS (
+    -- 1~2월 각 유저별 마지막 탑승건(최대 order_id) 추출
+    SELECT
+        user_id,
+        MAX(order_id) AS last_order_id
+    FROM gbike.rich_orders
+    WHERE add_time >= UNIX_TIMESTAMP('2026-01-01 00:00:00') - 32400
+      AND add_time < UNIX_TIMESTAMP('2026-03-01 00:00:00') - 32400
+      AND order_state = 2 -- 완료된 유효 탑승 건만 집계
+    GROUP BY user_id
+),
+target_users AS (
+    -- 마지막 탑승건이 타겟 캠프인 유저 필터링
+    SELECT
+        U.user_id,
+        E.region_name AS camp_name
+    FROM user_jf_last_order U
+    JOIN gbike.rich_orders O ON U.last_order_id = O.order_id
+    JOIN gbike.rich_region R ON O.region_id = R.region_id
+    JOIN gbike.rich_region E ON R.parent_id = E.region_id
+    WHERE E.region_name IN ('서초캠프', '광주1캠프', '평택캠프', '용인캠프')
+),
+mar_apr_riders AS (
+    -- 3~4월 탑승 이력이 있는 유저 풀 (타겟 유저를 내부 조인하여 스캔 범위 최소화)
+    SELECT DISTINCT O.user_id
+    FROM gbike.rich_orders O
+    JOIN target_users T ON O.user_id = T.user_id
+    WHERE O.add_time >= UNIX_TIMESTAMP('2026-03-01 00:00:00') - 32400
+      AND O.add_time < UNIX_TIMESTAMP('2026-05-01 00:00:00') - 32400
+      AND O.order_state = 2
+)
+-- 스케일링
+SELECT
+    T.camp_name,
+    COUNT(T.user_id) AS no_mar_apr_ride_users
+FROM target_users T
+LEFT JOIN mar_apr_riders M ON T.user_id = M.user_id
+WHERE M.user_id IS NULL
+GROUP BY T.camp_name
+;
+
+
+
+-- 캠프별 유저 세그먼트 수
+WITH user_agg AS (
+    -- 3~4월 데이터를 단 1번만 스캔하여 (Index 활용) 필요한 모든 지표를 동시 집계
+    SELECT 
+        user_id,
+        -- 3월 탑승 횟수
+        COUNT(CASE WHEN add_time >= UNIX_TIMESTAMP('2026-03-01 00:00:00') - 32400 
+                    AND add_time <  UNIX_TIMESTAMP('2026-04-01 00:00:00') - 32400 
+                   THEN order_id END) AS march_ride_count,
+        -- 4월 탑승 횟수
+        COUNT(CASE WHEN add_time >= UNIX_TIMESTAMP('2026-04-01 00:00:00') - 32400 
+                    AND add_time <  UNIX_TIMESTAMP('2026-05-01 00:00:00') - 32400 
+                   THEN order_id END) AS apr_ride_count,
+        -- 4월 마지막 탑승건 (ROW_NUMBER 정렬을 대체하는 PK MAX 활용)
+        MAX(CASE WHEN add_time >= UNIX_TIMESTAMP('2026-04-01 00:00:00') - 32400 
+                  AND add_time <  UNIX_TIMESTAMP('2026-05-01 00:00:00') - 32400 
+                 THEN order_id END) AS max_apr_order_id
+    FROM gbike.rich_orders
+    WHERE add_time >= UNIX_TIMESTAMP('2026-03-01 00:00:00') - 32400
+      AND add_time <  UNIX_TIMESTAMP('2026-05-01 00:00:00') - 32400
+      AND order_state = 2 -- 완료된 유효 탑승 건만
+    GROUP BY user_id
+),
+target_users AS (
+    -- 4월 탑승 이력이 존재하면서, 그 마지막 탑승 지역이 타겟 캠프인 유저만 필터링
+    SELECT 
+        U.user_id,
+        U.apr_ride_count,
+        U.march_ride_count,
+        E.region_name AS camp_name
+    FROM user_agg U
+    JOIN gbike.rich_orders O ON U.max_apr_order_id = O.order_id
+    JOIN gbike.rich_region R ON O.region_id = R.region_id
+    JOIN gbike.rich_region E ON R.parent_id = E.region_id
+    WHERE U.max_apr_order_id IS NOT NULL 
+      AND E.region_name IN ('서초캠프', '광주1캠프', '평택캠프', '용인캠프', '대전1캠프')
+)
+-- 최종 캠프별 세그먼트 집계
+SELECT 
+    camp_name,
+    COUNT(CASE WHEN apr_ride_count = 1 THEN 1 END) AS "1회",
+    COUNT(CASE WHEN apr_ride_count BETWEEN 2 AND 3 THEN 1 END) AS "2~3회",
+    COUNT(CASE WHEN apr_ride_count BETWEEN 4 AND 9 THEN 1 END) AS "4~9회",
+    COUNT(CASE WHEN apr_ride_count BETWEEN 10 AND 29 THEN 1 END) AS "10~29회",
+    COUNT(CASE WHEN apr_ride_count >= 30 THEN 1 END) AS "30회 이상",
+    COUNT(
+        CASE 
+            WHEN apr_ride_count >= 1 
+             AND march_ride_count > 0 -- 3월에 1번이라도 탄 경우 (M.march_count IS NOT NULL 완벽 대체)
+             AND apr_ride_count < march_ride_count * 0.5 
+            THEN 1 
+        END
+    ) AS "3월 대비 50% 미만 유저"
+FROM target_users
+GROUP BY camp_name
+ORDER BY camp_name;
