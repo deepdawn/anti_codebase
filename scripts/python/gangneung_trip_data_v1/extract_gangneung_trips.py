@@ -39,7 +39,7 @@ def get_monthly_ranges(start_date_str, end_date_str):
     return ranges
 
 def main():
-    base_output_path = '/Users/galaxy/codebase/base_data/primary_data/gangneung_trip_data_v1'
+    base_output_path = '/Users/galaxy/anti_codebase/base_data/primary_data/gangneung_trip_data_v1'
     os.makedirs(base_output_path, exist_ok=True)
     
     # 1. 추출 기간 설정

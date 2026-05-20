@@ -1260,4 +1260,30 @@ SELECT
     ) AS "3월 대비 50% 미만 유저"
 FROM target_users
 GROUP BY camp_name
-ORDER BY camp_name;
+ORDER BY camp_name
+;
+
+# 1,2월 마지막 탑승 이력이 서초캠프 등 4개 캠프 고객 중에서
+# 3,4월 탑승 이력이 없는 회원 수
+SELECT
+    E.region_name AS camp_name,
+    COUNT(U.user_id) AS no_mar_apr_ride_users
+FROM gbike.rich_orders O
+-- 유저의 절대적인 마지막 탑승 건(latest_order_id)과 현재 확인 중인 1~2월 주문(order_id)이 일치하는지 확인
+JOIN gbike.rich_user U
+    ON O.user_id = U.user_id
+   AND O.order_id = U.latest_order_id
+JOIN gbike.rich_region R
+    ON O.region_id = R.region_id
+JOIN gbike.rich_region E
+    ON R.parent_id = E.region_id
+WHERE O.add_time >= UNIX_TIMESTAMP('2026-01-01 00:00:00') - 32400
+  AND O.add_time < UNIX_TIMESTAMP('2026-03-01 00:00:00') - 32400
+  AND O.order_state = 2 -- 유효 탑승 건만
+  AND E.region_name IN ('서초캠프', '광주1캠프', '평택캠프', '용인캠프')
+GROUP BY E.region_name;
+
+
+select max(region_id) as max_region_id
+from gbike.rich_region
+;

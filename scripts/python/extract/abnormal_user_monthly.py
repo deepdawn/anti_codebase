@@ -99,7 +99,7 @@ if __name__ == "__main__":
     # 2. 결과 저장 경로 설정 (사용자로부터 폴더명을 확인받은 후 실행할 예정)
     # 현재는 스크립트 구조 확인을 위해 임시 경로를 주석 처리해 둡니다.
     # SUBFOLDER_NAME = "seocho_abnormal_analysis"
-    # OUTPUT_DIR = f"/Users/galaxy/codebase/results/{SUBFOLDER_NAME}"
+    # OUTPUT_DIR = f"/Users/galaxy/anti_codebase/results/{SUBFOLDER_NAME}"
     # os.makedirs(OUTPUT_DIR, exist_ok=True)
     # FILE_PATH = os.path.join(OUTPUT_DIR, f"abnormal_user_summary_{START_Y}{START_M:02d}_{END_Y}{END_M:02d}.xlsx")
     

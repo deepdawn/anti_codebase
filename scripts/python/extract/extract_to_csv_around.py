@@ -29,7 +29,7 @@ def main(file_name, start_date, end_limit):
     print("규칙 5번에 따라 저장할 하위 폴더명을 입력해야 합니다.")
     subfolder_name = input("결과를 저장할 하위 폴더명을 입력해주세요 (예: daily_report): ")
     
-    result_dir = os.path.join("/Users/galaxy/codebase/results/data_extract", subfolder_name)
+    result_dir = os.path.join("/Users/galaxy/anti_codebase/results/data_extract", subfolder_name)
     os.makedirs(result_dir, exist_ok=True)
 
     # 2. 파일 이름 동적 생성

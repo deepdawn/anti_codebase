@@ -51,7 +51,7 @@ def generate_report(results_path, recommendations_path, output_dir):
     print(f"Report generated in {output_dir}")
 
 if __name__ == "__main__":
-    RESULTS_PATH = "/Users/galaxy/codebase/results/deployed_zone_analysis_v1/demand_analysis_results.csv"
-    RECOM_PATH = "/Users/galaxy/codebase/results/deployed_zone_analysis_v1/rebalance_recommendations.csv"
-    OUTPUT_DIR = "/Users/galaxy/codebase/results/deployed_zone_analysis_v1"
+    RESULTS_PATH = "/Users/galaxy/anti_codebase/results/deployed_zone_analysis_v1/demand_analysis_results.csv"
+    RECOM_PATH = "/Users/galaxy/anti_codebase/results/deployed_zone_analysis_v1/rebalance_recommendations.csv"
+    OUTPUT_DIR = "/Users/galaxy/anti_codebase/results/deployed_zone_analysis_v1"
     generate_report(RESULTS_PATH, RECOM_PATH, OUTPUT_DIR)

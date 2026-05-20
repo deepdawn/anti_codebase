@@ -23,7 +23,7 @@ def send_teams_summary():
 
 1. 추출 기간: 2026-01-01 ~ 2026-02-28
 2. 데이터 규모: 총 103,740행
-3. 저장 경로: /Users/galaxy/codebase/results/data_extract/0101_0228_gbike_revenue_extract.xlsx
+3. 저장 경로: /Users/galaxy/anti_codebase/results/data_extract/0101_0228_gbike_revenue_extract.xlsx
 4. 주요 작업 내용:
    - 파일명 자동 생성 로직 적용 (기간 prefix 추가)
    - 4일 단위 분할 추출을 통한 DB 안정성 확보
