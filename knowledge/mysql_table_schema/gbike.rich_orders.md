@@ -24,6 +24,7 @@
 | **end_point** | POINT | INDEX (SPATIAL) | 탑승 종료 위치 | 공간 데이터 |
 | **currency_code**| CHAR | | 결제 통화 코드 | 'krw', 'usd' 등 |
 | **from_api** | VARCHAR | INDEX | 유입 채널 | 'gcooter' 등 |
+| **is_late_night_surcharge** | TINYINT | | 심야 요금제 적용 여부 | 1: 적용, 0: 미적용 (심야 요금제가 적용된 트립 구분값) |
 
 ## 분석 활용 가이드 (Lead Data Scientist's Insight)
 

@@ -48,6 +48,16 @@
 3. **Deductive Reporting**: 분석 결과는 결론부터 제시하는 '두괄식' 방식을 따릅니다.
 4. **자동화**: 데이터 추출 및 리포팅 과정의 자동화를 지향합니다.
 
+## 📈 주요 분석 프로젝트 목록
+
+- **부산 3캠프 실적 비교 분석 (`busan3camp_25_26_statistics`, `busan3camp_yoy_extract`)**: 2025년과 2026년 부산 3캠프 관할 소권역별 자산당 매출 및 회전수(Trips per Asset) 변화 분석
+- **전사 연도별 캠프 매출 분석 (`yoy_camp_revenue_analysis_v1`)**: 캠프 단위의 연도별 매출 트렌드 파악 및 비교
+- **평택 심야 시간대 분석 (`pyeongtaek_latenight_analysis`)**: 평택 지역의 심야 시간대 퍼스널 모빌리티 이용 패턴 분석
+- **강릉 트립 데이터 분석 (`gangneung_trip_data_v1`)**: 강릉 지역 사용자 이동 경로 및 트립 데이터 분석
+- **배포 구역 수요 분석 (`deployed_zone_analysis_v1`)**: 자산 배포 구역(Deployed Zone) 기준 수요 및 가동률 최적화 모델링
+- **킥보드 실적 데이터 추출 (`analysis_kickboard_down`)**: 전동 킥보드 하락세 분석 및 실적 데이터 추출
+- **지역별 기초 분석 (`jeju_extract`, `pohang_extract` 등)**: 제주, 포항 등 주요 거점 지역의 트립 데이터 추출 및 현황 파악
+
 ---
 
 **GitHub Repository**: [https://github.com/deepdawn/anti_codebase](https://github.com/deepdawn/anti_codebase)

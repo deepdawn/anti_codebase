@@ -9,7 +9,7 @@ project_root = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(o
 utils_path = os.path.join(project_root, 'scripts/python/utils')
 sys.path.append(utils_path)
 
-from test_db_conn import run_query
+from test_mysql_conn import run_query
 from teams_email_mcp import send_email
 
 def extract_batch_snapshot():
