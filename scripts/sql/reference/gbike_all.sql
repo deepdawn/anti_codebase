@@ -1045,7 +1045,7 @@ with region as ( -- 지역 구분
     select	r.region_id,
             r.region_name as '소지역',
             rr.region_name as '중지역',
-            rrr.region_name as '대지역'
+            rrr.region_name as '대지역',r.country_code
     from	gbike.rich_region r
     join	gbike.rich_region rr on r.parent_id = rr.region_id
     join	gbike.rich_region rrr on rr.parent_id = rrr.region_id
@@ -1306,4 +1306,207 @@ and bicycle_sn in (
     )
 group by 1,2
 # order by bicycle_id desc
+;
+
+
+-- 지쿠 지역별 분당, 거리요금 & 케어플랜 일별 추출 쿼리
+WITH TargetRegions AS (
+    -- ========================================================
+    -- 💡 1. 조회할 [지역 ID]들을 아래에 UNION ALL로 계속 추가하세요!
+    -- ========================================================
+    SELECT 624 AS region_id -- 필요한 만큼 계속 추가 가능
+),
+TargetDates AS (
+    -- ========================================================
+    -- 💡 2. 조회할 [시작일]과 [종료일]을 입력하세요.
+    -- ========================================================
+    SELECT '2026-06-13' AS start_date, '2026-06-13' AS end_date
+),
+Numbers AS (
+    -- 무한 캘린더 생성기
+    SELECT a.i + b.i * 10 + c.i * 100 + d.i * 1000 AS n
+    FROM (SELECT 0 AS i UNION SELECT 1 UNION SELECT 2 UNION SELECT 3 UNION SELECT 4 UNION SELECT 5 UNION SELECT 6 UNION SELECT 7 UNION SELECT 8 UNION SELECT 9) a
+    CROSS JOIN (SELECT 0 AS i UNION SELECT 1 UNION SELECT 2 UNION SELECT 3 UNION SELECT 4 UNION SELECT 5 UNION SELECT 6 UNION SELECT 7 UNION SELECT 8 UNION SELECT 9) b
+    CROSS JOIN (SELECT 0 AS i UNION SELECT 1 UNION SELECT 2 UNION SELECT 3 UNION SELECT 4 UNION SELECT 5 UNION SELECT 6 UNION SELECT 7 UNION SELECT 8 UNION SELECT 9) c
+    CROSS JOIN (SELECT 0 AS i UNION SELECT 1 UNION SELECT 2 UNION SELECT 3 UNION SELECT 4 UNION SELECT 5 UNION SELECT 6 UNION SELECT 7 UNION SELECT 8 UNION SELECT 9) d
+),
+Calendar AS (
+    -- 입력된 여러 지역(TargetRegions)과 날짜를 곱하여 전체 스케줄판을 만듭니다.
+    SELECT DATE_ADD(D.start_date, INTERVAL n DAY) AS target_date,
+           R.region_id AS target_region
+    FROM Numbers
+    CROSS JOIN TargetDates D
+    CROSS JOIN TargetRegions R
+    WHERE DATE_ADD(D.start_date, INTERVAL n DAY) <= D.end_date
+),
+-- ========================================================
+-- [주행 요금제] 이벤트 여부 포함 & 삭제 데이터 걸러내기
+-- ========================================================
+CleanRatePlans AS (
+    SELECT 
+        C.target_date,
+        C.target_region,
+        RV.vehicle_type,
+        RP.use_time_type,
+        RP.rate_plan_type,
+        RP.name AS rate_plan_name,
+        RP.is_event AS rp_is_event, -- ✨ 이벤트 여부 컬럼 추가
+        COALESCE(RV.unit_sec_per_amount, 0) AS unit_sec_per_amount,
+        COALESCE(RV.unit_meter_per_amount, 0) AS unit_meter_per_amount,
+        ROW_NUMBER() OVER (
+            PARTITION BY C.target_date, C.target_region, RV.vehicle_type, RP.use_time_type, RP.rate_plan_type 
+            ORDER BY RGR.started_at DESC, RP.id DESC
+        ) AS rn
+    FROM Calendar C
+    JOIN gbike.rich_rate_plan_group_regions RGR 
+        ON RGR.region_id = C.target_region 
+        AND C.target_date BETWEEN DATE(RGR.started_at) AND COALESCE(DATE(RGR.ended_at), '2099-12-31')
+        AND RGR.deleted_at IS NULL
+    JOIN gbike.rich_rate_plan_groups RG ON RGR.rate_plan_group_id = RG.id AND RG.deleted_at IS NULL
+    JOIN gbike.rich_rate_plans RP ON RG.id = RP.rate_plan_group_id AND RP.deleted_at IS NULL
+    JOIN gbike.rich_rate_plan_vehicles RV ON RP.id = RV.rate_plan_id AND RV.deleted_at IS NULL
+),
+-- ========================================================
+-- [케어 플랜] 이벤트 여부 포함 & 삭제 데이터 걸러내기
+-- ========================================================
+CleanCarePlans AS (
+    SELECT 
+        C.target_date,
+        C.target_region,
+        CV.vehicle_type,
+        CP.use_time_type,
+        CP.care_plan_type,
+        CP.name AS care_plan_name,
+        CP.is_event AS cp_is_event, -- ✨ 이벤트 여부 컬럼 추가
+        COALESCE(CV.amount, 0) AS amount,
+        ROW_NUMBER() OVER (
+            PARTITION BY C.target_date, C.target_region, CV.vehicle_type, CP.use_time_type, CP.care_plan_type 
+            ORDER BY CGR.started_at DESC, CP.id DESC
+        ) AS rn
+    FROM Calendar C
+    JOIN gbike.rich_care_plan_group_regions CGR 
+        ON CGR.region_id = C.target_region 
+        AND C.target_date BETWEEN DATE(CGR.started_at) AND COALESCE(DATE(CGR.ended_at), '2099-12-31')
+        AND CGR.deleted_at IS NULL
+    JOIN gbike.rich_care_plan_groups CG ON CGR.care_plan_group_id = CG.id AND CG.deleted_at IS NULL
+    JOIN gbike.rich_care_plans CP ON CG.id = CP.care_plan_group_id AND CP.deleted_at IS NULL
+    JOIN gbike.rich_care_plan_vehicles CV ON CP.id = CV.care_plan_id AND CV.deleted_at IS NULL
+)
+-- ========================================================
+-- 최종 출력 매핑 (지역명 + 이벤트 라벨)
+-- ========================================================
+SELECT 
+    R.target_date AS 기준일자,
+    R.target_region AS region_id,
+    REG.region_name AS 지역명,         -- ✨ 지역명 출력
+    M.model_type AS 기기_타입,
+    M.name AS 기기_모델명,              
+    R.use_time_type AS 시간대_구분,  
+    -- [주행 요금제 정보]
+    CASE WHEN R.rp_is_event = 1 THEN '🎈이벤트' ELSE '일반' END AS 주행요금_구분, -- ✨ 이벤트 라벨링
+    R.rate_plan_type AS 주행요금_타입,
+    R.rate_plan_name AS 주행요금제명,
+    R.unit_sec_per_amount AS 시간당_단가,
+    R.unit_meter_per_amount AS 거리당_단가,    
+    -- [케어 플랜 정보]
+    CASE WHEN C.cp_is_event = 1 THEN '🎈이벤트' ELSE '일반' END AS 케어플랜_구분, -- ✨ 이벤트 라벨링
+    C.care_plan_type AS 케어플랜_타입,
+    C.care_plan_name AS 케어플랜명,
+    C.amount AS 부과_보험료
+FROM CleanRatePlans R
+-- ✨ 지역 테이블 JOIN ✨
+LEFT JOIN gbike.rich_region REG 
+    ON R.target_region = REG.region_id
+-- 기기 모델 조인
+LEFT JOIN gbike.rich_bicycle_models M 
+    ON R.vehicle_type = M.type
+-- 케어 플랜 조인
+LEFT JOIN CleanCarePlans C 
+    ON R.target_date = C.target_date 
+    AND R.target_region = C.target_region
+    AND R.vehicle_type = C.vehicle_type
+    AND R.use_time_type = C.use_time_type
+    AND C.rn = 1 
+WHERE R.rn = 1 
+ORDER BY 
+    R.target_date ASC,
+    R.target_region ASC,
+    M.model_type ASC,
+    R.use_time_type ASC,
+    C.care_plan_type ASC;
+
+
+
+-- 송도캠프 신규가입자 쿠폰 사용량 확인 작업
+with ord as (
+    select  order_id,user_id,region_id,add_time
+    FROM gbike.rich_orders o
+    WHERE 1=1
+      and o.order_state = 2
+      AND o.add_time BETWEEN UNIX_TIMESTAMP(CONVERT_TZ('2026-06-13 00:00:00', 'Asia/Seoul', 'UTC'))
+      AND UNIX_TIMESTAMP(CONVERT_TZ('2026-06-30 23:59:59', 'Asia/Seoul', 'UTC'))
+),
+    coupon as (
+    select rc.order_id,rc.user_id,rc.number
+    from rich_coupon rc
+    join ord o on rc.order_id = o.order_id
+    where 1=1
+#     and coupon_title = '신규회원웰컴쿠폰'
+#     and rc.number = 5000
+),
+    region as ( -- 지역 구분
+    select	r.region_id,
+            r.region_name as '소지역',
+            rr.region_name as '중지역',
+            rrr.region_name as '대지역'
+    from	gbike.rich_region r
+    join	gbike.rich_region rr on r.parent_id = rr.region_id
+    join	gbike.rich_region rrr on rr.parent_id = rrr.region_id
+    where	1=1
+    and		rr.region_name like '송도캠프'
+)
+    select  date(CONVERT_TZ(FROM_UNIXTIME(add_time), 'UTC', 'Asia/Seoul')) as dt,
+            r.`대지역`,
+            r.`중지역`,
+            count(o.order_id) as `총 운행 수`,
+            count(case when c.number = 2000 then c.order_id end) as `2000원 할인 쿠폰 운행 수`,
+            count(case when c.number = 4000 then c.order_id end) as `4000원 할인 쿠폰 운행 수`,
+            count(case when c.number = 5000 then c.order_id end) as `5000원 할인 쿠폰 운행 수`
+    from ord o
+    join region r on o.region_id = r.region_id
+    left join coupon c on o.order_id = c.order_id
+group by 1,2,3
+;
+
+
+-- 지바이크 일별 할인 주문 수 트렌드
+with base as (
+    select
+
+        *,
+                 case
+                     when order_info -> '$.riding_fee_type' = 'time' then '분당요금제'
+                     when order_info -> '$.riding_fee_type' = 'odometer' then '거리요금제'
+                 else '알수없음' end AS riding_fee_type
+    #     extract(hour from CONVERT_TZ(FROM_UNIXTIME(O.add_time), 'UTC', 'Asia/Seoul')) AS ride_hour
+    #     CASE WHEN O.is_late_night_surcharge = 1 THEN '심야' ELSE '주간' END AS hour_type,
+    FROM gbike.rich_orders o
+    WHERE 1=1
+    and o.add_time >= UNIX_TIMESTAMP('2026-06-01 00:00:00') - 32400
+    AND o.add_time < UNIX_TIMESTAMP('2026-07-09 00:00:00') - 32400
+    AND o.order_state = 2 -- 완료된 유효 주문건
+    and country_code = 'kr'
+), discount as (
+    select *
+    from gbike.rich_order_discounts
+    where exists (select order_id from base where base.order_id = rich_order_discounts.order_id)
+)
+select
+        date(CONVERT_TZ(FROM_UNIXTIME(add_time), 'UTC', 'Asia/Seoul')) as dt,
+        count(distinct b.order_id) as total_trip_cnt,
+        count(distinct d.order_id) as dicount_trip_cnt,
+        count(distinct d.order_id) / cast(count(distinct b.order_id) as float) as discount_rate
+from base b
+left join discount d on b.order_id = d.order_id
+group by 1
 ;

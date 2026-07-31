@@ -14,7 +14,11 @@ def get_engine():
     database = 'gbike'
 
     try:
-        engine = create_engine(f"mysql+pymysql://{user}:{password}@{host}:{port}/{database}")
+        engine = create_engine(
+            f"mysql+pymysql://{user}:{password}@{host}:{port}/{database}",
+            pool_pre_ping=True,
+            pool_recycle=3600
+        )
         return engine
     except Exception as e:
         print("Engine creation failed:", e)

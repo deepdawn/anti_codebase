@@ -117,30 +117,25 @@ def extract_batch_snapshot():
         '운행_수': '운행 수'
     }, inplace=True)
 
-    # 5. Save to Excel
+    # 5. Save to Excel directly to OneDrive
     save_date = (datetime.now() - timedelta(days=1)).strftime('%y%m%d')
-    output_dir = os.path.join(project_root, f'base_data/primary_data/batch_snapshot_v1/{save_date}')
-    os.makedirs(output_dir, exist_ok=True)
     file_name = f'batch_snapshot_v1_{save_date}.xlsx'
-    file_path = os.path.join(output_dir, file_name)
     
-    print(f"Saving Result to {file_path}...")
-    agg_result.to_excel(file_path, index=False)
-    
-    # 5.1. OneDrive Upload (Copy)
     onedrive_base = "/Users/galaxy/Library/CloudStorage/OneDrive-지바이크/서비스운영본부 - 현장데이터 개발센터/results/data_extract/batch_snapshot_v1"
     onedrive_dir = os.path.join(onedrive_base, save_date)
     
-    try:
-        if os.path.exists(onedrive_base):
-            os.makedirs(onedrive_dir, exist_ok=True)
-            onedrive_path = os.path.join(onedrive_dir, file_name)
-            shutil.copy2(file_path, onedrive_path)
-            print(f"File successfully uploaded to OneDrive: {onedrive_path}")
-        else:
-            print(f"OneDrive path not found: {onedrive_base}")
-    except Exception as e:
-        print(f"Failed to copy to OneDrive: {e}")
+    if os.path.exists(onedrive_base):
+        os.makedirs(onedrive_dir, exist_ok=True)
+        onedrive_path = os.path.join(onedrive_dir, file_name)
+        print(f"Saving Result directly to OneDrive: {onedrive_path}...")
+        try:
+            agg_result.to_excel(onedrive_path, index=False)
+        except Exception as e:
+            print(f"Failed to save to OneDrive: {e}")
+            return None
+    else:
+        print(f"OneDrive path not found: {onedrive_base}")
+        return None
     
     # 6. Teams Notification
     print("Sending Teams Notification...")
@@ -157,14 +152,14 @@ def extract_batch_snapshot():
 - 총 운행 수: {total_trips:,.0f} 건
 
 상세 결과는 첨부파일 및 아래 경로를 확인하세요.
-경로: {file_path}
+경로: {onedrive_path}
 """
     
-    res = send_email(subject, body, file_path)
+    res = send_email(subject, body, onedrive_path)
     print(f"Teams Notification Result: {res}")
     
     print("=== [batch_snapshot_v1] Process Completed Successfully ===")
-    return file_path
+    return onedrive_path
 
 if __name__ == "__main__":
     extract_batch_snapshot()
