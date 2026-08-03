@@ -1,0 +1,51 @@
+총 22일 치 데이터 추출을 시작합니다.
+저장 기본 경로: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_deploy_zone_usages
+[2026-07-01] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_deploy_zone_usages/dt=2026-07-01/rich_deploy_zone_usages_2026-07-01.parquet
+[2026-07-02] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_deploy_zone_usages/dt=2026-07-02/rich_deploy_zone_usages_2026-07-02.parquet
+[2026-07-03] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_deploy_zone_usages/dt=2026-07-03/rich_deploy_zone_usages_2026-07-03.parquet
+[2026-07-04] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_deploy_zone_usages/dt=2026-07-04/rich_deploy_zone_usages_2026-07-04.parquet
+[2026-07-05] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_deploy_zone_usages/dt=2026-07-05/rich_deploy_zone_usages_2026-07-05.parquet
+[2026-07-06] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_deploy_zone_usages/dt=2026-07-06/rich_deploy_zone_usages_2026-07-06.parquet
+[2026-07-07] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_deploy_zone_usages/dt=2026-07-07/rich_deploy_zone_usages_2026-07-07.parquet
+[2026-07-08] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_deploy_zone_usages/dt=2026-07-08/rich_deploy_zone_usages_2026-07-08.parquet
+[2026-07-09] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_deploy_zone_usages/dt=2026-07-09/rich_deploy_zone_usages_2026-07-09.parquet
+[2026-07-10] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_deploy_zone_usages/dt=2026-07-10/rich_deploy_zone_usages_2026-07-10.parquet
+[2026-07-11] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_deploy_zone_usages/dt=2026-07-11/rich_deploy_zone_usages_2026-07-11.parquet
+[2026-07-12] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_deploy_zone_usages/dt=2026-07-12/rich_deploy_zone_usages_2026-07-12.parquet
+[2026-07-13] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_deploy_zone_usages/dt=2026-07-13/rich_deploy_zone_usages_2026-07-13.parquet
+[2026-07-14] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_deploy_zone_usages/dt=2026-07-14/rich_deploy_zone_usages_2026-07-14.parquet
+[2026-07-15] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_deploy_zone_usages/dt=2026-07-15/rich_deploy_zone_usages_2026-07-15.parquet
+[2026-07-16] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_deploy_zone_usages/dt=2026-07-16/rich_deploy_zone_usages_2026-07-16.parquet
+[2026-07-17] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_deploy_zone_usages/dt=2026-07-17/rich_deploy_zone_usages_2026-07-17.parquet
+[2026-07-18] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_deploy_zone_usages/dt=2026-07-18/rich_deploy_zone_usages_2026-07-18.parquet
+[2026-07-19] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_deploy_zone_usages/dt=2026-07-19/rich_deploy_zone_usages_2026-07-19.parquet
+[2026-07-20] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_deploy_zone_usages/dt=2026-07-20/rich_deploy_zone_usages_2026-07-20.parquet
+[2026-07-21] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_deploy_zone_usages/dt=2026-07-21/rich_deploy_zone_usages_2026-07-21.parquet
+[2026-07-22] 데이터 추출 중...
+[2026-07-22] 성공적으로 저장되었습니다. (건수: 11,509, 소요시간: 42.53초)
+총 23일 치 데이터 추출을 시작합니다.
+저장 기본 경로: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_deploy_zone_usages
+[2026-07-01] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_deploy_zone_usages/dt=2026-07-01/rich_deploy_zone_usages_2026-07-01.parquet
+[2026-07-02] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_deploy_zone_usages/dt=2026-07-02/rich_deploy_zone_usages_2026-07-02.parquet
+[2026-07-03] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_deploy_zone_usages/dt=2026-07-03/rich_deploy_zone_usages_2026-07-03.parquet
+[2026-07-04] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_deploy_zone_usages/dt=2026-07-04/rich_deploy_zone_usages_2026-07-04.parquet
+[2026-07-05] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_deploy_zone_usages/dt=2026-07-05/rich_deploy_zone_usages_2026-07-05.parquet
+[2026-07-06] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_deploy_zone_usages/dt=2026-07-06/rich_deploy_zone_usages_2026-07-06.parquet
+[2026-07-07] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_deploy_zone_usages/dt=2026-07-07/rich_deploy_zone_usages_2026-07-07.parquet
+[2026-07-08] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_deploy_zone_usages/dt=2026-07-08/rich_deploy_zone_usages_2026-07-08.parquet
+[2026-07-09] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_deploy_zone_usages/dt=2026-07-09/rich_deploy_zone_usages_2026-07-09.parquet
+[2026-07-10] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_deploy_zone_usages/dt=2026-07-10/rich_deploy_zone_usages_2026-07-10.parquet
+[2026-07-11] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_deploy_zone_usages/dt=2026-07-11/rich_deploy_zone_usages_2026-07-11.parquet
+[2026-07-12] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_deploy_zone_usages/dt=2026-07-12/rich_deploy_zone_usages_2026-07-12.parquet
+[2026-07-13] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_deploy_zone_usages/dt=2026-07-13/rich_deploy_zone_usages_2026-07-13.parquet
+[2026-07-14] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_deploy_zone_usages/dt=2026-07-14/rich_deploy_zone_usages_2026-07-14.parquet
+[2026-07-15] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_deploy_zone_usages/dt=2026-07-15/rich_deploy_zone_usages_2026-07-15.parquet
+[2026-07-16] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_deploy_zone_usages/dt=2026-07-16/rich_deploy_zone_usages_2026-07-16.parquet
+[2026-07-17] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_deploy_zone_usages/dt=2026-07-17/rich_deploy_zone_usages_2026-07-17.parquet
+[2026-07-18] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_deploy_zone_usages/dt=2026-07-18/rich_deploy_zone_usages_2026-07-18.parquet
+[2026-07-19] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_deploy_zone_usages/dt=2026-07-19/rich_deploy_zone_usages_2026-07-19.parquet
+[2026-07-20] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_deploy_zone_usages/dt=2026-07-20/rich_deploy_zone_usages_2026-07-20.parquet
+[2026-07-21] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_deploy_zone_usages/dt=2026-07-21/rich_deploy_zone_usages_2026-07-21.parquet
+[2026-07-22] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_deploy_zone_usages/dt=2026-07-22/rich_deploy_zone_usages_2026-07-22.parquet
+[2026-07-23] 데이터 추출 중...
+[2026-07-23] 성공적으로 저장되었습니다. (건수: 12,099, 소요시간: 73.77초)
