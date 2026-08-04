@@ -233,3 +233,8 @@ Error extracting bicycle asset info data: (pymysql.err.OperationalError) (2003, 
 Error extracting bicycle asset info data: (pymysql.err.OperationalError) (2003, "Can't connect to MySQL server on 'live.st.rds.gbility.io' (timed out)")
 (Background on this error at: https://sqlalche.me/e/20/e3q8)
 추출 실패.
+저장 기본 경로: /Users/galaxy/Google Drive/공유 드라이브/gbike.rich_bicycle
+데이터 추출 중...
+Error extracting bicycle asset info data: (pymysql.err.OperationalError) (2003, "Can't connect to MySQL server on 'live.st.rds.gbility.io' (timed out)")
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+추출 실패.

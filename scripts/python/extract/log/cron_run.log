@@ -8070,3 +8070,43 @@ Error extracting data for 2026-07-16: (pymysql.err.OperationalError) (2003, "Can
 2026-07-31 10:00:15 [INFO] ================ Daily Batch Run Failed ================
 
 2026-07-31 10:00:15 [ERROR] run_daily_batch.py failed with exit code 1
+2026-08-04 10:00:43 [INFO] ================ Daily Cron Batch Start ================
+2026-08-04 10:00:43 [INFO] Virtual environment activated.
+2026-08-04 10:00:43 [INFO] Running run_daily_batch.py...
+2026-08-04 10:00:43 [INFO] ================ Daily Batch Run Attempt (2026-08-04 10:00:43) ================
+2026-08-04 10:00:43 [INFO] 필수 데이터 검사 범위: 2026-07-21 ~ 2026-08-03
+2026-08-04 10:00:43 [INFO] 누락 데이터 존재 감지: ['2026-08-03']
+2026-08-04 10:00:43 [INFO] 누락 날짜 데이터 강제 추출 시도: 2026-08-03
+2026-08-04 10:00:43 [INFO] Starting execution of: extract_rich_orders_daily.py 2026-08-03 2026-08-03
+2026-08-04 10:00:46 [ERROR] Error running extract_rich_orders_daily.py (Exit code: 1)
+2026-08-04 10:00:46 [ERROR] STDOUT:
+총 1일 치 데이터 추출을 시작합니다.
+저장 기본 경로: /Users/galaxy/Google Drive/공유 드라이브/gbike.rich_orders
+[2026-08-03] 데이터 추출 중...
+Error extracting data for 2026-08-03: (pymysql.err.OperationalError) (2003, "Can't connect to MySQL server on 'live.st.rds.gbility.io' ([Errno 8] nodename nor servname provided, or not known)")
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+[2026-08-03] 추출 실패. 다음 날짜로 넘어갑니다.
+경고: 하나 이상의 날짜 추출 또는 저장에 실패했습니다.
+
+2026-08-04 10:00:46 [ERROR] 2026-08-03 데이터 추출 단계에서 오류가 발생하여 배치 실행을 중단합니다.
+2026-08-04 10:00:46 [INFO] ================ Daily Batch Run Failed ================
+
+2026-08-04 10:00:43 [INFO] ================ Daily Batch Run Attempt (2026-08-04 10:00:43) ================
+2026-08-04 10:00:43 [INFO] 필수 데이터 검사 범위: 2026-07-21 ~ 2026-08-03
+2026-08-04 10:00:43 [INFO] 누락 데이터 존재 감지: ['2026-08-03']
+2026-08-04 10:00:43 [INFO] 누락 날짜 데이터 강제 추출 시도: 2026-08-03
+2026-08-04 10:00:43 [INFO] Starting execution of: extract_rich_orders_daily.py 2026-08-03 2026-08-03
+2026-08-04 10:00:46 [ERROR] Error running extract_rich_orders_daily.py (Exit code: 1)
+2026-08-04 10:00:46 [ERROR] STDOUT:
+총 1일 치 데이터 추출을 시작합니다.
+저장 기본 경로: /Users/galaxy/Google Drive/공유 드라이브/gbike.rich_orders
+[2026-08-03] 데이터 추출 중...
+Error extracting data for 2026-08-03: (pymysql.err.OperationalError) (2003, "Can't connect to MySQL server on 'live.st.rds.gbility.io' ([Errno 8] nodename nor servname provided, or not known)")
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+[2026-08-03] 추출 실패. 다음 날짜로 넘어갑니다.
+경고: 하나 이상의 날짜 추출 또는 저장에 실패했습니다.
+
+2026-08-04 10:00:46 [ERROR] 2026-08-03 데이터 추출 단계에서 오류가 발생하여 배치 실행을 중단합니다.
+2026-08-04 10:00:46 [INFO] ================ Daily Batch Run Failed ================
+
+2026-08-04 10:00:46 [ERROR] run_daily_batch.py failed with exit code 1
