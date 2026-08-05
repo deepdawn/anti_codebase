@@ -1,14 +1,12 @@
 import os
 import sys
-import os
-os.environ["POLARS_NO_MMAP"] = "1"
 import subprocess
 from datetime import datetime, timedelta
 import glob
 import traceback
 
 # 프로젝트 및 스크립트 경로 정의
-BASE_DIR = "/Users/galaxy.jang/anti_codebase"
+BASE_DIR = "/Users/galaxy/anti_codebase"
 PYTHON_BIN = os.path.join(BASE_DIR, ".venv", "bin", "python")
 EXTRACT_SCRIPT = os.path.join(BASE_DIR, "scripts", "python", "extract", "extract_rich_orders_daily.py")
 MONTHLY_USER_SCRIPT = os.path.join(BASE_DIR, "scripts", "python", "extract", "extract_rich_user_monthly.py")
@@ -98,7 +96,7 @@ def main():
     missing_dates = []
     while curr_dt <= end_dt:
         dt_str = curr_dt.strftime("%Y-%m-%d")
-        file_path = f"/Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_orders/dt={dt_str}/rich_orders_{dt_str}.parquet"
+        file_path = f"/Users/galaxy/Google Drive/공유 드라이브/gbike.rich_orders/dt={dt_str}/rich_orders_{dt_str}.parquet"
         if not os.path.exists(file_path):
             missing_dates.append(dt_str)
         curr_dt += timedelta(days=1)

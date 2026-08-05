@@ -6,7 +6,7 @@ def main():
     print("--- 26년도 상반기 연령대별 Active 비율 ---")
     dates = ["2026-03-31", "2026-04-30", "2026-05-31", "2026-06-24"]
     for dt in dates:
-        df = pl.read_parquet(f"/Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_user_segment/dt={dt}/rich_user_segment_{dt}.parquet")
+        df = pl.read_parquet(f"/Users/galaxy/Google Drive/공유 드라이브/gbike.rich_user_segment/dt={dt}/rich_user_segment_{dt}.parquet")
         
         # 10대~30대 필터링
         df_target = df.filter(pl.col("age_group").is_in(["10~16세", "17~19세", "20대", "30대"]))
@@ -26,7 +26,7 @@ def main():
 
     # 2. 선호도별 세그먼트 비교 (가장 최근 26-06-24 기준)
     print("--- 26-06-24 기준 세그먼트별 favorite_type 비중 ---")
-    df_latest = pl.read_parquet("/Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_user_segment/dt=2026-06-24/rich_user_segment_2026-06-24.parquet")
+    df_latest = pl.read_parquet("/Users/galaxy/Google Drive/공유 드라이브/gbike.rich_user_segment/dt=2026-06-24/rich_user_segment_2026-06-24.parquet")
     
     # 세그먼트 별 총 유저
     seg_total = df_latest.group_by("segment").len(name="seg_total")
@@ -42,8 +42,8 @@ def main():
 
     # 3. 16세 미만 전환 유저 (25-11-30 -> 26-06-24)
     print("--- 16세 미만 킥보드 -> 자전거 전환 유저 ---")
-    df_before = pl.read_parquet("/Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_user_segment/dt=2025-11-30/rich_user_segment_2025-11-30.parquet")
-    df_after = pl.read_parquet("/Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_user_segment/dt=2026-06-24/rich_user_segment_2026-06-24.parquet")
+    df_before = pl.read_parquet("/Users/galaxy/Google Drive/공유 드라이브/gbike.rich_user_segment/dt=2025-11-30/rich_user_segment_2025-11-30.parquet")
+    df_after = pl.read_parquet("/Users/galaxy/Google Drive/공유 드라이브/gbike.rich_user_segment/dt=2026-06-24/rich_user_segment_2026-06-24.parquet")
     
     # 10~16세 대상
     df_before_teens = df_before.filter(pl.col("age_group") == "10~16세").select(["user_id", "favorite_type"])

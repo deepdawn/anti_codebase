@@ -29,7 +29,7 @@ def extract_rich_bicycle_asset_info():
 
 def main():
     # 구글 공유 드라이브 경로 설정
-    base_save_path = "/Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_bicycle"
+    base_save_path = "/Users/galaxy/Google Drive/공유 드라이브/gbike.rich_bicycle"
     
     print(f"저장 기본 경로: {base_save_path}")
     

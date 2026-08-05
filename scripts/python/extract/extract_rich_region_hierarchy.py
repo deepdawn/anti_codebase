@@ -26,7 +26,7 @@ def extract_rich_region_hierarchy():
             df = pd.read_sql(query, connection)
             
         # 행정구역 정보 추가 (left join)
-        target_excel_path = "/Users/galaxy.jang/Library/CloudStorage/OneDrive-지바이크/서비스운영본부 - 현장데이터 개발센터/국내 소지역 행정구역 매칭.xlsx"
+        target_excel_path = "/Users/galaxy/Library/CloudStorage/OneDrive-지바이크/서비스운영본부 - 현장데이터 개발센터/국내 소지역 행정구역 매칭.xlsx"
         if os.path.exists(target_excel_path):
             excel_df = pd.read_excel(target_excel_path, sheet_name='ETL_USED')[['소지역명', '행정구역']]
             # 소지역명을 기준으로 left join
@@ -44,7 +44,7 @@ def extract_rich_region_hierarchy():
 
 def main():
     # 구글 공유 드라이브 경로 설정
-    base_save_path = "/Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_region"
+    base_save_path = "/Users/galaxy/Google Drive/공유 드라이브/gbike.rich_region"
     
     print(f"저장 기본 경로: {base_save_path}")
     

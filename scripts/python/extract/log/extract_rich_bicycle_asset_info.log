@@ -1,0 +1,245 @@
+저장 기본 경로: /Users/galaxy/Google Drive/공유 드라이브/gbike.rich_bicycle
+데이터 추출 중...
+Error extracting bicycle asset info data: (pymysql.err.OperationalError) (2003, "Can't connect to MySQL server on 'live.st.rds.gbility.io' ([Errno 60] Operation timed out)")
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+추출 실패.
+저장 기본 경로: /Users/galaxy/Google Drive/공유 드라이브/gbike.rich_bicycle
+데이터 추출 중...
+Error extracting bicycle asset info data: (pymysql.err.OperationalError) (2003, "Can't connect to MySQL server on 'live.st.rds.gbility.io' ([Errno 60] Operation timed out)")
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+추출 실패.
+저장 기본 경로: /Users/galaxy/Google Drive/공유 드라이브/gbike.rich_bicycle
+데이터 추출 중...
+성공적으로 저장되었습니다. (건수: 134,501, 소요시간: 2.13초)
+Parquet 파일 위치: /Users/galaxy/Google Drive/공유 드라이브/gbike.rich_bicycle/rich_bicycle_asset_info.parquet
+CSV 파일 위치: /Users/galaxy/Google Drive/공유 드라이브/gbike.rich_bicycle/rich_bicycle_asset_info.csv
+저장 기본 경로: /Users/galaxy/Google Drive/공유 드라이브/gbike.rich_bicycle
+데이터 추출 중...
+성공적으로 저장되었습니다. (건수: 134,501, 소요시간: 1.90초)
+Parquet 파일 위치: /Users/galaxy/Google Drive/공유 드라이브/gbike.rich_bicycle/rich_bicycle_asset_info.parquet
+CSV 파일 위치: /Users/galaxy/Google Drive/공유 드라이브/gbike.rich_bicycle/rich_bicycle_asset_info.csv
+저장 기본 경로: /Users/galaxy/Google Drive/공유 드라이브/gbike.rich_bicycle
+데이터 추출 중...
+Error extracting bicycle asset info data: (pymysql.err.OperationalError) (2003, "Can't connect to MySQL server on 'live.st.rds.gbility.io' ([Errno 60] Operation timed out)")
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+추출 실패.
+저장 기본 경로: /Users/galaxy/Google Drive/공유 드라이브/gbike.rich_bicycle
+데이터 추출 중...
+성공적으로 저장되었습니다. (건수: 134,501, 소요시간: 5.03초)
+Parquet 파일 위치: /Users/galaxy/Google Drive/공유 드라이브/gbike.rich_bicycle/rich_bicycle_asset_info.parquet
+CSV 파일 위치: /Users/galaxy/Google Drive/공유 드라이브/gbike.rich_bicycle/rich_bicycle_asset_info.csv
+저장 기본 경로: /Users/galaxy/Google Drive/공유 드라이브/gbike.rich_bicycle
+데이터 추출 중...
+Error extracting bicycle asset info data: (pymysql.err.OperationalError) (2003, "Can't connect to MySQL server on 'live.st.rds.gbility.io' (timed out)")
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+추출 실패.
+저장 기본 경로: /Users/galaxy/Google Drive/공유 드라이브/gbike.rich_bicycle
+데이터 추출 중...
+성공적으로 저장되었습니다. (건수: 134,501, 소요시간: 5.02초)
+Parquet 파일 위치: /Users/galaxy/Google Drive/공유 드라이브/gbike.rich_bicycle/rich_bicycle_asset_info.parquet
+CSV 파일 위치: /Users/galaxy/Google Drive/공유 드라이브/gbike.rich_bicycle/rich_bicycle_asset_info.csv
+저장 기본 경로: /Users/galaxy/Google Drive/공유 드라이브/gbike.rich_bicycle
+데이터 추출 중...
+Error extracting bicycle asset info data: (pymysql.err.OperationalError) (2003, "Can't connect to MySQL server on 'live.st.rds.gbility.io' (timed out)")
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+추출 실패.
+저장 기본 경로: /Users/galaxy/Google Drive/공유 드라이브/gbike.rich_bicycle
+데이터 추출 중...
+성공적으로 저장되었습니다. (건수: 134,501, 소요시간: 6.31초)
+Parquet 파일 위치: /Users/galaxy/Google Drive/공유 드라이브/gbike.rich_bicycle/rich_bicycle_asset_info.parquet
+CSV 파일 위치: /Users/galaxy/Google Drive/공유 드라이브/gbike.rich_bicycle/rich_bicycle_asset_info.csv
+저장 기본 경로: /Users/galaxy/Google Drive/공유 드라이브/gbike.rich_bicycle
+데이터 추출 중...
+Error extracting bicycle asset info data: (pymysql.err.OperationalError) (2003, "Can't connect to MySQL server on 'live.st.rds.gbility.io' (timed out)")
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+추출 실패.
+저장 기본 경로: /Users/galaxy/Google Drive/공유 드라이브/gbike.rich_bicycle
+데이터 추출 중...
+성공적으로 저장되었습니다. (건수: 134,501, 소요시간: 22.41초)
+Parquet 파일 위치: /Users/galaxy/Google Drive/공유 드라이브/gbike.rich_bicycle/rich_bicycle_asset_info.parquet
+CSV 파일 위치: /Users/galaxy/Google Drive/공유 드라이브/gbike.rich_bicycle/rich_bicycle_asset_info.csv
+저장 기본 경로: /Users/galaxy/Google Drive/공유 드라이브/gbike.rich_bicycle
+데이터 추출 중...
+성공적으로 저장되었습니다. (건수: 134,501, 소요시간: 9.13초)
+Parquet 파일 위치: /Users/galaxy/Google Drive/공유 드라이브/gbike.rich_bicycle/rich_bicycle_asset_info.parquet
+CSV 파일 위치: /Users/galaxy/Google Drive/공유 드라이브/gbike.rich_bicycle/rich_bicycle_asset_info.csv
+저장 기본 경로: /Users/galaxy/Google Drive/공유 드라이브/gbike.rich_bicycle
+데이터 추출 중...
+Error extracting bicycle asset info data: (pymysql.err.OperationalError) (2003, "Can't connect to MySQL server on 'live.st.rds.gbility.io' ([Errno 60] Operation timed out)")
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+추출 실패.
+저장 기본 경로: /Users/galaxy/Google Drive/공유 드라이브/gbike.rich_bicycle
+데이터 추출 중...
+성공적으로 저장되었습니다. (건수: 134,501, 소요시간: 4.39초)
+Parquet 파일 위치: /Users/galaxy/Google Drive/공유 드라이브/gbike.rich_bicycle/rich_bicycle_asset_info.parquet
+CSV 파일 위치: /Users/galaxy/Google Drive/공유 드라이브/gbike.rich_bicycle/rich_bicycle_asset_info.csv
+저장 기본 경로: /Users/galaxy/Google Drive/공유 드라이브/gbike.rich_bicycle
+데이터 추출 중...
+성공적으로 저장되었습니다. (건수: 134,501, 소요시간: 3.70초)
+Parquet 파일 위치: /Users/galaxy/Google Drive/공유 드라이브/gbike.rich_bicycle/rich_bicycle_asset_info.parquet
+CSV 파일 위치: /Users/galaxy/Google Drive/공유 드라이브/gbike.rich_bicycle/rich_bicycle_asset_info.csv
+저장 기본 경로: /Users/galaxy/Google Drive/공유 드라이브/gbike.rich_bicycle
+데이터 추출 중...
+성공적으로 저장되었습니다. (건수: 134,501, 소요시간: 3.31초)
+Parquet 파일 위치: /Users/galaxy/Google Drive/공유 드라이브/gbike.rich_bicycle/rich_bicycle_asset_info.parquet
+CSV 파일 위치: /Users/galaxy/Google Drive/공유 드라이브/gbike.rich_bicycle/rich_bicycle_asset_info.csv
+저장 기본 경로: /Users/galaxy/Google Drive/공유 드라이브/gbike.rich_bicycle
+데이터 추출 중...
+성공적으로 저장되었습니다. (건수: 134,501, 소요시간: 4.41초)
+Parquet 파일 위치: /Users/galaxy/Google Drive/공유 드라이브/gbike.rich_bicycle/rich_bicycle_asset_info.parquet
+CSV 파일 위치: /Users/galaxy/Google Drive/공유 드라이브/gbike.rich_bicycle/rich_bicycle_asset_info.csv
+저장 기본 경로: /Users/galaxy/Google Drive/공유 드라이브/gbike.rich_bicycle
+데이터 추출 중...
+Error extracting bicycle asset info data: (pymysql.err.OperationalError) (2003, "Can't connect to MySQL server on 'live.st.rds.gbility.io' ([Errno 60] Operation timed out)")
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+추출 실패.
+저장 기본 경로: /Users/galaxy/Google Drive/공유 드라이브/gbike.rich_bicycle
+데이터 추출 중...
+Error extracting bicycle asset info data: (pymysql.err.OperationalError) (2003, "Can't connect to MySQL server on 'live.st.rds.gbility.io' ([Errno 60] Operation timed out)")
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+추출 실패.
+저장 기본 경로: /Users/galaxy/Google Drive/공유 드라이브/gbike.rich_bicycle
+데이터 추출 중...
+성공적으로 저장되었습니다. (건수: 134,501, 소요시간: 3.17초)
+Parquet 파일 위치: /Users/galaxy/Google Drive/공유 드라이브/gbike.rich_bicycle/rich_bicycle_asset_info.parquet
+CSV 파일 위치: /Users/galaxy/Google Drive/공유 드라이브/gbike.rich_bicycle/rich_bicycle_asset_info.csv
+저장 기본 경로: /Users/galaxy/Google Drive/공유 드라이브/gbike.rich_bicycle
+데이터 추출 중...
+성공적으로 저장되었습니다. (건수: 134,501, 소요시간: 4.60초)
+Parquet 파일 위치: /Users/galaxy/Google Drive/공유 드라이브/gbike.rich_bicycle/rich_bicycle_asset_info.parquet
+CSV 파일 위치: /Users/galaxy/Google Drive/공유 드라이브/gbike.rich_bicycle/rich_bicycle_asset_info.csv
+저장 기본 경로: /Users/galaxy/Google Drive/공유 드라이브/gbike.rich_bicycle
+데이터 추출 중...
+성공적으로 저장되었습니다. (건수: 134,501, 소요시간: 3.17초)
+Parquet 파일 위치: /Users/galaxy/Google Drive/공유 드라이브/gbike.rich_bicycle/rich_bicycle_asset_info.parquet
+CSV 파일 위치: /Users/galaxy/Google Drive/공유 드라이브/gbike.rich_bicycle/rich_bicycle_asset_info.csv
+저장 기본 경로: /Users/galaxy/Google Drive/공유 드라이브/gbike.rich_bicycle
+데이터 추출 중...
+Error extracting bicycle asset info data: (pymysql.err.OperationalError) (2003, "Can't connect to MySQL server on 'live.st.rds.gbility.io' (timed out)")
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+추출 실패.
+저장 기본 경로: /Users/galaxy/Google Drive/공유 드라이브/gbike.rich_bicycle
+데이터 추출 중...
+성공적으로 저장되었습니다. (건수: 134,501, 소요시간: 4.34초)
+Parquet 파일 위치: /Users/galaxy/Google Drive/공유 드라이브/gbike.rich_bicycle/rich_bicycle_asset_info.parquet
+CSV 파일 위치: /Users/galaxy/Google Drive/공유 드라이브/gbike.rich_bicycle/rich_bicycle_asset_info.csv
+저장 기본 경로: /Users/galaxy/Google Drive/공유 드라이브/gbike.rich_bicycle
+데이터 추출 중...
+Error extracting bicycle asset info data: (pymysql.err.OperationalError) (2003, "Can't connect to MySQL server on 'live.st.rds.gbility.io' (timed out)")
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+추출 실패.
+저장 기본 경로: /Users/galaxy/Google Drive/공유 드라이브/gbike.rich_bicycle
+데이터 추출 중...
+Error extracting bicycle asset info data: (pymysql.err.OperationalError) (2003, "Can't connect to MySQL server on 'live.st.rds.gbility.io' (timed out)")
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+추출 실패.
+저장 기본 경로: /Users/galaxy/Google Drive/공유 드라이브/gbike.rich_bicycle
+데이터 추출 중...
+성공적으로 저장되었습니다. (건수: 134,501, 소요시간: 2.95초)
+Parquet 파일 위치: /Users/galaxy/Google Drive/공유 드라이브/gbike.rich_bicycle/rich_bicycle_asset_info.parquet
+CSV 파일 위치: /Users/galaxy/Google Drive/공유 드라이브/gbike.rich_bicycle/rich_bicycle_asset_info.csv
+저장 기본 경로: /Users/galaxy/Google Drive/공유 드라이브/gbike.rich_bicycle
+데이터 추출 중...
+성공적으로 저장되었습니다. (건수: 134,501, 소요시간: 2.19초)
+Parquet 파일 위치: /Users/galaxy/Google Drive/공유 드라이브/gbike.rich_bicycle/rich_bicycle_asset_info.parquet
+CSV 파일 위치: /Users/galaxy/Google Drive/공유 드라이브/gbike.rich_bicycle/rich_bicycle_asset_info.csv
+저장 기본 경로: /Users/galaxy/Google Drive/공유 드라이브/gbike.rich_bicycle
+데이터 추출 중...
+성공적으로 저장되었습니다. (건수: 134,501, 소요시간: 3.71초)
+Parquet 파일 위치: /Users/galaxy/Google Drive/공유 드라이브/gbike.rich_bicycle/rich_bicycle_asset_info.parquet
+CSV 파일 위치: /Users/galaxy/Google Drive/공유 드라이브/gbike.rich_bicycle/rich_bicycle_asset_info.csv
+저장 기본 경로: /Users/galaxy/Google Drive/공유 드라이브/gbike.rich_bicycle
+데이터 추출 중...
+성공적으로 저장되었습니다. (건수: 134,501, 소요시간: 2.77초)
+Parquet 파일 위치: /Users/galaxy/Google Drive/공유 드라이브/gbike.rich_bicycle/rich_bicycle_asset_info.parquet
+CSV 파일 위치: /Users/galaxy/Google Drive/공유 드라이브/gbike.rich_bicycle/rich_bicycle_asset_info.csv
+저장 기본 경로: /Users/galaxy/Google Drive/공유 드라이브/gbike.rich_bicycle
+데이터 추출 중...
+Error extracting bicycle asset info data: (pymysql.err.OperationalError) (2003, "Can't connect to MySQL server on 'live.st.rds.gbility.io' (timed out)")
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+추출 실패.
+저장 기본 경로: /Users/galaxy/Google Drive/공유 드라이브/gbike.rich_bicycle
+데이터 추출 중...
+Error extracting bicycle asset info data: (pymysql.err.OperationalError) (2003, "Can't connect to MySQL server on 'live.st.rds.gbility.io' (timed out)")
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+추출 실패.
+저장 기본 경로: /Users/galaxy/Google Drive/공유 드라이브/gbike.rich_bicycle
+데이터 추출 중...
+Error extracting bicycle asset info data: (pymysql.err.OperationalError) (2003, "Can't connect to MySQL server on 'live.st.rds.gbility.io' ([Errno 60] Operation timed out)")
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+추출 실패.
+저장 기본 경로: /Users/galaxy/Google Drive/공유 드라이브/gbike.rich_bicycle
+데이터 추출 중...
+Error extracting bicycle asset info data: (pymysql.err.OperationalError) (2003, "Can't connect to MySQL server on 'live.st.rds.gbility.io' (timed out)")
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+추출 실패.
+저장 기본 경로: /Users/galaxy/Google Drive/공유 드라이브/gbike.rich_bicycle
+데이터 추출 중...
+Error extracting bicycle asset info data: (pymysql.err.OperationalError) (2003, "Can't connect to MySQL server on 'live.st.rds.gbility.io' (timed out)")
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+추출 실패.
+저장 기본 경로: /Users/galaxy/Google Drive/공유 드라이브/gbike.rich_bicycle
+데이터 추출 중...
+Error extracting bicycle asset info data: (pymysql.err.OperationalError) (2003, "Can't connect to MySQL server on 'live.st.rds.gbility.io' (timed out)")
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+추출 실패.
+저장 기본 경로: /Users/galaxy/Google Drive/공유 드라이브/gbike.rich_bicycle
+데이터 추출 중...
+Error extracting bicycle asset info data: (pymysql.err.OperationalError) (2003, "Can't connect to MySQL server on 'live.st.rds.gbility.io' (timed out)")
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+추출 실패.
+저장 기본 경로: /Users/galaxy/Google Drive/공유 드라이브/gbike.rich_bicycle
+데이터 추출 중...
+Error extracting bicycle asset info data: (pymysql.err.OperationalError) (2003, "Can't connect to MySQL server on 'live.st.rds.gbility.io' (timed out)")
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+추출 실패.
+저장 기본 경로: /Users/galaxy/Google Drive/공유 드라이브/gbike.rich_bicycle
+데이터 추출 중...
+Error extracting bicycle asset info data: (pymysql.err.OperationalError) (2003, "Can't connect to MySQL server on 'live.st.rds.gbility.io' (timed out)")
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+추출 실패.
+저장 기본 경로: /Users/galaxy/Google Drive/공유 드라이브/gbike.rich_bicycle
+데이터 추출 중...
+Error extracting bicycle asset info data: (pymysql.err.OperationalError) (2003, "Can't connect to MySQL server on 'live.st.rds.gbility.io' (timed out)")
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+추출 실패.
+저장 기본 경로: /Users/galaxy/Google Drive/공유 드라이브/gbike.rich_bicycle
+데이터 추출 중...
+Error extracting bicycle asset info data: (pymysql.err.OperationalError) (2003, "Can't connect to MySQL server on 'live.st.rds.gbility.io' (timed out)")
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+추출 실패.
+저장 기본 경로: /Users/galaxy/Google Drive/공유 드라이브/gbike.rich_bicycle
+데이터 추출 중...
+Error extracting bicycle asset info data: (pymysql.err.OperationalError) (2003, "Can't connect to MySQL server on 'live.st.rds.gbility.io' (timed out)")
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+추출 실패.
+저장 기본 경로: /Users/galaxy/Google Drive/공유 드라이브/gbike.rich_bicycle
+데이터 추출 중...
+Error extracting bicycle asset info data: (pymysql.err.OperationalError) (2003, "Can't connect to MySQL server on 'live.st.rds.gbility.io' (timed out)")
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+추출 실패.
+저장 기본 경로: /Users/galaxy/Google Drive/공유 드라이브/gbike.rich_bicycle
+데이터 추출 중...
+Error extracting bicycle asset info data: (pymysql.err.OperationalError) (2003, "Can't connect to MySQL server on 'live.st.rds.gbility.io' (timed out)")
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+추출 실패.
+저장 기본 경로: /Users/galaxy/Google Drive/공유 드라이브/gbike.rich_bicycle
+데이터 추출 중...
+Error extracting bicycle asset info data: (pymysql.err.OperationalError) (2003, "Can't connect to MySQL server on 'live.st.rds.gbility.io' (timed out)")
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+추출 실패.
+저장 기본 경로: /Users/galaxy/Google Drive/공유 드라이브/gbike.rich_bicycle
+데이터 추출 중...
+Error extracting bicycle asset info data: (pymysql.err.OperationalError) (2003, "Can't connect to MySQL server on 'live.st.rds.gbility.io' (timed out)")
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+추출 실패.
+저장 기본 경로: /Users/galaxy/Google Drive/공유 드라이브/gbike.rich_bicycle
+데이터 추출 중...
+Error extracting bicycle asset info data: (pymysql.err.OperationalError) (2003, "Can't connect to MySQL server on 'live.st.rds.gbility.io' (timed out)")
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+추출 실패.
+저장 기본 경로: /Users/galaxy/Google Drive/공유 드라이브/gbike.rich_bicycle
+데이터 추출 중...
+Error extracting bicycle asset info data: (pymysql.err.OperationalError) (2003, "Can't connect to MySQL server on 'live.st.rds.gbility.io' (timed out)")
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+추출 실패.

@@ -4,7 +4,7 @@ import seaborn as sns
 import os
 
 def main():
-    result_dir = "/Users/galaxy.jang/anti_codebase/results/pohang_extract_trip_data"
+    result_dir = "/Users/galaxy/anti_codebase/results/pohang_extract_trip_data"
     data_file = os.path.join(result_dir, "20250101_20260430_pohang_camp_external_users.xlsx")
     
     # 1. Load Data

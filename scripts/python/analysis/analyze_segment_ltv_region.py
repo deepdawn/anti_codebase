@@ -3,7 +3,7 @@ import polars as pl
 import argparse
 
 def analyze(target_date_str):
-    file_path = f"/Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_user_segment/dt={target_date_str}/rich_user_segment_{target_date_str}.parquet"
+    file_path = f"/Users/galaxy/Google Drive/공유 드라이브/gbike.rich_user_segment/dt={target_date_str}/rich_user_segment_{target_date_str}.parquet"
     
     if not os.path.exists(file_path):
         print(f"파일을 찾을 수 없습니다: {file_path}")

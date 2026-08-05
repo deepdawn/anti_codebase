@@ -4,19 +4,19 @@ import pandas as pd
 import time
 
 # 공용 유틸리티 경로 추가
-sys.path.append("/Users/galaxy.jang/anti_codebase/scripts/python/utils")
+sys.path.append("/Users/galaxy/anti_codebase/scripts/python/utils")
 from read_rich_orders_pandas import load_rich_orders, apply_channel_fee_logic
 
 def main():
-    script_dir = "/Users/galaxy.jang/anti_codebase/scripts/python/wonju_latenight_analysis"
-    result_dir = "/Users/galaxy.jang/anti_codebase/results/wonju_latenight_analysis"
+    script_dir = "/Users/galaxy/anti_codebase/scripts/python/wonju_latenight_analysis"
+    result_dir = "/Users/galaxy/anti_codebase/results/wonju_latenight_analysis"
     os.makedirs(script_dir, exist_ok=True)
     os.makedirs(result_dir, exist_ok=True)
 
     out_file = os.path.join(result_dir, "wonju_orders_filtered.parquet")
     
     # 1. 지역 계층 정보 로드
-    region_file = "/Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_region/rich_region_hierarchy.parquet"
+    region_file = "/Users/galaxy/Google Drive/공유 드라이브/gbike.rich_region/rich_region_hierarchy.parquet"
     print(f"지역 계층 정보 로드 중: {region_file}")
     try:
         region_df = pd.read_parquet(region_file)

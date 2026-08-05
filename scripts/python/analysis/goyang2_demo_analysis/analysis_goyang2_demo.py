@@ -12,16 +12,16 @@ plt.rcParams['font.family'] = 'AppleGothic'
 plt.rcParams['axes.unicode_minus'] = False
 
 # 유틸리티 스크립트 경로 추가
-sys.path.append('/Users/galaxy.jang/anti_codebase/scripts/python/utils')
+sys.path.append('/Users/galaxy/anti_codebase/scripts/python/utils')
 from read_rich_orders_polars import load_rich_orders_polars
 
 def main():
-    base_drive_path = "/Users/galaxy.jang/Google Drive/공유 드라이브"
+    base_drive_path = "/Users/galaxy/Google Drive/공유 드라이브"
     orders_path = f"{base_drive_path}/gbike.rich_orders"
     region_path = f"{base_drive_path}/gbike.rich_region/rich_region_hierarchy.parquet"
     user_path = f"{base_drive_path}/gbike.rich_user/rich_user_all.parquet"
     
-    results_dir = "/Users/galaxy.jang/anti_codebase/results/goyang2_demo_analysis"
+    results_dir = "/Users/galaxy/anti_codebase/results/goyang2_demo_analysis"
     os.makedirs(results_dir, exist_ok=True)
     
     print("1. 데이터 로드 및 전처리 시작...")

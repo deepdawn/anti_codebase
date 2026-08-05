@@ -30,7 +30,7 @@ def get_min_max_dates(base_path):
     return dates[0], dates[-1]
 
 def main():
-    base_path = "/Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_orders"
+    base_path = "/Users/galaxy/Google Drive/공유 드라이브/gbike.rich_orders"
     print("구글 드라이브 폴더 스캔 중...")
     
     start_date, end_date = get_min_max_dates(base_path)
@@ -108,7 +108,7 @@ def main():
     )
     
     # 6. 엑셀 저장 (Pandas ExcelWriter 활용)
-    save_dir = "/Users/galaxy.jang/anti_codebase/results/all_time_summary"
+    save_dir = "/Users/galaxy/anti_codebase/results/all_time_summary"
     os.makedirs(save_dir, exist_ok=True)
     save_path = os.path.join(save_dir, "all_time_stats_and_trends.xlsx")
     

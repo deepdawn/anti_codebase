@@ -14,7 +14,7 @@ from sklearn.ensemble import RandomForestRegressor
 plt.rcParams['font.family'] = 'AppleGothic'
 plt.rcParams['axes.unicode_minus'] = False
 
-sys.path.append('/Users/galaxy.jang/anti_codebase/scripts/python/utils')
+sys.path.append('/Users/galaxy/anti_codebase/scripts/python/utils')
 from read_rich_orders_polars import load_rich_orders_polars
 
 def fetch_weather_data(start_date, end_date):
@@ -41,12 +41,12 @@ def fetch_weather_data(start_date, end_date):
     return pl.DataFrame({'date': full_dates, 'temp_mean': 15.0, 'precip_sum': 0.0})
 
 def main():
-    base_drive = "/Users/galaxy.jang/Google Drive/공유 드라이브"
+    base_drive = "/Users/galaxy/Google Drive/공유 드라이브"
     orders_path = f"{base_drive}/gbike.rich_orders"
     region_path = f"{base_drive}/gbike.rich_region/rich_region_hierarchy.parquet"
     user_path = f"{base_drive}/gbike.rich_user/rich_user_all.parquet"
     
-    results_dir = "/Users/galaxy.jang/anti_codebase/results/regression_all_demos"
+    results_dir = "/Users/galaxy/anti_codebase/results/regression_all_demos"
     os.makedirs(results_dir, exist_ok=True)
     
     start_date, end_date = "2025-01-01", "2026-05-31"

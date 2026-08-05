@@ -45,14 +45,14 @@ def calculate_user_segments(target_date_str):
     
     # 3. rich_user 로드
     print("전체 유저 정보를 로드합니다...")
-    user_path = "/Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_user/rich_user_all.parquet"
-    df_users = pl.read_parquet(user_path, columns=["user_id", "register_dt", "region_id", "age_group"], memory_map=False)
+    user_path = "/Users/galaxy/Google Drive/공유 드라이브/gbike.rich_user/rich_user_all.parquet"
+    df_users = pl.scan_parquet(user_path).select(["user_id", "register_dt", "region_id", "age_group"]).collect()
     df_users = df_users.with_columns(pl.col("register_dt").cast(pl.Datetime))
     df_users = df_users.filter(pl.col("register_dt").cast(pl.Date) <= target_date_polars_lit.cast(pl.Date))
     
     print("지역 정보를 로드하고 유저 정보와 결합합니다...")
-    region_path = "/Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_region/rich_region_hierarchy.parquet"
-    df_region = pl.read_parquet(region_path, columns=["region_id", "대지역", "중지역", "소지역"], memory_map=False)
+    region_path = "/Users/galaxy/Google Drive/공유 드라이브/gbike.rich_region/rich_region_hierarchy.parquet"
+    df_region = pl.scan_parquet(region_path).select(["region_id", "대지역", "중지역", "소지역"]).collect()
     df_users = df_users.join(df_region, on="region_id", how="inner")
     
     # 4. Join
@@ -141,21 +141,12 @@ def calculate_user_segments(target_date_str):
     ])
     
     # 7. 저장
-    base_output_dir = "/Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_user_segment"
+    base_output_dir = "/Users/galaxy/Google Drive/공유 드라이브/gbike.rich_user_segment"
     output_dir = os.path.join(base_output_dir, f"dt={target_date_str}")
     os.makedirs(output_dir, exist_ok=True)
     
     output_path = os.path.join(output_dir, f"rich_user_segment_{target_date_str}.parquet")
-    import pyarrow.parquet as pq
-    import shutil
-    import tempfile
-    
-    # Google Drive FUSE I/O deadlock 방지를 위해 로컬 임시 파일에 먼저 저장 후 이동
-    with tempfile.NamedTemporaryFile(delete=False, suffix=".parquet") as tmp:
-        tmp_path = tmp.name
-        
-    pq.write_table(df_final.to_arrow(), tmp_path)
-    shutil.move(tmp_path, output_path)
+    df_final.write_parquet(output_path)
     print(f"결과가 저장되었습니다: {output_path}")
     
     # 통계 출력

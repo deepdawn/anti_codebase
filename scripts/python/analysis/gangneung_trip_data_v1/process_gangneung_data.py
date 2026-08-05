@@ -3,9 +3,9 @@ import os
 
 def main():
     # 1. 파일 경로 설정
-    extracted_file = '/Users/galaxy.jang/anti_codebase/base_data/primary_data/gangneung_trip_data_v1/gangneung_trip_data_v1_total.xlsx'
-    stats_file = '/Users/galaxy.jang/anti_codebase/base_data/primary_data/gangneung_trip_data_v1/redshift_rich_daily_statistics.xlsx'
-    output_file = '/Users/galaxy.jang/anti_codebase/base_data/secondary_data/gangneung_trip_data_v1/gangneung_trip_data_v1_processed.xlsx'
+    extracted_file = '/Users/galaxy/anti_codebase/base_data/primary_data/gangneung_trip_data_v1/gangneung_trip_data_v1_total.xlsx'
+    stats_file = '/Users/galaxy/anti_codebase/base_data/primary_data/gangneung_trip_data_v1/redshift_rich_daily_statistics.xlsx'
+    output_file = '/Users/galaxy/anti_codebase/base_data/secondary_data/gangneung_trip_data_v1/gangneung_trip_data_v1_processed.xlsx'
     
     # 디렉토리 생성
     os.makedirs(os.path.dirname(output_file), exist_ok=True)

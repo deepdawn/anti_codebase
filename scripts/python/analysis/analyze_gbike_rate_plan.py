@@ -68,11 +68,11 @@ def main():
     try:
         logger.info("전국 단위 요금제 비중 추이 분석 시작")
         
-        output_dir = "/Users/galaxy.jang/anti_codebase/results/gbike_rate_plan"
+        output_dir = "/Users/galaxy/anti_codebase/results/gbike_rate_plan"
         os.makedirs(output_dir, exist_ok=True)
         
         # 1. 지역 정보 로드
-        region_path = "/Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_region/rich_region_hierarchy.parquet"
+        region_path = "/Users/galaxy/Google Drive/공유 드라이브/gbike.rich_region/rich_region_hierarchy.parquet"
         if not os.path.exists(region_path):
             logger.error(f"지역 계층 정보 파일이 존재하지 않습니다: {region_path}")
             return

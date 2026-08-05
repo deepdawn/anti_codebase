@@ -4,16 +4,16 @@ import pandas as pd
 import polars as pl
 
 # 유틸리티 경로 추가
-sys.path.append("/Users/galaxy.jang/anti_codebase/scripts/python/utils")
+sys.path.append("/Users/galaxy/anti_codebase/scripts/python/utils")
 from read_rich_orders_polars import load_rich_orders_polars, apply_channel_fee_logic
 
 def main():
     # 1. 결과 폴더 생성
-    results_dir = "/Users/galaxy.jang/anti_codebase/results/daegu1_may_new_users"
+    results_dir = "/Users/galaxy/anti_codebase/results/daegu1_may_new_users"
     os.makedirs(results_dir, exist_ok=True)
     
     # 2. 엑셀 데이터 로드
-    excel_path = "/Users/galaxy.jang/anti_codebase/base_data/primary_data/daegu1camp_registers.xlsx"
+    excel_path = "/Users/galaxy/anti_codebase/base_data/primary_data/daegu1camp_registers.xlsx"
     print(f"Reading {excel_path}...")
     df_users_pd = pd.read_excel(excel_path)
     df_users = pl.from_pandas(df_users_pd)

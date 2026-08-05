@@ -55,7 +55,7 @@ def extract_rich_user_monthly(start_date_str, end_date_str, engine):
         return None
 
 def main():
-    base_save_path = "/Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_user"
+    base_save_path = "/Users/galaxy/Google Drive/공유 드라이브/gbike.rich_user"
     folder_name = "rich_user_this_month"
     folder_path = os.path.join(base_save_path, folder_name)
     os.makedirs(folder_path, exist_ok=True)
@@ -102,8 +102,7 @@ def main():
                 
                 # user_id 기준으로 중복 제거하되, 가장 마지막(이번 달 추출본) 데이터를 유지(keep='last')
                 df_upserted = lf.collect().unique(subset=["user_id"], keep="last")
-                import pyarrow.parquet as pq
-                pq.write_table(df_upserted.to_arrow(), all_file_path)
+                df_upserted.write_parquet(all_file_path)
                 
                 print(f"rich_user_all.parquet 업데이트 완료! (최종 유저 수: {df_upserted.height:,})")
             else:

@@ -4,7 +4,7 @@ import sys
 import os
 
 # 프로젝트 루트 경로 추가
-sys.path.append('/Users/galaxy.jang/anti_codebase')
+sys.path.append('/Users/galaxy/anti_codebase')
 from scripts.python.utils.read_rich_orders_polars import load_rich_orders_polars, apply_channel_fee_logic
 
 def main():
@@ -33,7 +33,7 @@ def main():
     )
 
     # 3. rich_region_hierarchy 로드
-    region_path = "/Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_region/rich_region_hierarchy.parquet"
+    region_path = "/Users/galaxy/Google Drive/공유 드라이브/gbike.rich_region/rich_region_hierarchy.parquet"
     df_region = pl.read_parquet(region_path)
 
     # 4. 조인 (low_region_id = region_id)
@@ -57,7 +57,7 @@ def main():
     print(df_agg)
 
     # 6. 결과를 저장할 폴더 및 파일 경로 설정
-    result_dir = os.path.join("/Users/galaxy.jang/anti_codebase/results", subfolder_name)
+    result_dir = os.path.join("/Users/galaxy/anti_codebase/results", subfolder_name)
     os.makedirs(result_dir, exist_ok=True)
     
     result_file = os.path.join(result_dir, f"revenue_by_large_region_{yesterday}.xlsx")

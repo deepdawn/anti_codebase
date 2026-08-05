@@ -1434,3 +1434,79 @@ ORDER BY
     M.model_type ASC,
     R.use_time_type ASC,
     C.care_plan_type ASC;
+
+
+
+-- 송도캠프 신규가입자 쿠폰 사용량 확인 작업
+with ord as (
+    select  order_id,user_id,region_id,add_time
+    FROM gbike.rich_orders o
+    WHERE 1=1
+      and o.order_state = 2
+      AND o.add_time BETWEEN UNIX_TIMESTAMP(CONVERT_TZ('2026-06-13 00:00:00', 'Asia/Seoul', 'UTC'))
+      AND UNIX_TIMESTAMP(CONVERT_TZ('2026-06-30 23:59:59', 'Asia/Seoul', 'UTC'))
+),
+    coupon as (
+    select rc.order_id,rc.user_id,rc.number
+    from rich_coupon rc
+    join ord o on rc.order_id = o.order_id
+    where 1=1
+#     and coupon_title = '신규회원웰컴쿠폰'
+#     and rc.number = 5000
+),
+    region as ( -- 지역 구분
+    select	r.region_id,
+            r.region_name as '소지역',
+            rr.region_name as '중지역',
+            rrr.region_name as '대지역'
+    from	gbike.rich_region r
+    join	gbike.rich_region rr on r.parent_id = rr.region_id
+    join	gbike.rich_region rrr on rr.parent_id = rrr.region_id
+    where	1=1
+    and		rr.region_name like '송도캠프'
+)
+    select  date(CONVERT_TZ(FROM_UNIXTIME(add_time), 'UTC', 'Asia/Seoul')) as dt,
+            r.`대지역`,
+            r.`중지역`,
+            count(o.order_id) as `총 운행 수`,
+            count(case when c.number = 2000 then c.order_id end) as `2000원 할인 쿠폰 운행 수`,
+            count(case when c.number = 4000 then c.order_id end) as `4000원 할인 쿠폰 운행 수`,
+            count(case when c.number = 5000 then c.order_id end) as `5000원 할인 쿠폰 운행 수`
+    from ord o
+    join region r on o.region_id = r.region_id
+    left join coupon c on o.order_id = c.order_id
+group by 1,2,3
+;
+
+
+-- 지바이크 일별 할인 주문 수 트렌드
+with base as (
+    select
+
+        *,
+                 case
+                     when order_info -> '$.riding_fee_type' = 'time' then '분당요금제'
+                     when order_info -> '$.riding_fee_type' = 'odometer' then '거리요금제'
+                 else '알수없음' end AS riding_fee_type
+    #     extract(hour from CONVERT_TZ(FROM_UNIXTIME(O.add_time), 'UTC', 'Asia/Seoul')) AS ride_hour
+    #     CASE WHEN O.is_late_night_surcharge = 1 THEN '심야' ELSE '주간' END AS hour_type,
+    FROM gbike.rich_orders o
+    WHERE 1=1
+    and o.add_time >= UNIX_TIMESTAMP('2026-06-01 00:00:00') - 32400
+    AND o.add_time < UNIX_TIMESTAMP('2026-07-09 00:00:00') - 32400
+    AND o.order_state = 2 -- 완료된 유효 주문건
+    and country_code = 'kr'
+), discount as (
+    select *
+    from gbike.rich_order_discounts
+    where exists (select order_id from base where base.order_id = rich_order_discounts.order_id)
+)
+select
+        date(CONVERT_TZ(FROM_UNIXTIME(add_time), 'UTC', 'Asia/Seoul')) as dt,
+        count(distinct b.order_id) as total_trip_cnt,
+        count(distinct d.order_id) as dicount_trip_cnt,
+        count(distinct d.order_id) / cast(count(distinct b.order_id) as float) as discount_rate
+from base b
+left join discount d on b.order_id = d.order_id
+group by 1
+;

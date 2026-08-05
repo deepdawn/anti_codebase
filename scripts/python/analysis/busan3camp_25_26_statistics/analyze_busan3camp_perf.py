@@ -8,7 +8,7 @@ plt.rc('font', family='AppleGothic')
 plt.rcParams['axes.unicode_minus'] = False
 
 def main():
-    base_dir = '/Users/galaxy.jang/anti_codebase'
+    base_dir = '/Users/galaxy/anti_codebase'
     input_path = os.path.join(base_dir, 'base_data/secondary_data/260526_busan3camp_assigned_vehicle.xlsx')
     output_dir = os.path.join(base_dir, 'results/busan3camp_25_26_statistics')
     

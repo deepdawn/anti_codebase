@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourcePerFileMappings">
+    <file url="file://$PROJECT_DIR$/scripts/sql/new_user_age_signup_count.sql" value="0c932b88-7aa1-4b96-ab50-1da7f2881f80" />
+    <file url="file://$PROJECT_DIR$/scripts/sql/reference/gbike_all.sql" value="0c932b88-7aa1-4b96-ab50-1da7f2881f80" />
+  </component>
+</project>

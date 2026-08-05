@@ -21,8 +21,8 @@ def get_engine():
         sys.exit(1)
 
 def main():
-    base_dir = "/Users/galaxy.jang/anti_codebase"
-    result_dir = "/Users/galaxy.jang/anti_codebase/results/JejuExtractTripData"
+    base_dir = "/Users/galaxy/anti_codebase"
+    result_dir = "/Users/galaxy/anti_codebase/results/JejuExtractTripData"
     os.makedirs(result_dir, exist_ok=True)
 
     # 1. 추출 기간 설정 (2025-01-01 ~ 2026-04-30)

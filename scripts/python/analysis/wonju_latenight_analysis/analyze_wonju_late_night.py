@@ -3,7 +3,7 @@ import os
 import numpy as np
 
 def main():
-    base_dir = "/Users/galaxy.jang/anti_codebase"
+    base_dir = "/Users/galaxy/anti_codebase"
     in_file = os.path.join(base_dir, "results/wonju_latenight_analysis/wonju_orders_filtered.parquet")
     alloc_file = os.path.join(base_dir, "base_data/secondary_data/wonju_allocated_vehicle_count.xlsx")
     out_file = os.path.join(base_dir, "results/wonju_latenight_analysis/wonju_latenight_analysis_final_summary.xlsx")

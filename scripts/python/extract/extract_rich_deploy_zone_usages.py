@@ -34,8 +34,7 @@ def extract_deploy_count(target_date_str, engine):
     WHERE
         D.deployed_at >= CONVERT_TZ('{target_date_str} 00:00:00', 'Asia/Seoul', 'UTC')
         AND D.deployed_at <= CONVERT_TZ('{target_date_str} 23:59:59', 'Asia/Seoul', 'UTC')
-        and D.deleted_at is null
-        AND G.region_name in ('남부RS팀','RS그룹','서울RS팀','중앙RS팀','경상RS팀','강남RS팀','프로젝트_루미','가맹영업팀')
+        AND G.region_name in ('남부RS팀','RS그룹','서울RS팀','중앙RS팀','경상RS팀','강남RS팀','프로젝트_루미')
     GROUP BY 1, 2, 3, 4, 5, 6, 7, 8, 9
     """
     
@@ -75,8 +74,7 @@ def extract_release_count(target_date_str, engine):
     WHERE
         D.released_at >= CONVERT_TZ('{target_date_str} 00:00:00', 'Asia/Seoul', 'UTC')
         AND D.released_at <= CONVERT_TZ('{target_date_str} 23:59:59', 'Asia/Seoul', 'UTC')
-        and D.deleted_at is null
-        AND G.region_name in ('남부RS팀','RS그룹','서울RS팀','중앙RS팀','경상RS팀','강남RS팀','프로젝트_루미','가맹영업팀')
+        AND G.region_name in ('남부RS팀','RS그룹','서울RS팀','중앙RS팀','경상RS팀','강남RS팀','프로젝트_루미')
     GROUP BY 1, 2, 3, 4, 5, 6, 7, 8, 9
     """
     
@@ -117,7 +115,7 @@ def merge_usages(df_deploy, df_release):
     return merged_df
 
 def main():
-    base_save_path = "/Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_deploy_zone_usages"
+    base_save_path = "/Users/galaxy/Google Drive/공유 드라이브/gbike.rich_deploy_zone_usages"
     
     args = [arg for arg in sys.argv if arg != '--overwrite']
     

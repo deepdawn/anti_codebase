@@ -2,7 +2,7 @@ import os
 import pandas as pd
 from datetime import datetime
 
-def load_rich_orders(start_date_str, end_date_str, columns=None, base_path="/Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_orders"):
+def load_rich_orders(start_date_str, end_date_str, columns=None, base_path="/Users/galaxy/Google Drive/공유 드라이브/gbike.rich_orders"):
     """
     지정된 기간 동안 구글 드라이브에 저장된 rich_orders Parquet 파일들을 읽어와서 하나의 DataFrame으로 반환합니다.
     
@@ -26,7 +26,7 @@ def load_rich_orders(start_date_str, end_date_str, columns=None, base_path="/Use
         if os.path.exists(file_path):
             try:
                 # 메모리 절약을 위해 columns 파라미터 활용 가능
-                df = pd.read_parquet(file_path, columns=columns, engine='pyarrow', memory_map=False)
+                df = pd.read_parquet(file_path, columns=columns)
                 df_list.append(df)
             except Exception as e:
                 print(f"[{target_date_str}] 파일 읽기 중 오류 발생: {e}")

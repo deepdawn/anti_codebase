@@ -3,18 +3,11 @@ from sqlalchemy import create_engine
 import urllib.parse
 import sys
 import os
-from dotenv import load_dotenv
-
-# .env.db 로드
-base_dir = os.path.dirname(os.path.abspath(__file__))
-env_path = os.path.join(base_dir, '../../../.env.db')
-load_dotenv(env_path)
 
 def get_redshift_engine():
     host = 'live-redshift-cluster-gbike.comng6zxlpsm.ap-northeast-2.redshift.amazonaws.com'
-    user = os.environ.get('REDSHIFT_USER')
-    raw_password = os.environ.get('REDSHIFT_PASS')
-    password = urllib.parse.quote_plus(raw_password) if raw_password else ''
+    user = 'rmteam'
+    password = urllib.parse.quote_plus('Gbike@rmteam@20230510!')
     port = 5439
     database = 'gbike'
 

@@ -10,7 +10,7 @@ utils_path = os.path.join(project_root, 'scripts/python/utils')
 sys.path.append(utils_path)
 
 from test_mysql_conn import run_query
-from send_google_chat_msg import send_google_chat_message
+from teams_email_mcp import send_email
 
 def extract_batch_snapshot():
     print("=== [batch_snapshot_v1] Data Extraction Started ===")
@@ -121,7 +121,7 @@ def extract_batch_snapshot():
     save_date = (datetime.now() - timedelta(days=1)).strftime('%y%m%d')
     file_name = f'batch_snapshot_v1_{save_date}.xlsx'
     
-    onedrive_base = "/Users/galaxy.jang/Library/CloudStorage/OneDrive-지바이크/서비스운영본부 - 현장데이터 개발센터/results/data_extract/batch_snapshot_v1"
+    onedrive_base = "/Users/galaxy/Library/CloudStorage/OneDrive-지바이크/서비스운영본부 - 현장데이터 개발센터/results/data_extract/batch_snapshot_v1"
     onedrive_dir = os.path.join(onedrive_base, save_date)
     
     if os.path.exists(onedrive_base):
@@ -137,26 +137,26 @@ def extract_batch_snapshot():
         print(f"OneDrive path not found: {onedrive_base}")
         return None
     
-    # 6. Google Chat Notification
-    print("Sending Google Chat Notification...")
+    # 6. Teams Notification
+    print("Sending Teams Notification...")
     total_allocated = agg_result['기기 카운트 (할당)'].sum()
     total_operated = agg_result['운행 대수 (실제)'].sum()
     total_trips = agg_result['운행 수'].sum()
     
-    body = f"""▶️ *[Batch] batch_snapshot_v1 완료 ({save_date})*
+    subject = f"[Batch] batch_snapshot_v1 완료 ({save_date})"
+    body = f"""[batch_snapshot_v1] 처리가 완료되었습니다.
+
 - 기준 일자: {agg_result['base_date'].iloc[0]}
 - 총 할당 기기 수: {total_allocated:,.0f} 대
 - 총 운행 기기 수: {total_operated:,.0f} 대
 - 총 운행 수: {total_trips:,.0f} 건
 
-상세 결과 경로: {onedrive_path}
+상세 결과는 첨부파일 및 아래 경로를 확인하세요.
+경로: {onedrive_path}
 """
     
-    creds_file = "/Users/galaxy.jang/anti_codebase/.etc/workspace_desktop_chat_galaxy.json"
-    space_id = "spaces/AAQAf0HeYv0" # 스냅샷 알림 채널
-    
-    res = send_google_chat_message(creds_file, space_id, body)
-    print(f"Google Chat Notification Result: {res}")
+    res = send_email(subject, body, onedrive_path)
+    print(f"Teams Notification Result: {res}")
     
     print("=== [batch_snapshot_v1] Process Completed Successfully ===")
     return onedrive_path

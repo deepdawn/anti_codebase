@@ -157,7 +157,7 @@ def main():
         
         target_revenue = 0
         try:
-            target_excel_path = "/Users/galaxy.jang/Library/CloudStorage/OneDrive-지바이크/서비스운영본부 - 현장데이터 개발센터/2026년 목표 매출.xlsx"
+            target_excel_path = "/Users/galaxy/Library/CloudStorage/OneDrive-지바이크/서비스운영본부 - 현장데이터 개발센터/2026년 목표 매출.xlsx"
             df_target = pd.read_excel(target_excel_path, sheet_name='forecast_model_use')
             current_month = end_date_dt.month
             month_str = f"{current_month}월 (F)"
@@ -176,7 +176,7 @@ def main():
             weather_resp = requests.get(weather_url, timeout=5).json()
             if 'daily' in weather_resp:
                 for d, p in zip(weather_resp['daily']['time'], weather_resp['daily']['precipitation_sum']):
-                    status = "비" if p and p >= 3 else "-"
+                    status = "비" if p and p >= 10 else "-"
                     weather_dict[d] = {'status': status, 'precip': p if p else 0}
         except Exception as e:
             pass
@@ -187,7 +187,7 @@ def main():
             if 'daily' in forecast_resp:
                 for d, p in zip(forecast_resp['daily']['time'], forecast_resp['daily']['precipitation_sum']):
                     if d not in weather_dict:
-                        status = "비" if p and p >= 3 else "-"
+                        status = "비" if p and p >= 10 else "-"
                         weather_dict[d] = {'status': status, 'precip': p if p else 0}
         except Exception as e:
             pass
@@ -478,7 +478,7 @@ def main():
             msg_seg += "```\n"
         
         # 발송 (운영 채널)
-        creds_file = "/Users/galaxy.jang/anti_codebase/.etc/workspace_desktop_chat_galaxy.json"
+        creds_file = "/Users/galaxy/anti_codebase/.etc/workspace_desktop_chat_galaxy.json"
         space_id = "spaces/AAQA8O4oUkw" # 전마팀 매출 봇 채널
         
         print("매출 메시지 발송 중...")

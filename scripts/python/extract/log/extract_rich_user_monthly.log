@@ -1,0 +1,180 @@
+추출 기간: 2026-06-01 ~ 2026-06-01
+저장 경로: /Users/galaxy/Google Drive/공유 드라이브/gbike.rich_user/rich_user_this_month/rich_user_this_month.parquet
+데이터 추출 중...
+성공적으로 덮어쓰기 완료되었습니다. (건수: 2,846, 소요시간: 0.84초)
+rich_user_all.parquet 파일 병합(Upsert)을 시작합니다...
+rich_user_all.parquet 업데이트 완료! (최종 유저 수: 3,897,466)
+추출 기간: 2026-06-01 ~ 2026-06-02
+저장 경로: /Users/galaxy/Google Drive/공유 드라이브/gbike.rich_user/rich_user_this_month/rich_user_this_month.parquet
+데이터 추출 중...
+Error extracting data: (pymysql.err.OperationalError) (2003, "Can't connect to MySQL server on 'live.st.rds.gbility.io' (timed out)")
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+추출 실패.
+추출 기간: 2026-06-01 ~ 2026-06-03
+저장 경로: /Users/galaxy/Google Drive/공유 드라이브/gbike.rich_user/rich_user_this_month/rich_user_this_month.parquet
+데이터 추출 중...
+성공적으로 덮어쓰기 완료되었습니다. (건수: 10,178, 소요시간: 1.39초)
+rich_user_all.parquet 파일 병합(Upsert)을 시작합니다...
+rich_user_all.parquet 업데이트 완료! (최종 유저 수: 3,904,803)
+추출 기간: 2026-06-01 ~ 2026-06-04
+저장 경로: /Users/galaxy/Google Drive/공유 드라이브/gbike.rich_user/rich_user_this_month/rich_user_this_month.parquet
+데이터 추출 중...
+성공적으로 덮어쓰기 완료되었습니다. (건수: 12,626, 소요시간: 1.24초)
+rich_user_all.parquet 파일 병합(Upsert)을 시작합니다...
+rich_user_all.parquet 업데이트 완료! (최종 유저 수: 3,907,262)
+추출 기간: 2026-06-01 ~ 2026-06-05
+저장 경로: /Users/galaxy/Google Drive/공유 드라이브/gbike.rich_user/rich_user_this_month/rich_user_this_month.parquet
+데이터 추출 중...
+Error extracting data: (pymysql.err.OperationalError) (2003, "Can't connect to MySQL server on 'live.st.rds.gbility.io' (timed out)")
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+추출 실패.
+추출 기간: 2026-06-01 ~ 2026-06-05
+저장 경로: /Users/galaxy/Google Drive/공유 드라이브/gbike.rich_user/rich_user_this_month/rich_user_this_month.parquet
+데이터 추출 중...
+성공적으로 덮어쓰기 완료되었습니다. (건수: 15,884, 소요시간: 1.18초)
+rich_user_all.parquet 파일 병합(Upsert)을 시작합니다...
+rich_user_all.parquet 업데이트 완료! (최종 유저 수: 3,910,535)
+추출 기간: 2026-06-01 ~ 2026-06-06
+저장 경로: /Users/galaxy/Google Drive/공유 드라이브/gbike.rich_user/rich_user_this_month/rich_user_this_month.parquet
+데이터 추출 중...
+Error extracting data: (pymysql.err.OperationalError) (2003, "Can't connect to MySQL server on 'live.st.rds.gbility.io' ([Errno 60] Operation timed out)")
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+추출 실패.
+추출 기간: 2026-06-01 ~ 2026-06-07
+저장 경로: /Users/galaxy/Google Drive/공유 드라이브/gbike.rich_user/rich_user_this_month/rich_user_this_month.parquet
+데이터 추출 중...
+성공적으로 덮어쓰기 완료되었습니다. (건수: 24,172, 소요시간: 4.60초)
+rich_user_all.parquet 파일 병합(Upsert)을 시작합니다...
+rich_user_all.parquet 업데이트 완료! (최종 유저 수: 3,918,832)
+추출 기간: 2026-06-01 ~ 2026-06-08
+저장 경로: /Users/galaxy/Google Drive/공유 드라이브/gbike.rich_user/rich_user_this_month/rich_user_this_month.parquet
+데이터 추출 중...
+성공적으로 덮어쓰기 완료되었습니다. (건수: 26,916, 소요시간: 4.64초)
+rich_user_all.parquet 파일 병합(Upsert)을 시작합니다...
+rich_user_all.parquet 업데이트 완료! (최종 유저 수: 3,921,589)
+추출 기간: 2026-06-01 ~ 2026-06-09
+저장 경로: /Users/galaxy/Google Drive/공유 드라이브/gbike.rich_user/rich_user_this_month/rich_user_this_month.parquet
+데이터 추출 중...
+성공적으로 덮어쓰기 완료되었습니다. (건수: 29,699, 소요시간: 1.82초)
+rich_user_all.parquet 파일 병합(Upsert)을 시작합니다...
+rich_user_all.parquet 업데이트 완료! (최종 유저 수: 3,924,384)
+추출 기간: 2026-06-01 ~ 2026-06-10
+저장 경로: /Users/galaxy/Google Drive/공유 드라이브/gbike.rich_user/rich_user_this_month/rich_user_this_month.parquet
+데이터 추출 중...
+성공적으로 덮어쓰기 완료되었습니다. (건수: 32,788, 소요시간: 5.91초)
+rich_user_all.parquet 파일 병합(Upsert)을 시작합니다...
+rich_user_all.parquet 업데이트 완료! (최종 유저 수: 3,927,486)
+추출 기간: 2026-06-01 ~ 2026-06-11
+저장 경로: /Users/galaxy/Google Drive/공유 드라이브/gbike.rich_user/rich_user_this_month/rich_user_this_month.parquet
+데이터 추출 중...
+성공적으로 덮어쓰기 완료되었습니다. (건수: 35,772, 소요시간: 2.49초)
+rich_user_all.parquet 파일 병합(Upsert)을 시작합니다...
+rich_user_all.parquet 업데이트 완료! (최종 유저 수: 3,930,494)
+추출 기간: 2026-06-01 ~ 2026-06-12
+저장 경로: /Users/galaxy/Google Drive/공유 드라이브/gbike.rich_user/rich_user_this_month/rich_user_this_month.parquet
+데이터 추출 중...
+Error extracting data: (pymysql.err.OperationalError) (2003, "Can't connect to MySQL server on 'live.st.rds.gbility.io' ([Errno 60] Operation timed out)")
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+추출 실패.
+추출 기간: 2026-06-01 ~ 2026-06-13
+저장 경로: /Users/galaxy/Google Drive/공유 드라이브/gbike.rich_user/rich_user_this_month/rich_user_this_month.parquet
+데이터 추출 중...
+Error extracting data: (pymysql.err.OperationalError) (2003, "Can't connect to MySQL server on 'live.st.rds.gbility.io' ([Errno 60] Operation timed out)")
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+추출 실패.
+추출 기간: 2026-06-01 ~ 2026-06-14
+저장 경로: /Users/galaxy/Google Drive/공유 드라이브/gbike.rich_user/rich_user_this_month/rich_user_this_month.parquet
+데이터 추출 중...
+성공적으로 덮어쓰기 완료되었습니다. (건수: 48,210, 소요시간: 1.88초)
+rich_user_all.parquet 파일 병합(Upsert)을 시작합니다...
+rich_user_all.parquet 업데이트 완료! (최종 유저 수: 3,942,967)
+추출 기간: 2026-06-01 ~ 2026-06-15
+저장 경로: /Users/galaxy/Google Drive/공유 드라이브/gbike.rich_user/rich_user_this_month/rich_user_this_month.parquet
+데이터 추출 중...
+성공적으로 덮어쓰기 완료되었습니다. (건수: 51,442, 소요시간: 4.79초)
+rich_user_all.parquet 파일 병합(Upsert)을 시작합니다...
+rich_user_all.parquet 업데이트 완료! (최종 유저 수: 3,946,220)
+추출 기간: 2026-06-01 ~ 2026-06-16
+저장 경로: /Users/galaxy/Google Drive/공유 드라이브/gbike.rich_user/rich_user_this_month/rich_user_this_month.parquet
+데이터 추출 중...
+Error extracting data: (pymysql.err.OperationalError) (2003, "Can't connect to MySQL server on 'live.st.rds.gbility.io' ([Errno 60] Operation timed out)")
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+추출 실패.
+추출 기간: 2026-06-01 ~ 2026-06-17
+저장 경로: /Users/galaxy/Google Drive/공유 드라이브/gbike.rich_user/rich_user_this_month/rich_user_this_month.parquet
+데이터 추출 중...
+성공적으로 덮어쓰기 완료되었습니다. (건수: 57,839, 소요시간: 5.71초)
+rich_user_all.parquet 파일 병합(Upsert)을 시작합니다...
+rich_user_all.parquet 업데이트 완료! (최종 유저 수: 3,952,656)
+추출 기간: 2026-06-01 ~ 2026-06-18
+저장 경로: /Users/galaxy/Google Drive/공유 드라이브/gbike.rich_user/rich_user_this_month/rich_user_this_month.parquet
+데이터 추출 중...
+Error extracting data: (pymysql.err.OperationalError) (2003, "Can't connect to MySQL server on 'live.st.rds.gbility.io' (timed out)")
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+추출 실패.
+추출 기간: 2026-06-01 ~ 2026-06-18
+저장 경로: /Users/galaxy/Google Drive/공유 드라이브/gbike.rich_user/rich_user_this_month/rich_user_this_month.parquet
+데이터 추출 중...
+성공적으로 덮어쓰기 완료되었습니다. (건수: 61,174, 소요시간: 2.73초)
+rich_user_all.parquet 파일 병합(Upsert)을 시작합니다...
+rich_user_all.parquet 업데이트 완료! (최종 유저 수: 3,956,015)
+추출 기간: 2026-06-01 ~ 2026-06-19
+저장 경로: /Users/galaxy/Google Drive/공유 드라이브/gbike.rich_user/rich_user_this_month/rich_user_this_month.parquet
+데이터 추출 중...
+Error extracting data: (pymysql.err.OperationalError) (2003, "Can't connect to MySQL server on 'live.st.rds.gbility.io' (timed out)")
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+추출 실패.
+추출 기간: 2026-06-01 ~ 2026-06-19
+저장 경로: /Users/galaxy/Google Drive/공유 드라이브/gbike.rich_user/rich_user_this_month/rich_user_this_month.parquet
+데이터 추출 중...
+성공적으로 덮어쓰기 완료되었습니다. (건수: 63,869, 소요시간: 8.48초)
+rich_user_all.parquet 파일 병합(Upsert)을 시작합니다...
+rich_user_all.parquet 업데이트 완료! (최종 유저 수: 3,958,733)
+추출 기간: 2026-06-01 ~ 2026-06-20
+저장 경로: /Users/galaxy/Google Drive/공유 드라이브/gbike.rich_user/rich_user_this_month/rich_user_this_month.parquet
+데이터 추출 중...
+Error extracting data: (pymysql.err.OperationalError) (2003, "Can't connect to MySQL server on 'live.st.rds.gbility.io' (timed out)")
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+추출 실패.
+추출 기간: 2026-06-01 ~ 2026-06-20
+저장 경로: /Users/galaxy/Google Drive/공유 드라이브/gbike.rich_user/rich_user_this_month/rich_user_this_month.parquet
+데이터 추출 중...
+성공적으로 덮어쓰기 완료되었습니다. (건수: 65,959, 소요시간: 19.86초)
+rich_user_all.parquet 파일 병합(Upsert)을 시작합니다...
+rich_user_all.parquet 업데이트 완료! (최종 유저 수: 3,960,843)
+추출 기간: 2026-06-01 ~ 2026-06-21
+저장 경로: /Users/galaxy/Google Drive/공유 드라이브/gbike.rich_user/rich_user_this_month/rich_user_this_month.parquet
+데이터 추출 중...
+성공적으로 덮어쓰기 완료되었습니다. (건수: 69,814, 소요시간: 7.94초)
+rich_user_all.parquet 파일 병합(Upsert)을 시작합니다...
+rich_user_all.parquet 업데이트 완료! (최종 유저 수: 3,964,719)
+추출 기간: 2026-06-01 ~ 2026-06-21
+저장 경로: /Users/galaxy/Google Drive/공유 드라이브/gbike.rich_user/rich_user_this_month/rich_user_this_month.parquet
+데이터 추출 중...
+Error extracting data: (pymysql.err.OperationalError) (2003, "Can't connect to MySQL server on 'live.st.rds.gbility.io' ([Errno 60] Operation timed out)")
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+추출 실패.
+추출 기간: 2026-06-01 ~ 2026-06-22
+저장 경로: /Users/galaxy/Google Drive/공유 드라이브/gbike.rich_user/rich_user_this_month/rich_user_this_month.parquet
+데이터 추출 중...
+성공적으로 덮어쓰기 완료되었습니다. (건수: 72,865, 소요시간: 6.78초)
+rich_user_all.parquet 파일 병합(Upsert)을 시작합니다...
+rich_user_all.parquet 업데이트 완료! (최종 유저 수: 3,967,792)
+추출 기간: 2026-06-01 ~ 2026-06-23
+저장 경로: /Users/galaxy/Google Drive/공유 드라이브/gbike.rich_user/rich_user_this_month/rich_user_this_month.parquet
+데이터 추출 중...
+성공적으로 덮어쓰기 완료되었습니다. (건수: 75,869, 소요시간: 8.49초)
+rich_user_all.parquet 파일 병합(Upsert)을 시작합니다...
+rich_user_all.parquet 업데이트 완료! (최종 유저 수: 3,970,821)
+추출 기간: 2026-06-01 ~ 2026-06-24
+저장 경로: /Users/galaxy/Google Drive/공유 드라이브/gbike.rich_user/rich_user_this_month/rich_user_this_month.parquet
+데이터 추출 중...
+성공적으로 덮어쓰기 완료되었습니다. (건수: 78,848, 소요시간: 11.28초)
+rich_user_all.parquet 파일 병합(Upsert)을 시작합니다...
+rich_user_all.parquet 업데이트 완료! (최종 유저 수: 3,973,832)
+추출 기간: 2026-06-01 ~ 2026-06-25
+저장 경로: /Users/galaxy/Google Drive/공유 드라이브/gbike.rich_user/rich_user_this_month/rich_user_this_month.parquet
+데이터 추출 중...
+성공적으로 덮어쓰기 완료되었습니다. (건수: 81,593, 소요시간: 11.47초)
+rich_user_all.parquet 파일 병합(Upsert)을 시작합니다...
+rich_user_all.parquet 업데이트 완료! (최종 유저 수: 3,976,602)

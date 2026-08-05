@@ -22,6 +22,6 @@ def preprocess_data(input_path, output_path):
     print("Preprocessing complete!")
 
 if __name__ == "__main__":
-    PRIMARY_DATA_PATH = "/Users/galaxy.jang/anti_codebase/base_data/primary_data/deploy_usage.csv"
-    SECONDARY_DATA_PATH = "/Users/galaxy.jang/anti_codebase/base_data/secondary_data/deployed_zone_analysis_v1_preprocessed.csv"
+    PRIMARY_DATA_PATH = "/Users/galaxy/anti_codebase/base_data/primary_data/deploy_usage.csv"
+    SECONDARY_DATA_PATH = "/Users/galaxy/anti_codebase/base_data/secondary_data/deployed_zone_analysis_v1_preprocessed.csv"
     preprocess_data(PRIMARY_DATA_PATH, SECONDARY_DATA_PATH)

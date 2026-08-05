@@ -12,8 +12,8 @@ def safe_div(a, b):
     return np.where(b == 0, 0, a / b)
 
 def analyze_gangneung():
-    input_file = '/Users/galaxy.jang/anti_codebase/base_data/secondary_data/gangneung_trip_data_v1/gangneung_trip_data_v1_processed.xlsx'
-    output_dir = '/Users/galaxy.jang/anti_codebase/results/gangneung_trip_data_v1/'
+    input_file = '/Users/galaxy/anti_codebase/base_data/secondary_data/gangneung_trip_data_v1/gangneung_trip_data_v1_processed.xlsx'
+    output_dir = '/Users/galaxy/anti_codebase/results/gangneung_trip_data_v1/'
     os.makedirs(output_dir, exist_ok=True)
     
     print("Loading data...")
@@ -92,7 +92,7 @@ def analyze_gangneung():
     
     # 6. 분석 모듈 5 & 6: 특이점(Anomaly) 탐지 및 시각화 (원본 통계 데이터 사용)
     print("Loading raw statistics data for accurate revenue analysis...")
-    raw_stats_file = '/Users/galaxy.jang/anti_codebase/base_data/primary_data/gangneung_trip_data_v1/redshift_rich_daily_statistics.xlsx'
+    raw_stats_file = '/Users/galaxy/anti_codebase/base_data/primary_data/gangneung_trip_data_v1/redshift_rich_daily_statistics.xlsx'
     raw_stats_df = pd.read_excel(raw_stats_file)
     
     # 날짜 필터링 (2025년 1/1~5/13, 2026년 1/1~5/13)

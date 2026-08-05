@@ -16,7 +16,7 @@ from sklearn.preprocessing import StandardScaler
 plt.rcParams['font.family'] = 'AppleGothic'
 plt.rcParams['axes.unicode_minus'] = False
 
-sys.path.append('/Users/galaxy.jang/anti_codebase/scripts/python/utils')
+sys.path.append('/Users/galaxy/anti_codebase/scripts/python/utils')
 from read_rich_orders_polars import load_rich_orders_polars
 
 def fetch_weather_data(start_date, end_date):
@@ -58,12 +58,12 @@ def calculate_vif(X):
     return vif_data
 
 def main():
-    base_drive = "/Users/galaxy.jang/Google Drive/공유 드라이브"
+    base_drive = "/Users/galaxy/Google Drive/공유 드라이브"
     orders_path = f"{base_drive}/gbike.rich_orders"
     region_path = f"{base_drive}/gbike.rich_region/rich_region_hierarchy.parquet"
     user_path = f"{base_drive}/gbike.rich_user/rich_user_all.parquet"
     
-    results_dir = "/Users/galaxy.jang/anti_codebase/results/regression_1719_male"
+    results_dir = "/Users/galaxy/anti_codebase/results/regression_1719_male"
     os.makedirs(results_dir, exist_ok=True)
     
     start_date, end_date = "2025-01-01", "2026-05-31"

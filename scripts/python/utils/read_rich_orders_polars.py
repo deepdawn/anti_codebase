@@ -3,7 +3,7 @@ import polars as pl
 # import pandas as pd
 from datetime import datetime, timedelta
 
-def load_rich_orders_polars(start_date_str, end_date_str, columns=None, base_path="/Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_orders"):
+def load_rich_orders_polars(start_date_str, end_date_str, columns=None, base_path="/Users/galaxy/Google Drive/공유 드라이브/gbike.rich_orders", filter_expr=None):
     """
     지정된 기간 동안 구글 드라이브에 저장된 rich_orders Parquet 파일들을 Polars를 이용해 
     빠르게 읽어와서 하나의 Polars DataFrame으로 반환합니다.
@@ -13,6 +13,7 @@ def load_rich_orders_polars(start_date_str, end_date_str, columns=None, base_pat
         end_date_str (str): 종료 날짜 (YYYY-MM-DD)
         columns (list, optional): 불러올 컬럼 리스트
         base_path (str): Parquet 파일이 저장된 기본 경로
+        filter_expr (pl.Expr, optional): 로드 시 적용할 필터 조건 (메모리 절약)
         
     Returns:
         pl.DataFrame: 병합된 Polars 데이터프레임
@@ -41,16 +42,17 @@ def load_rich_orders_polars(start_date_str, end_date_str, columns=None, base_pat
         return pl.DataFrame()
         
     try:
-        # FUSE 환경(Google Drive)에서 Resource deadlock avoided(os error 11) 방지를 위해
-        # scan_parquet 대신 개별 read_parquet(memory_map=False) 후 병합하는 방식으로 변경합니다.
-        dfs = []
-        for f in file_paths:
-            df_day = pl.read_parquet(f, columns=columns, memory_map=False)
-            dfs.append(df_day)
-        if dfs:
-            df = pl.concat(dfs, how="vertical_relaxed")
-            return df
-        return pl.DataFrame()
+        # Polars의 Lazy API(scan_parquet)를 활용하여 최적화된 파일 읽기 수행
+        lf = pl.scan_parquet(file_paths, missing_columns='insert', extra_columns='ignore')
+        if columns:
+            lf = lf.select(columns)
+            
+        if filter_expr is not None:
+            lf = lf.filter(filter_expr)
+            
+        # 연산을 실행하고 메모리에 올림 (collect)
+        df = lf.collect()
+        return df
     except Exception as e:
         print(f"파일 읽기 및 병합 중 오류 발생: {e}")
         return pl.DataFrame()
@@ -86,9 +88,8 @@ def apply_channel_fee_logic(df: pl.DataFrame) -> pl.DataFrame:
 if __name__ == '__main__':
     # 예시: 2023년 전체 로드 후 Polars를 이용한 집계 테스트
     print("=== Polars: rich_orders 로드 및 집계 테스트 ===")
-    yesterday = (datetime.now() - timedelta(days=1)).strftime('%Y-%m-%d')
-    start = yesterday
-    end = yesterday
+    start = '2023-01-01'
+    end = '2023-12-31'
     
     selected_cols = ['dt', 'pay_amount', 'duration_minutes']
     

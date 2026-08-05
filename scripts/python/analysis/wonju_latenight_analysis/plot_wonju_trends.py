@@ -9,7 +9,7 @@ def main():
     plt.rc('font', family='AppleGothic')
     plt.rcParams['axes.unicode_minus'] = False
     
-    base_dir = "/Users/galaxy.jang/anti_codebase"
+    base_dir = "/Users/galaxy/anti_codebase"
     excel_file = os.path.join(base_dir, "results/wonju_latenight_analysis/wonju_latenight_analysis_final_summary.xlsx")
     out_dir = os.path.join(base_dir, "results/wonju_latenight_analysis")
     
