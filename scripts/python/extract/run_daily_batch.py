@@ -127,11 +127,11 @@ def main():
         log("================ Daily Batch Run Failed ================\n")
         sys.exit(1)
 
-    # 6. 리포트 전송
-    if not run_subprocess(REPORT_SCRIPT):
-        log("리포트 발송 단계에서 오류가 발생하여 배치 실행을 중단합니다.", level="ERROR")
-        log("================ Daily Batch Run Failed ================\n")
-        sys.exit(1)
+    # 6. 리포트 전송 (마스터 파이프라인의 가장 마지막 Phase로 이관됨)
+    # if not run_subprocess(REPORT_SCRIPT):
+    #     log("리포트 발송 단계에서 오류가 발생하여 배치 실행을 중단합니다.", level="ERROR")
+    #     log("================ Daily Batch Run Failed ================\n")
+    #     sys.exit(1)
         
     # 7. 성공 마커 생성
     try:

@@ -28,7 +28,7 @@ def extract_rich_region_hierarchy():
         # 행정구역 정보 추가 (left join)
         target_excel_path = "/Users/galaxy.jang/Library/CloudStorage/OneDrive-지바이크/서비스운영본부 - 현장데이터 개발센터/국내 소지역 행정구역 매칭.xlsx"
         if os.path.exists(target_excel_path):
-            excel_df = pd.read_excel(target_excel_path)[['소지역명', '행정구역']]
+            excel_df = pd.read_excel(target_excel_path, sheet_name='ETL_USED')[['소지역명', '행정구역']]
             # 소지역명을 기준으로 left join
             df = pd.merge(df, excel_df, left_on='소지역', right_on='소지역명', how='left')
             # 소지역명 컬럼은 소지역 컬럼과 중복되므로 제거

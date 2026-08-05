@@ -10,28 +10,28 @@ from sqlalchemy import text
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from utils.test_mysql_conn import get_engine
 
-def extract_vehicle_statistics(target_date_str, engine):
+def extract_rich_battery_data(target_date_str, engine):
     query = f"""
     SELECT
-        date,
-        high_region_name,
-        middle_region_name,
-        region_id,
+        DATE(date) AS `일자`,
+        region_1 AS `대지역`,
+        region_2 AS `중지역`,
         CASE
-            WHEN type IN (15,17,18,22,24) THEN '자전거'
-            WHEN type IN (9,10,11,12,13,16,19,23) THEN '킥보드'
-            ELSE 'none'
-        END AS "기기구분",
-        SUM(deactivate_24h_count)/count(distinct hour) AS deactivate_24h_count,
-        SUM(deactivate_48h_count)/count(distinct hour) AS deactivate_48h_count,
-        SUM(deactivate_72h_count)/count(distinct hour) AS deactivate_72h_count,
-        SUM(total_vehicle_count)/count(distinct hour) AS total_vehicle_count
-    FROM gbike_smartops.vehicle_statistics_data
-    WHERE date = '{target_date_str}'
-    and (middle_region_name LIKE '%캠프%' OR middle_region_name LIKE '%루미%')
-    and region_name like '%본사직영%'
-    AND region_name NOT LIKE '%미사용%'
-    GROUP BY 1,2,3,4,5
+            WHEN bicycle_type IN (1, 14, 15, 16, 17, 18, 22, 24) THEN 'bicycle'
+            WHEN bicycle_type IN (9, 10, 11, 12, 13, 16, 19, 23) THEN 'scooter'
+            ELSE 'OTHER'
+        END AS `기기타입`,
+        SUM(battery_0_20)/count(distinct date) AS battery_0_20,
+        SUM(battery_20_40)/count(distinct date) AS battery_20_40,
+        SUM(battery_40_60)/count(distinct date) AS battery_40_60,
+        SUM(battery_60_80)/count(distinct date) AS battery_60_80,
+        SUM(battery_80_100)/count(distinct date) AS battery_80_100,
+        SUM(total_count)/count(distinct date) AS total_vehicle_count
+    FROM gbike_smartops.bicycle_data
+    WHERE DATE(date) = '{target_date_str}'
+      AND country_code = 'kr'
+      AND (region_2 LIKE '%캠프%' OR region_2 LIKE '%루미%')
+    GROUP BY 1, 2, 3, 4
     """
     
     try:
@@ -43,7 +43,7 @@ def extract_vehicle_statistics(target_date_str, engine):
         return None
 
 def main():
-    parser = argparse.ArgumentParser(description='vehicle_statistics_data 일별 추출')
+    parser = argparse.ArgumentParser(description='rich_battery_data 일별 추출')
     parser.add_argument('start_date', nargs='?', type=str, help='시작 일자 (YYYY-MM-DD)')
     parser.add_argument('end_date', nargs='?', type=str, help='종료 일자 (YYYY-MM-DD)')
     parser.add_argument('--overwrite', action='store_true', help='이미 존재하는 파일 덮어쓰기')
@@ -56,31 +56,42 @@ def main():
 
     if args.start_date and args.end_date:
         start_date_str = args.start_date
-        end_date = args.end_date
+        end_date_str = args.end_date
     else:
-        # 날짜 인자가 없을 시 이번달 1일부터 어제자까지를 기본값
-        target_dt = datetime.now() - timedelta(days=1)
-        end_date = target_dt.strftime('%Y-%m-%d')
-        curr_month_dt = datetime.now().replace(day=1)
-        start_date_str = curr_month_dt.strftime('%Y-%m-%d')
+        # 이번 달 1일부터 어제까지
+        today = datetime.now()
+        start_date = today.replace(day=1)
+        end_date = today - timedelta(days=1)
+        if start_date > end_date:
+            start_date = end_date
+        start_date_str = start_date.strftime("%Y-%m-%d")
+        end_date_str = end_date.strftime("%Y-%m-%d")
+
+    target_start = datetime.strptime(start_date_str, "%Y-%m-%d")
+    target_end = datetime.strptime(end_date_str, "%Y-%m-%d")
+    
+    date_list = []
+    current = target_start
+    while current <= target_end:
+        date_list.append(current.strftime("%Y-%m-%d"))
+        current += timedelta(days=1)
         
-    base_save_path = "/Users/galaxy.jang/Google Drive/공유 드라이브/gbike_smartops.vehicle_statistics_data"
-    date_list = pd.date_range(start=start_date_str, end=end_date, freq='D')
+    print(f"총 {len(date_list)}일 치 데이터 추출을 시작합니다.")
     
     engine = get_engine()
     
-    print(f"총 {len(date_list)}일 치 데이터 추출을 시작합니다.")
+    base_save_path = "/Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_battery_data"
+    os.makedirs(base_save_path, exist_ok=True)
     print(f"저장 기본 경로: {base_save_path}")
     
     has_error = False
-    for dt in date_list:
-        target_date_str = dt.strftime('%Y-%m-%d')
-        
+    
+    for target_date_str in date_list:
         daily_folder_name = f"dt={target_date_str}"
         daily_folder_path = os.path.join(base_save_path, daily_folder_name)
         os.makedirs(daily_folder_path, exist_ok=True)
         
-        file_path = os.path.join(daily_folder_path, f"vehicle_statistics_data_{target_date_str}.parquet")
+        file_path = os.path.join(daily_folder_path, f"rich_battery_data_{target_date_str}.parquet")
         
         if os.path.exists(file_path) and not overwrite:
             print(f"[{target_date_str}] 파일이 이미 존재하여 스킵합니다: {file_path}")
@@ -89,7 +100,7 @@ def main():
         print(f"[{target_date_str}] 데이터 추출 중...")
         start_time = time.time()
         
-        df = extract_vehicle_statistics(target_date_str, engine)
+        df = extract_rich_battery_data(target_date_str, engine)
         
         if df is None:
             has_error = True

@@ -9,7 +9,7 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from utils.test_mysql_conn import get_engine
 
 def main():
-    base_save_path = "/Users/galaxy.jang/Google Drive/공유 드라이브/gbike.extract_deploy_spot_info"
+    base_save_path = "/Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_deploy_spot_info"
     os.makedirs(base_save_path, exist_ok=True)
     
     file_path = os.path.join(base_save_path, "deploy_spot_info.parquet")
@@ -18,11 +18,13 @@ def main():
     select rrr.region_name as high_region_name,rr.region_name as mid_region_name,r.region_name as low_region_name,
            rs.name as '배치존명',rs.location,rs.is_show,rs.bicycle_count,rs.created_at,rs.updated_at,rs.deleted_at,
            rs.id as deploy_zone_id,rs.bicycle_count as "설정대수",
-           rr.region_id as middle_region_id
+           rr.region_id as middle_region_id,
+           rs.lat,rs.lng -- 위도, 경도 데이터 확보
     from gbike.rich_release_spot rs
     join gbike.rich_region r on rs.region_id = r.region_id
     join gbike.rich_region rr on rr.region_id = r.parent_id
     join gbike.rich_region rrr on rrr.region_id = rr.parent_id
+    where rs.deleted_at is null
     """
     
     engine = get_engine()
