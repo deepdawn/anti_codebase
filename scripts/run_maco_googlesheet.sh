@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # 로그 파일 경로
-LOG_FILE="/Users/galaxy.jang/anti_codebase/scripts/python/maco_googlesheet/log/cron_run.log"
+LOG_FILE="$HOME/anti_codebase/scripts/python/maco_googlesheet/log/cron_run.log"
 
 # 로그 디렉토리 생성 보장
 mkdir -p "$(dirname "$LOG_FILE")"
@@ -24,7 +24,7 @@ export LC_ALL="ko_KR.UTF-8"
 export POLARS_NO_MMAP="1"
 
 # 프로젝트 가상환경 활성화
-VENV_PATH="/Users/galaxy.jang/anti_codebase/.venv"
+VENV_PATH="$HOME/anti_codebase/.venv"
 if [ -d "$VENV_PATH" ]; then
     source "$VENV_PATH/bin/activate"
     log "Virtual environment activated."
@@ -33,8 +33,8 @@ else
     exit 1
 fi
 
-SCRIPTS_DIR="/Users/galaxy.jang/anti_codebase/scripts/python/maco_googlesheet"
-UTILS_DIR="/Users/galaxy.jang/anti_codebase/scripts/python/utils"
+SCRIPTS_DIR="$HOME/anti_codebase/scripts/python/maco_googlesheet"
+UTILS_DIR="$HOME/anti_codebase/scripts/python/utils"
 CHAT_SPACE="AAQAf0HeYv0"
 
 # 작업 시작 알림
