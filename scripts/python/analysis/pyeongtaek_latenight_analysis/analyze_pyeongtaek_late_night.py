@@ -3,11 +3,11 @@ import os
 
 def main():
     # 1. 추출된 트립 데이터 로드
-    trip_file_path = "/Users/galaxy/anti_codebase/results/pyeongtaek_latenight_analysis/20260101_20260519_pyeongtaek_late_night.xlsx"
+    trip_file_path = f"{os.path.expanduser('~')}/anti_codebase/results/pyeongtaek_latenight_analysis/20260101_20260519_pyeongtaek_late_night.xlsx"
     trip_df = pd.read_excel(trip_file_path)
 
     # 2. 할당대수 데이터 로드
-    alloc_file_path = "/Users/galaxy/anti_codebase/base_data/secondary_data/pyeongtaek_allocated_vehicle_count.xlsx"
+    alloc_file_path = f"{os.path.expanduser('~')}/anti_codebase/base_data/secondary_data/pyeongtaek_allocated_vehicle_count.xlsx"
     alloc_df = pd.read_excel(alloc_file_path)
     
     # 조인을 위해 alloc_df의 month를 'YYYY-MM' 형식으로 변환
@@ -94,7 +94,7 @@ def main():
     print("=== 소지역별 심야요금제 성과 최종 분석 (평택캠프) ===")
     print(result_df)
     
-    out_dir = "/Users/galaxy/anti_codebase/results/pyeongtaek_latenight_analysis"
+    out_dir = f"{os.path.expanduser('~')}/anti_codebase/results/pyeongtaek_latenight_analysis"
     out_path = os.path.join(out_dir, "pyeongtaek_late_night_analysis_final_summary.xlsx")
     result_df.to_excel(out_path)
     print(f"\n최종 분석 요약 파일 저장 완료: {out_path}")

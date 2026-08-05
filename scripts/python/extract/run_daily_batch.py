@@ -6,12 +6,13 @@ import glob
 import traceback
 
 # 프로젝트 및 스크립트 경로 정의
-BASE_DIR = "/Users/galaxy/anti_codebase"
+BASE_DIR = f"{os.path.expanduser('~')}/anti_codebase"
 PYTHON_BIN = os.path.join(BASE_DIR, ".venv", "bin", "python")
 EXTRACT_SCRIPT = os.path.join(BASE_DIR, "scripts", "python", "extract", "extract_rich_orders_daily.py")
 MONTHLY_USER_SCRIPT = os.path.join(BASE_DIR, "scripts", "python", "extract", "extract_rich_user_monthly.py")
 USER_SEGMENT_SCRIPT = os.path.join(BASE_DIR, "scripts", "python", "extract", "extract_rich_user_segment.py")
-REPORT_SCRIPT = os.path.join(BASE_DIR, "scripts", "python", "report_daily_ststs_v1", "send_weekly_report.py")
+# 마스터 파이프라인의 가장 마지막 Phase로 이관되어 주석처리
+# REPORT_SCRIPT = os.path.join(BASE_DIR, "scripts", "python", "report_daily_ststs_v1", "send_weekly_report.py")
 
 LOG_FILE = os.path.join(BASE_DIR, "scripts", "python", "extract", "log", "cron_run.log")
 MARKER_DIR = os.path.join(BASE_DIR, "scripts", "python", "extract", "log")
@@ -96,7 +97,7 @@ def main():
     missing_dates = []
     while curr_dt <= end_dt:
         dt_str = curr_dt.strftime("%Y-%m-%d")
-        file_path = f"/Users/galaxy/Google Drive/공유 드라이브/gbike.rich_orders/dt={dt_str}/rich_orders_{dt_str}.parquet"
+        file_path = f"{os.path.expanduser('~')}/Google Drive/공유 드라이브/gbike.rich_orders/dt={dt_str}/rich_orders_{dt_str}.parquet"
         if not os.path.exists(file_path):
             missing_dates.append(dt_str)
         curr_dt += timedelta(days=1)

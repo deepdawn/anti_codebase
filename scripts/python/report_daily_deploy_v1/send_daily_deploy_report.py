@@ -68,8 +68,8 @@ def main():
     # 날짜 포맷 (MM/DD)
     grouped['date_str'] = pd.to_datetime(grouped['date']).dt.strftime('%m/%d')
     
-    creds_file = "/Users/galaxy.jang/anti_codebase/.etc/workspace_desktop_chat_galaxy.json"
-    save_dir = "/Users/galaxy.jang/anti_codebase/scripts/python/report_daily_deploy_v1"
+    creds_file = f"{os.path.expanduser('~')}/anti_codebase/.etc/workspace_desktop_chat_galaxy.json"
+    save_dir = f"{os.path.expanduser('~')}/anti_codebase/scripts/python/report_daily_deploy_v1"
     
     # 3. 각 대지역별로 처리
     for lg_region, space_id in channel_mapping.items():

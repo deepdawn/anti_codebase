@@ -2,7 +2,7 @@ import os
 import pandas as pd
 from datetime import datetime
 
-def load_rich_orders(start_date_str, end_date_str, columns=None, base_path="/Users/galaxy/Google Drive/공유 드라이브/gbike.rich_orders"):
+def load_rich_orders(start_date_str, end_date_str, columns=None, base_path=f"{os.path.expanduser('~')}/Google Drive/공유 드라이브/gbike.rich_orders"):
     """
     지정된 기간 동안 구글 드라이브에 저장된 rich_orders Parquet 파일들을 읽어와서 하나의 DataFrame으로 반환합니다.
     

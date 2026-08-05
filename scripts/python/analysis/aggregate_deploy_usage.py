@@ -35,7 +35,7 @@ def main():
     print(f"집계 완료. 집계 후 행수: {len(agg_df):,}건")
     
     # 저장 경로 설정
-    save_dir = "/Users/galaxy/anti_codebase/results/deploy_usage_all"
+    save_dir = f"{os.path.expanduser('~')}/anti_codebase/results/deploy_usage_all"
     os.makedirs(save_dir, exist_ok=True)
     
     save_path = os.path.join(save_dir, "deploy_usage_monthly.xlsx")

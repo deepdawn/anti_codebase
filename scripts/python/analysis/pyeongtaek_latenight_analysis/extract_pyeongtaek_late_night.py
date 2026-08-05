@@ -5,14 +5,14 @@ import calendar
 from datetime import datetime
 
 # 공용 유틸리티에서 DB 연결 함수 가져오기
-sys.path.append("/Users/galaxy/anti_codebase/scripts/python/utils")
+sys.path.append(f"{os.path.expanduser('~')}/anti_codebase/scripts/python/utils")
 from test_mysql_conn import get_engine
 
 def main():
     subfolder_name = "pyeongtaek_latenight_analysis" 
     
-    script_dir = f"/Users/galaxy/anti_codebase/scripts/python/{subfolder_name}"
-    result_dir = f"/Users/galaxy/anti_codebase/results/{subfolder_name}"
+    script_dir = f"{os.path.expanduser('~')}/anti_codebase/scripts/python/{subfolder_name}"
+    result_dir = f"{os.path.expanduser('~')}/anti_codebase/results/{subfolder_name}"
     os.makedirs(script_dir, exist_ok=True)
     os.makedirs(result_dir, exist_ok=True)
 

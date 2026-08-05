@@ -99,7 +99,7 @@ def main():
     for c in rename_dict.values():
         result[c] = result[c].apply(lambda x: f"{x*100:.1f}%" if pd.notnull(x) else "0.0%")
         
-    out_dir = "/Users/galaxy.jang/anti_codebase/results/joongangrs_depoly_july"
+    out_dir = f"{os.path.expanduser('~')}/anti_codebase/results/joongangrs_depoly_july"
     os.makedirs(out_dir, exist_ok=True)
     out_path = os.path.join(out_dir, "joongangrs_deploy_analysis.xlsx")
     

@@ -121,7 +121,7 @@ def extract_batch_snapshot():
     save_date = (datetime.now() - timedelta(days=1)).strftime('%y%m%d')
     file_name = f'batch_snapshot_v1_{save_date}.xlsx'
     
-    onedrive_base = "/Users/galaxy/Library/CloudStorage/OneDrive-지바이크/서비스운영본부 - 현장데이터 개발센터/results/data_extract/batch_snapshot_v1"
+    onedrive_base = f"{os.path.expanduser('~')}/Library/CloudStorage/OneDrive-지바이크/서비스운영본부 - 현장데이터 개발센터/results/data_extract/batch_snapshot_v1"
     onedrive_dir = os.path.join(onedrive_base, save_date)
     
     if os.path.exists(onedrive_base):

@@ -70,7 +70,7 @@ def main():
     simulation_df = simulation_df.sort(['year_month', 'year_week', 'actual_weekly_revenue'], descending=[False, False, True])
 
     # 결과 저장
-    result_dir = "/Users/galaxy/anti_codebase/results/user_simulation_26h1"
+    result_dir = f"{os.path.expanduser('~')}/anti_codebase/results/user_simulation_26h1"
     os.makedirs(result_dir, exist_ok=True)
     
     output_path = os.path.join(result_dir, "user_revenue_simulation_weekly_result.csv")

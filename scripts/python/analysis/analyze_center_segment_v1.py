@@ -20,8 +20,8 @@ def analyze_center_segment():
         "2026-06-30"
     ]
     
-    base_dir = "/Users/galaxy/Google Drive/공유 드라이브/gbike.rich_user_segment"
-    output_dir = "/Users/galaxy/anti_codebase/results/analyze_center_segment_v1"
+    base_dir = f"{os.path.expanduser('~')}/Google Drive/공유 드라이브/gbike.rich_user_segment"
+    output_dir = f"{os.path.expanduser('~')}/anti_codebase/results/analyze_center_segment_v1"
     os.makedirs(output_dir, exist_ok=True)
     
     all_data = []

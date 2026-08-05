@@ -12,7 +12,7 @@ def load_order_ids_from_parquet(target_date_str):
     """
     미리 추출된 rich_orders 파케이 파일에서 해당 날짜의 order_id 목록을 가져옵니다.
     """
-    base_orders_path = "/Users/galaxy/Google Drive/공유 드라이브/gbike.rich_orders"
+    base_orders_path = f"{os.path.expanduser('~')}/Google Drive/공유 드라이브/gbike.rich_orders"
     file_path = os.path.join(base_orders_path, f"dt={target_date_str}", f"rich_orders_{target_date_str}.parquet")
     
     if not os.path.exists(file_path):
@@ -63,7 +63,7 @@ def extract_discounts_for_chunk(order_id_chunk, engine):
         return None
 
 def main():
-    base_save_path = "/Users/galaxy/Google Drive/공유 드라이브/gbike.rich_order_discounts"
+    base_save_path = f"{os.path.expanduser('~')}/Google Drive/공유 드라이브/gbike.rich_order_discounts"
     
     args = [arg for arg in sys.argv if arg != '--overwrite']
     

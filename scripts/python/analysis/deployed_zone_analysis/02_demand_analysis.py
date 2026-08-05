@@ -49,6 +49,6 @@ def analyze_demand(input_path, output_dir):
     print(analysis.groupby(['기종', 'demand_grade']).size())
 
 if __name__ == "__main__":
-    INPUT_PATH = "/Users/galaxy/anti_codebase/base_data/secondary_data/deployed_zone_analysis_v1_preprocessed.csv"
-    OUTPUT_DIR = "/Users/galaxy/anti_codebase/results/deployed_zone_analysis_v1"
+    INPUT_PATH = f"{os.path.expanduser('~')}/anti_codebase/base_data/secondary_data/deployed_zone_analysis_v1_preprocessed.csv"
+    OUTPUT_DIR = f"{os.path.expanduser('~')}/anti_codebase/results/deployed_zone_analysis_v1"
     analyze_demand(INPUT_PATH, OUTPUT_DIR)

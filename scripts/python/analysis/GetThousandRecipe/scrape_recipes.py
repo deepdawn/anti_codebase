@@ -15,7 +15,7 @@ from teams_email_mcp import send_email  # type: ignore
 # Parameters
 KEYWORDS = ["한식", "중식", "일식", "양식"]
 TARGET_COUNT = 150
-CREDENTIALS_FILE = "/Users/galaxy/anti_codebase/.etc/galaxy-test-41bbc-a27b358c8670.json"
+CREDENTIALS_FILE = f"{os.path.expanduser('~')}/anti_codebase/.etc/galaxy-test-41bbc-a27b358c8670.json"
 SPREADSHEET_ID = "11X7LxqcFjL_Dvd7GzOjY2M-Urwc5wmgVMkXVPkTOPZU"
 SHEET_NAME = "sheet2"
 BASE_URL = "https://www.10000recipe.com"
@@ -119,7 +119,7 @@ def main():
             time.sleep(0.5) # IP 차단 방지
             
     # 결과를 로컬 CSV로 저장 (백업용)
-    out_dir = "/Users/galaxy/anti_codebase/results/data_extract/GetThousandRecipe"
+    out_dir = f"{os.path.expanduser('~')}/anti_codebase/results/data_extract/GetThousandRecipe"
     os.makedirs(out_dir, exist_ok=True)
     df = pd.DataFrame(all_recipes)
     csv_path = os.path.join(out_dir, "recipes_backup.csv")

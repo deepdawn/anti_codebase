@@ -80,7 +80,7 @@ def main():
     
     engine = get_engine()
     
-    base_save_path = "/Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_battery_data"
+    base_save_path = f"{os.path.expanduser('~')}/Google Drive/공유 드라이브/gbike.rich_battery_data"
     os.makedirs(base_save_path, exist_ok=True)
     print(f"저장 기본 경로: {base_save_path}")
     

@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 import os
 
 def main():
-    trip_file_path = "/Users/galaxy/anti_codebase/results/pyeongtaek_latenight_analysis/20260101_20260519_pyeongtaek_late_night.xlsx"
+    trip_file_path = f"{os.path.expanduser('~')}/anti_codebase/results/pyeongtaek_latenight_analysis/20260101_20260519_pyeongtaek_late_night.xlsx"
     df = pd.read_excel(trip_file_path)
     
     # 그룹바이 - 월별, 시간대별 매출
@@ -39,7 +39,7 @@ def main():
     plt.legend()
     
     # 저장 경로
-    out_dir = "/Users/galaxy/anti_codebase/results/pyeongtaek_latenight_analysis"
+    out_dir = f"{os.path.expanduser('~')}/anti_codebase/results/pyeongtaek_latenight_analysis"
     out_path = os.path.join(out_dir, "monthly_revenue_ratio.png")
     plt.savefig(out_path, dpi=300, bbox_inches='tight')
     print(f"Chart saved to {out_path}")

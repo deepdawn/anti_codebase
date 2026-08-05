@@ -38,8 +38,8 @@ def convert_wkt_to_geojson(input_path, output_path):
     print("Conversion completed successfully.")
 
 if __name__ == "__main__":
-    input_file = "/Users/galaxy/Downloads/region_polygon_202604211539.json"
-    output_dir = "/Users/galaxy/anti_codebase/base_data/secondary_data/geojson_analysis"
+    input_file = f"{os.path.expanduser('~')}/Downloads/region_polygon_202604211539.json"
+    output_dir = f"{os.path.expanduser('~')}/anti_codebase/base_data/secondary_data/geojson_analysis"
     output_file = os.path.join(output_dir, "region_polygon_converted.geojson")
     
     # 출력 디렉토리 확인

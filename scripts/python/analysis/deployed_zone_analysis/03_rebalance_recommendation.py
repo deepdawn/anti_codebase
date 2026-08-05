@@ -55,6 +55,6 @@ def generate_recommendations(input_path, output_dir):
     print(f"Recommendations complete! Saved to {output_path}")
 
 if __name__ == "__main__":
-    INPUT_PATH = "/Users/galaxy/anti_codebase/results/deployed_zone_analysis_v1/demand_analysis_results.csv"
-    OUTPUT_DIR = "/Users/galaxy/anti_codebase/results/deployed_zone_analysis_v1"
+    INPUT_PATH = f"{os.path.expanduser('~')}/anti_codebase/results/deployed_zone_analysis_v1/demand_analysis_results.csv"
+    OUTPUT_DIR = f"{os.path.expanduser('~')}/anti_codebase/results/deployed_zone_analysis_v1"
     generate_recommendations(INPUT_PATH, OUTPUT_DIR)

@@ -115,7 +115,7 @@ def merge_usages(df_deploy, df_release):
     return merged_df
 
 def main():
-    base_save_path = "/Users/galaxy/Google Drive/공유 드라이브/gbike.rich_deploy_zone_usages"
+    base_save_path = f"{os.path.expanduser('~')}/Google Drive/공유 드라이브/gbike.rich_deploy_zone_usages"
     
     args = [arg for arg in sys.argv if arg != '--overwrite']
     

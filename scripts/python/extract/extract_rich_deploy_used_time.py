@@ -77,7 +77,7 @@ def main():
         end_date_str = end_date_dt.strftime('%Y-%m-%d')
         
     date_list = pd.date_range(start=start_date_str, end=end_date_str, freq='D')
-    base_save_path = "/Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_deploy_used_time"
+    base_save_path = f"{os.path.expanduser('~')}/Google Drive/공유 드라이브/gbike.rich_deploy_used_time"
     
     
     print(f"작업 기간: {start_date_str} ~ {end_date_str} (총 {len(date_list)}일)")

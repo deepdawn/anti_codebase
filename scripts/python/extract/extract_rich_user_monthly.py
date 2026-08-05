@@ -55,7 +55,7 @@ def extract_rich_user_monthly(start_date_str, end_date_str, engine):
         return None
 
 def main():
-    base_save_path = "/Users/galaxy/Google Drive/공유 드라이브/gbike.rich_user"
+    base_save_path = f"{os.path.expanduser('~')}/Google Drive/공유 드라이브/gbike.rich_user"
     folder_name = "rich_user_this_month"
     folder_path = os.path.join(base_save_path, folder_name)
     os.makedirs(folder_path, exist_ok=True)

@@ -28,7 +28,7 @@ def main():
         
     print(f"작업 기간: {start_date} ~ {end_date}")
     
-    target_dir = "/Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_deploy_zone_usages/tableau"
+    target_dir = f"{os.path.expanduser('~')}/Google Drive/공유 드라이브/gbike.rich_deploy_zone_usages/tableau"
     csv_path = os.path.join(target_dir, "OBP(출루율).csv")
     
     # 1. 신규 데이터 로드

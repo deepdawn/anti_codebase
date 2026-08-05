@@ -3,7 +3,7 @@ import polars as pl
 # import pandas as pd
 from datetime import datetime, timedelta
 
-def load_rich_orders_polars(start_date_str, end_date_str, columns=None, base_path="/Users/galaxy/Google Drive/공유 드라이브/gbike.rich_orders", filter_expr=None):
+def load_rich_orders_polars(start_date_str, end_date_str, columns=None, base_path=f"{os.path.expanduser('~')}/Google Drive/공유 드라이브/gbike.rich_orders", filter_expr=None):
     """
     지정된 기간 동안 구글 드라이브에 저장된 rich_orders Parquet 파일들을 Polars를 이용해 
     빠르게 읽어와서 하나의 Polars DataFrame으로 반환합니다.

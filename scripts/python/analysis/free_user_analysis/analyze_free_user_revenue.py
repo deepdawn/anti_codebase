@@ -12,7 +12,7 @@ def main():
     start_date = '2022-01-01'
     end_date = '2026-07-07' # 어제 날짜
     
-    output_dir = '/Users/galaxy/anti_codebase/results/free_user_analysis'
+    output_dir = f'{os.path.expanduser("~")}/anti_codebase/results/free_user_analysis'
     os.makedirs(output_dir, exist_ok=True)
     output_file = os.path.join(output_dir, 'free_user_revenue_analysis.xlsx')
     

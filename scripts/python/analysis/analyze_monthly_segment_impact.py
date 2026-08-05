@@ -10,7 +10,7 @@ def main():
         "2026-01-31", "2026-02-28", "2026-03-31", "2026-04-30", "2026-05-31", "2026-06-24"
     ]
     
-    base_dir = "/Users/galaxy/Google Drive/공유 드라이브/gbike.rich_user_segment"
+    base_dir = f"{os.path.expanduser('~')}/Google Drive/공유 드라이브/gbike.rich_user_segment"
     
     plt.rcParams['font.family'] = 'AppleGothic'
     plt.rcParams['axes.unicode_minus'] = False
@@ -57,7 +57,7 @@ def main():
     available_cols = [c for c in order if c in pivot_seg.columns]
     pivot_seg = pivot_seg[available_cols]
     
-    out_dir = "/Users/galaxy/anti_codebase/results/segment_analysis"
+    out_dir = f"{os.path.expanduser('~')}/anti_codebase/results/segment_analysis"
     os.makedirs(out_dir, exist_ok=True)
     
     fig, ax = plt.subplots(figsize=(14, 8))

@@ -66,7 +66,7 @@ def extract_rich_orders_for_date(target_date_str, engine):
         return None
 
 def main():
-    base_save_path = "/Users/galaxy/Google Drive/공유 드라이브/gbike.rich_orders"
+    base_save_path = f"{os.path.expanduser('~')}/Google Drive/공유 드라이브/gbike.rich_orders"
     
     args = [arg for arg in sys.argv if arg != '--overwrite']
     

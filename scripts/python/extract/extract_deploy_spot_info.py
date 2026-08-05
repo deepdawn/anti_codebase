@@ -9,7 +9,7 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from utils.test_mysql_conn import get_engine
 
 def main():
-    base_save_path = "/Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_deploy_spot_info"
+    base_save_path = f"{os.path.expanduser('~')}/Google Drive/공유 드라이브/gbike.rich_deploy_spot_info"
     os.makedirs(base_save_path, exist_ok=True)
     
     file_path = os.path.join(base_save_path, "deploy_spot_info.parquet")

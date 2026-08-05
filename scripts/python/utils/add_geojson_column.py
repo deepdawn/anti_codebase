@@ -30,12 +30,12 @@ def add_geojson_column(input_path, output_path):
     print(f"Success: GeoJSON column added and saved to {output_path}")
 
 if __name__ == "__main__":
-    input_file = "/Users/galaxy/anti_codebase/base_data/primary_data/result_46.csv"
+    input_file = f"{os.path.expanduser('~')}/anti_codebase/base_data/primary_data/result_46.csv"
     
     # 결과를 저장할 디렉토리 설정 (Rule 5에 따라 사용자 확인 후 최종 결정 필요)
     # 임시로 프로젝트 구조 내에 저장 경로 설정
     subfolder_name = "daejeon_bike_geojson"
-    output_dir = f"/Users/galaxy/anti_codebase/results/{subfolder_name}"
+    output_dir = f"{os.path.expanduser('~')}/anti_codebase/results/{subfolder_name}"
     
     if not os.path.exists(output_dir):
         os.makedirs(output_dir)

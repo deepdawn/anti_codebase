@@ -34,7 +34,7 @@ def main():
     
     # 3. rich_region 로드
     print("rich_region 로딩 중...")
-    region_path = '/Users/galaxy/Google Drive/공유 드라이브/gbike.rich_region/rich_region_hierarchy.parquet'
+    region_path = f'{os.path.expanduser("~")}/Google Drive/공유 드라이브/gbike.rich_region/rich_region_hierarchy.parquet'
     df_region = pl.read_parquet(region_path)
     
     # 4. low_region_id 기준으로 조인 (대, 중, 소지역 정보 획득)
@@ -71,7 +71,7 @@ def main():
     
     # 7. 결과 저장
     # 폴더가 없으면 생성, 결과는 .xlsx로 저장
-    out_dir = '/Users/galaxy/anti_codebase/results/extract_revenue_andy'
+    out_dir = f'{os.path.expanduser("~")}/anti_codebase/results/extract_revenue_andy'
     os.makedirs(out_dir, exist_ok=True)
     out_path = os.path.join(out_dir, 'extract_revenue_andy.xlsx')
     

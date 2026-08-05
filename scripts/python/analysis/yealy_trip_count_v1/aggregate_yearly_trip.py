@@ -47,7 +47,7 @@ def main():
     )
     
     print("2. rich_region_hierarchy 데이터를 로드합니다...")
-    region_path = "/Users/galaxy/Google Drive/공유 드라이브/gbike.rich_region/rich_region_hierarchy.parquet"
+    region_path = f"{os.path.expanduser('~')}/Google Drive/공유 드라이브/gbike.rich_region/rich_region_hierarchy.parquet"
     if not os.path.exists(region_path):
         print(f"경로를 찾을 수 없습니다: {region_path}")
         return
@@ -77,7 +77,7 @@ def main():
     )
     
     print("5. 결과 저장...")
-    result_dir = "/Users/galaxy/anti_codebase/results/yealy_trip_count_v1"
+    result_dir = f"{os.path.expanduser('~')}/anti_codebase/results/yealy_trip_count_v1"
     os.makedirs(result_dir, exist_ok=True)
     
     output_path = os.path.join(result_dir, "yealy_trip_count_v1.xlsx")

@@ -2,7 +2,7 @@ import os
 import polars as pl
 from datetime import datetime
 
-def load_rich_user_polars(years=None, base_path="/Users/galaxy/Google Drive/공유 드라이브/gbike.rich_user"):
+def load_rich_user_polars(years=None, base_path=f"{os.path.expanduser('~')}/Google Drive/공유 드라이브/gbike.rich_user"):
     """
     지정된 연도의 rich_user Parquet 파일들을 Polars를 이용해 
     빠르게 읽어와서 하나의 Polars DataFrame으로 반환합니다.

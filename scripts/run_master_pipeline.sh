@@ -2,9 +2,9 @@
 # run_master_pipeline.sh
 # 단일 마스터 스크립트로 분산된 Gbike 추출/배치 파이프라인을 순차 실행합니다.
 
-cd /Users/galaxy.jang/anti_codebase
+cd $HOME/anti_codebase
 
-LOG_FILE="/Users/galaxy.jang/anti_codebase/scripts/python/extract/log/run_master_pipeline.log"
+LOG_FILE="$HOME/anti_codebase/scripts/python/extract/log/run_master_pipeline.log"
 mkdir -p "$(dirname "$LOG_FILE")"
 
 log() {
@@ -23,7 +23,7 @@ export LC_ALL="ko_KR.UTF-8"
 export POLARS_NO_MMAP="1"
 
 # 프로젝트 가상환경 활성화
-VENV_PATH="/Users/galaxy.jang/anti_codebase/.venv"
+VENV_PATH="$HOME/anti_codebase/.venv"
 if [ -d "$VENV_PATH" ]; then
     source "$VENV_PATH/bin/activate"
     log "Virtual environment activated."
@@ -128,7 +128,7 @@ fi
 # ---------------------------------------------------------
 PHASE="Phase 5 (Dashboard ETL)"
 log "--- $PHASE ---"
-if run_bash "/Users/galaxy.jang/gems_build_dashboard/gems_build_dashboard/deploy/run_etl.sh"; then
+if run_bash "$HOME/gems_build_dashboard/gems_build_dashboard/deploy/run_etl.sh"; then
     send_chat "✅ $PHASE 완료"
 else
     send_chat "❌ $PHASE 실패"

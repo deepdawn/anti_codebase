@@ -62,6 +62,6 @@ if __name__ == "__main__":
     args = parser.parse_args()
     
     # 공통 인증 파일 경로
-    creds_file = "/Users/galaxy.jang/anti_codebase/.etc/workspace_desktop_chat_galaxy.json"
+    creds_file = f"{os.path.expanduser('~')}/anti_codebase/.etc/workspace_desktop_chat_galaxy.json"
     
     send_google_chat_message(creds_file, args.space, args.msg)

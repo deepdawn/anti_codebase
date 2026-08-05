@@ -2,7 +2,7 @@ import os
 import polars as pl
 from datetime import datetime, timedelta
 
-def load_segment_trend_for_dates(dates: list, base_path="/Users/galaxy/Google Drive/공유 드라이브/gbike.rich_user_segment"):
+def load_segment_trend_for_dates(dates: list, base_path=f"{os.path.expanduser('~')}/Google Drive/공유 드라이브/gbike.rich_user_segment"):
     """
     특정 날짜(문자열 'YYYY-MM-DD' 리스트)에 해당하는 rich_user_segment 데이터를 
     Polars로 읽어와서 일자별(dt) 세그먼트(segment)별 비중을 집계하여 반환합니다.
@@ -37,7 +37,7 @@ def load_segment_trend_for_dates(dates: list, base_path="/Users/galaxy/Google Dr
         print(f"세그먼트 데이터 집계 중 오류 발생: {e}")
         return pl.DataFrame()
 
-def load_segment_trend_polars(start_date: str, end_date: str, base_path="/Users/galaxy/Google Drive/공유 드라이브/gbike.rich_user_segment"):
+def load_segment_trend_polars(start_date: str, end_date: str, base_path=f"{os.path.expanduser('~')}/Google Drive/공유 드라이브/gbike.rich_user_segment"):
     """
     지정된 시작일과 종료일 사이의 rich_user_segment 데이터를 
     Polars로 읽어와서 일자별(dt) 세그먼트(segment)별 비중을 집계하여 반환합니다.
@@ -89,7 +89,7 @@ def load_segment_trend_polars(start_date: str, end_date: str, base_path="/Users/
         print(f"세그먼트 데이터 집계 중 오류 발생: {e}")
         return pl.DataFrame()
 
-def load_segment_ltv_for_date(date_str: str, base_path="/Users/galaxy/Google Drive/공유 드라이브/gbike.rich_user_segment"):
+def load_segment_ltv_for_date(date_str: str, base_path=f"{os.path.expanduser('~')}/Google Drive/공유 드라이브/gbike.rich_user_segment"):
     """
     특정 날짜의 세그먼트 데이터를 읽어 세그먼트별 평균 LTV를 계산하여 반환합니다.
     """

@@ -116,7 +116,7 @@ def main():
         end_date_str = end_date_dt.strftime('%Y-%m-%d')
         
     date_list = pd.date_range(start=start_date_str, end=end_date_str, freq='D')
-    base_save_path = "/Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_deploy_by_time"
+    base_save_path = f"{os.path.expanduser('~')}/Google Drive/공유 드라이브/gbike.rich_deploy_by_time"
     
     # 디렉토리 생성 로직 명시적 추가
     os.makedirs(base_save_path, exist_ok=True)

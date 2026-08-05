@@ -63,7 +63,7 @@ def main():
         curr_month_dt = datetime.now().replace(day=1)
         start_date_str = curr_month_dt.strftime('%Y-%m-%d')
         
-    base_save_path = "/Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_task_statistics"
+    base_save_path = f"{os.path.expanduser('~')}/Google Drive/공유 드라이브/gbike.rich_task_statistics"
     date_list = pd.date_range(start=start_date_str, end=end_date, freq='D')
     
     engine = get_engine()

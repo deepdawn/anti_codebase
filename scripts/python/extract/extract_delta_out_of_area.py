@@ -30,7 +30,7 @@ def extract_delta_out_of_area(target_date_str, engine):
         return None
 
 def main():
-    base_save_path = "/Users/galaxy/Google Drive/공유 드라이브/gbike.rich_orders"
+    base_save_path = f"{os.path.expanduser('~')}/Google Drive/공유 드라이브/gbike.rich_orders"
     start_date_str = '2022-01-01'
     end_date_str = '2022-12-31'
     

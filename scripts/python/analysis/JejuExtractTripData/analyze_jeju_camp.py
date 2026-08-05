@@ -5,7 +5,7 @@ import os
 from statsmodels.tsa.holtwinters import ExponentialSmoothing
 
 def main():
-    result_dir = "/Users/galaxy/anti_codebase/results/JejuExtractTripData"
+    result_dir = f"{os.path.expanduser('~')}/anti_codebase/results/JejuExtractTripData"
     data_file = os.path.join(result_dir, "20250101_20260430_jeju_camp_external_users.xlsx")
     
     # 1. Load Data

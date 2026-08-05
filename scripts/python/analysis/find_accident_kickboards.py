@@ -40,11 +40,11 @@ def main():
     # 26년 5월 9일 단일 일자 운행 정보 가져오기
     target_date = "2026-05-09"
     
-    base_drive_path = "/Users/galaxy/Google Drive/공유 드라이브"
+    base_drive_path = f"{os.path.expanduser('~')}/Google Drive/공유 드라이브"
     bicycle_file = os.path.join(base_drive_path, "gbike.rich_bicycle", "rich_bicycle_asset_info.parquet")
     region_file = os.path.join(base_drive_path, "gbike.rich_region", "rich_region_hierarchy.parquet")
     
-    output_dir = "/Users/galaxy/anti_codebase/results/accident_0509"
+    output_dir = f"{os.path.expanduser('~')}/anti_codebase/results/accident_0509"
     os.makedirs(output_dir, exist_ok=True)
     
     print(f"사고 조사 스크립트 실행 시작 (v2)...")
