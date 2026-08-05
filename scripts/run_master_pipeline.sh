@@ -116,7 +116,8 @@ if run_python "scripts/python/extract/extract_rich_daily_statistics.py" && \
    run_python "scripts/python/extract/extract_deploy_spot_info.py" && \
    run_python "scripts/python/extract/extract_vehicle_statistics.py" && \
    run_python "scripts/python/extract/extract_rich_task_statistics.py" && \
-   run_python "scripts/python/extract/extract_rich_battery_data.py"; then
+   run_python "scripts/python/extract/extract_rich_battery_data.py" && \
+   run_python "scripts/python/extract/extract_smartops_weather_data.py"; then
     send_chat "✅ $PHASE 완료"
 else
     send_chat "❌ $PHASE 실패"
