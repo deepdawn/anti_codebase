@@ -627,3 +627,9 @@ Error during database connection or query execution:
 (pymysql.err.OperationalError) (2003, "Can't connect to MySQL server on 'live.st.rds.gbility.io' (timed out)")
 (Background on this error at: https://sqlalche.me/e/20/e3q8)
 Failed to fetch snapshot data.
+=== [batch_snapshot_v1] Data Extraction Started ===
+Fetching Snapshot Data...
+Error during database connection or query execution:
+(pymysql.err.OperationalError) (2003, "Can't connect to MySQL server on 'live.st.rds.gbility.io' (timed out)")
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+Failed to fetch snapshot data.
