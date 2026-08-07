@@ -129,7 +129,7 @@ fi
 # ---------------------------------------------------------
 PHASE="Phase 5 (Dashboard ETL)"
 log "--- $PHASE ---"
-if run_bash "$HOME/gems_build_dashboard/gems_build_dashboard/deploy/run_etl.sh"; then
+if run_bash "$HOME/gems_build_dashboard/deploy/run_etl.sh"; then
     send_chat "✅ $PHASE 완료"
 else
     send_chat "❌ $PHASE 실패"
