@@ -141,8 +141,8 @@ fi
 # ---------------------------------------------------------
 PHASE="Phase 6 (Reports)"
 log "--- $PHASE ---"
-if run_python "scripts/python/report_daily_ststs_v1/send_weekly_report.py" && \
-   run_python "scripts/python/report_daily_deploy_v1/send_daily_deploy_report.py"; then
+if run_python "scripts/python/report_daily_ststs_v1/send_weekly_report.py"; then
+#   run_python "scripts/python/report_daily_deploy_v1/send_daily_deploy_report.py"
     send_chat "✅ $PHASE 완료"
 else
     send_chat "❌ $PHASE 실패"
