@@ -100,7 +100,8 @@ if run_python "scripts/python/extract/extract_rich_deploy_zone_usages.py" && \
    run_python "scripts/python/extract/extract_rich_deploy_by_time.py" && \
    run_python "scripts/python/extract/update_tableau_obp_csv.py" && \
    run_python "scripts/python/extract/update_tableau_used_time_csv.py" && \
-   run_python "scripts/python/extract/update_tableau_by_time_csv.py"; then
+   run_python "scripts/python/extract/update_tableau_by_time_csv.py" && \
+   run_python "scripts/python/extract/upload_tableau_to_drive.py"; then
     send_chat "✅ $PHASE 완료"
 else
     send_chat "❌ $PHASE 실패"
