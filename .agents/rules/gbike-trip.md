@@ -13,9 +13,13 @@ trigger: always_on
 3. Use a folder structure
 
 - `/Users/galaxy/Google Drive/공유 드라이브/` = rich_orders contains trip data, and rich_region contains region-related data. and rich_user contains user data. The data is stored as parquet files under '/Users/galaxy/Google Drive/공유 드라이브/'.
+- `/scripts/orchestrator` = shell-based master pipeline and scheduling orchestrators.
+- `/scripts/python/engineering/extract` = raw data extraction scripts.
+- `/scripts/python/engineering/processing` = secondary data processing and segment generation scripts.
+- `/scripts/python/engineering/tableau` = tableau dashboard automation scripts.
+- `/scripts/python/engineering/orchestrator` = python-based daily batch orchestrators.
 - `/scripts/python/analysis` = save analysis scripts with python.
-- `/scripts/python/extract` = save extract scripts with python.
-- `/scripts/python/model` = save ML model scripts with python. (forecasting revenue)
+- `/scripts/python/models` = save ML model scripts with python. (forecasting revenue)
 - `/scripts/python/utils` = save utility scripts with python.
 - `/scripts/sql` = save analysis scripts with sql.
 - `/results` = stored all analysis result files
