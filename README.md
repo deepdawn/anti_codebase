@@ -17,7 +17,15 @@
 
 - `/base_data/primary_data`: 수정 불가능한 원본 데이터 파일
 - `/base_data/secondary_data`: 전처리되거나 파생된 데이터셋 (태스크 그룹별 접두사 사용)
-- `/scripts/python`: 분석 및 데이터 추출용 파이썬 스크립트
+- `/scripts/orchestrator`: 쉘 기반 마스터 파이프라인 및 스케줄링 오케스트레이터
+- `/scripts/python/engineering`: 데이터 파이프라인 엔지니어링 스크립트 모음
+  - `/extract`: 원천 데이터 추출
+  - `/processing`: 추출된 데이터의 2차 가공 및 세그먼트 생성
+  - `/tableau`: 태블로 대시보드 자동화 연동
+  - `/orchestrator`: 파이썬 기반 데일리 배치 오케스트레이터
+- `/scripts/python/analysis`: 데이터 탐색 및 심층 분석용 스크립트
+- `/scripts/python/models`: 머신러닝 모델 학습 및 예측 스크립트
+- `/scripts/python/utils`: 재사용 가능한 공통 유틸리티 함수 및 설정 파일
 - `/scripts/sql`: 데이터베이스 쿼리 스크립트
 - `/results`: 모든 분석 결과 파일 (시각화, 리포트 등)
 - `/knowledge`: 도메인 지식 및 레퍼런스 문서

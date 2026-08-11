@@ -1,0 +1,12 @@
+Traceback (most recent call last):
+  File "/Users/galaxy.jang/anti_codebase/scripts/python/extract/extract_rich_region_hierarchy.py", line 82, in <module>
+    main()
+    ~~~~^^
+  File "/Users/galaxy.jang/anti_codebase/scripts/python/extract/extract_rich_region_hierarchy.py", line 52, in main
+    os.makedirs(base_save_path, exist_ok=True)
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen os>", line 226, in makedirs
+  File "<frozen os>", line 226, in makedirs
+  File "<frozen os>", line 226, in makedirs
+  File "<frozen os>", line 236, in makedirs
+PermissionError: [Errno 13] Permission denied: '/Users/galaxy'

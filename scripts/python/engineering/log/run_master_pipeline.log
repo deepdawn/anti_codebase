@@ -1,0 +1,1408 @@
+2026-08-06 10:00:04 [INFO] ================ Master Batch Pipeline Start ================
+2026-08-06 10:00:04 [INFO] Virtual environment activated.
+메시지 전송 성공: spaces/AAQAf0HeYv0/messages/zfOQxwLUK6Q.zfOQxwLUK6Q
+2026-08-06 10:00:06 [INFO] --- Phase 1 (Metadata) ---
+2026-08-06 10:00:06 [INFO] Running scripts/python/extract/extract_rich_region_hierarchy.py...
+저장 기본 경로: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_region
+데이터 추출 중...
+성공적으로 저장되었습니다. (건수: 943, 소요시간: 1.25초)
+Parquet 파일 위치: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_region/rich_region_hierarchy.parquet
+CSV 파일 위치: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_region/rich_region_hierarchy.csv
+2026-08-06 10:00:08 [INFO] scripts/python/extract/extract_rich_region_hierarchy.py completed successfully.
+2026-08-06 10:00:08 [INFO] Running scripts/python/extract/extract_rich_bicycle_asset_info.py...
+저장 기본 경로: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_bicycle
+데이터 추출 중...
+성공적으로 저장되었습니다. (건수: 134,502, 소요시간: 2.66초)
+Parquet 파일 위치: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_bicycle/rich_bicycle_asset_info.parquet
+CSV 파일 위치: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_bicycle/rich_bicycle_asset_info.csv
+2026-08-06 10:00:11 [INFO] scripts/python/extract/extract_rich_bicycle_asset_info.py completed successfully.
+메시지 전송 성공: spaces/AAQAf0HeYv0/messages/ksxrL-KvENk.ksxrL-KvENk
+2026-08-06 10:00:12 [INFO] --- Phase 2 (Core Data) ---
+2026-08-06 10:00:12 [INFO] Running scripts/python/extract/run_daily_batch.py...
+2026-08-06 10:00:12 [INFO] ================ Daily Batch Run Attempt (2026-08-06 10:00:12) ================
+2026-08-06 10:00:12 [INFO] 필수 데이터 검사 범위: 2026-07-23 ~ 2026-08-05
+2026-08-06 10:00:12 [INFO] 누락 데이터 존재 감지: ['2026-08-05']
+2026-08-06 10:00:12 [INFO] 누락 날짜 데이터 강제 추출 시도: 2026-08-05
+2026-08-06 10:00:12 [INFO] Starting execution of: extract_rich_orders_daily.py 2026-08-05 2026-08-05
+2026-08-06 10:00:37 [INFO] 
+--- extract_rich_orders_daily.py STDOUT ---
+총 1일 치 데이터 추출을 시작합니다.
+저장 기본 경로: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_orders
+[2026-08-05] 데이터 추출 중...
+[2026-08-05] 성공적으로 저장되었습니다. (건수: 214,230, 소요시간: 24.62초)
+
+-------------------
+2026-08-06 10:00:37 [INFO] Starting execution of: extract_rich_user_monthly.py 
+2026-08-06 10:00:41 [INFO] 
+--- extract_rich_user_monthly.py STDOUT ---
+추출 기간: 2026-08-01 ~ 2026-08-05
+저장 경로: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_user/rich_user_this_month/rich_user_this_month.parquet
+데이터 추출 중...
+성공적으로 덮어쓰기 완료되었습니다. (건수: 16,747, 소요시간: 2.56초)
+rich_user_all.parquet 파일 병합(Upsert)을 시작합니다...
+rich_user_all.parquet 업데이트 완료! (최종 유저 수: 4,100,879)
+
+-------------------
+2026-08-06 10:00:41 [INFO] Starting execution of: extract_rich_user_segment.py 
+2026-08-06 10:00:56 [INFO] 
+--- extract_rich_user_segment.py STDOUT ---
+target-date가 지정되지 않았습니다. 디폴트로 최근 3일치를 계산합니다.
+[2026-08-03 기준] 유저 세그먼트 계산을 시작합니다.
+운행 이력 로드 기간: 2025-08-03 ~ 2026-08-03
+유저별 운행 통계를 집계합니다...
+전체 유저 정보를 로드합니다...
+지역 정보를 로드하고 유저 정보와 결합합니다...
+유저 정보와 운행 통계를 병합합니다...
+고객 세그먼트를 분류합니다...
+주 이용수단을 판별합니다...
+RFM 스코어 및 CLTV를 계산합니다...
+결과가 저장되었습니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_user_segment/dt=2026-08-03/rich_user_segment_2026-08-03.parquet
+
+[세그먼트 분포 요약]
+shape: (7, 3)
+┌────────────────┬─────────┬──────────┐
+│ segment        ┆ count   ┆ ratio(%) │
+│ ---            ┆ ---     ┆ ---      │
+│ str            ┆ u32     ┆ f64      │
+╞════════════════╪═════════╪══════════╡
+│ churn_over_365 ┆ 1658287 ┆ 47.3     │
+│ churn          ┆ 646674  ┆ 18.5     │
+│ inactive       ┆ 423210  ┆ 12.1     │
+│ light_active   ┆ 326581  ┆ 9.3      │
+│ active         ┆ 272870  ┆ 7.8      │
+│ dormant        ┆ 126801  ┆ 3.6      │
+│ acquisition    ┆ 48321   ┆ 1.4      │
+└────────────────┴─────────┴──────────┘
+[2026-08-04 기준] 유저 세그먼트 계산을 시작합니다.
+운행 이력 로드 기간: 2025-08-04 ~ 2026-08-04
+유저별 운행 통계를 집계합니다...
+전체 유저 정보를 로드합니다...
+지역 정보를 로드하고 유저 정보와 결합합니다...
+유저 정보와 운행 통계를 병합합니다...
+고객 세그먼트를 분류합니다...
+주 이용수단을 판별합니다...
+RFM 스코어 및 CLTV를 계산합니다...
+결과가 저장되었습니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_user_segment/dt=2026-08-04/rich_user_segment_2026-08-04.parquet
+
+[세그먼트 분포 요약]
+shape: (7, 3)
+┌────────────────┬─────────┬──────────┐
+│ segment        ┆ count   ┆ ratio(%) │
+│ ---            ┆ ---     ┆ ---      │
+│ str            ┆ u32     ┆ f64      │
+╞════════════════╪═════════╪══════════╡
+│ churn_over_365 ┆ 1659090 ┆ 47.3     │
+│ churn          ┆ 647483  ┆ 18.5     │
+│ inactive       ┆ 426837  ┆ 12.2     │
+│ light_active   ┆ 325039  ┆ 9.3      │
+│ active         ┆ 272284  ┆ 7.8      │
+│ dormant        ┆ 127344  ┆ 3.6      │
+│ acquisition    ┆ 47579   ┆ 1.4      │
+└────────────────┴─────────┴──────────┘
+[2026-08-05 기준] 유저 세그먼트 계산을 시작합니다.
+운행 이력 로드 기간: 2025-08-05 ~ 2026-08-05
+유저별 운행 통계를 집계합니다...
+전체 유저 정보를 로드합니다...
+지역 정보를 로드하고 유저 정보와 결합합니다...
+유저 정보와 운행 통계를 병합합니다...
+고객 세그먼트를 분류합니다...
+주 이용수단을 판별합니다...
+RFM 스코어 및 CLTV를 계산합니다...
+결과가 저장되었습니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_user_segment/dt=2026-08-05/rich_user_segment_2026-08-05.parquet
+
+[세그먼트 분포 요약]
+shape: (7, 3)
+┌────────────────┬─────────┬──────────┐
+│ segment        ┆ count   ┆ ratio(%) │
+│ ---            ┆ ---     ┆ ---      │
+│ str            ┆ u32     ┆ f64      │
+╞════════════════╪═════════╪══════════╡
+│ churn_over_365 ┆ 1659573 ┆ 47.3     │
+│ churn          ┆ 646275  ┆ 18.4     │
+│ inactive       ┆ 427062  ┆ 12.2     │
+│ light_active   ┆ 325207  ┆ 9.3      │
+│ active         ┆ 273834  ┆ 7.8      │
+│ dormant        ┆ 128927  ┆ 3.7      │
+│ acquisition    ┆ 47650   ┆ 1.4      │
+└────────────────┴─────────┴──────────┘
+
+-------------------
+2026-08-06 10:00:56 [INFO] 금일 배치 작업이 모두 정상 종료되었습니다. 성공 마커 파일을 기록합니다.
+2026-08-06 10:00:56 [INFO] Removed old marker file: .daily_success_20260805
+2026-08-06 10:00:56 [INFO] Removed old marker file: .daily_success_20260709
+2026-08-06 10:00:56 [INFO] ================ Daily Batch Run Completed ================
+
+2026-08-06 10:00:56 [INFO] scripts/python/extract/run_daily_batch.py completed successfully.
+메시지 전송 성공: spaces/AAQAf0HeYv0/messages/2zYs4vvkGxs.2zYs4vvkGxs
+2026-08-06 10:01:01 [INFO] --- Phase 3 (Operations & Deploy) ---
+2026-08-06 10:01:01 [INFO] Running scripts/python/extract/extract_rich_deploy_zone_usages.py...
+총 5일 치 데이터 추출을 시작합니다.
+저장 기본 경로: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_deploy_zone_usages
+[2026-08-01] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_deploy_zone_usages/dt=2026-08-01/rich_deploy_zone_usages_2026-08-01.parquet
+[2026-08-02] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_deploy_zone_usages/dt=2026-08-02/rich_deploy_zone_usages_2026-08-02.parquet
+[2026-08-03] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_deploy_zone_usages/dt=2026-08-03/rich_deploy_zone_usages_2026-08-03.parquet
+[2026-08-04] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_deploy_zone_usages/dt=2026-08-04/rich_deploy_zone_usages_2026-08-04.parquet
+[2026-08-05] 데이터 추출 중...
+[2026-08-05] 성공적으로 저장되었습니다. (건수: 12,555, 소요시간: 100.51초)
+2026-08-06 10:02:42 [INFO] scripts/python/extract/extract_rich_deploy_zone_usages.py completed successfully.
+2026-08-06 10:02:42 [INFO] Running scripts/python/extract/extract_rich_deploy_used_time.py...
+작업 기간: 2026-08-01 ~ 2026-08-05 (총 5일)
+저장 기본 경로: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_deploy_used_time
+[2026-08-01] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_deploy_used_time/dt=2026-08-01/rich_deploy_used_time_2026-08-01.parquet
+[2026-08-02] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_deploy_used_time/dt=2026-08-02/rich_deploy_used_time_2026-08-02.parquet
+[2026-08-03] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_deploy_used_time/dt=2026-08-03/rich_deploy_used_time_2026-08-03.parquet
+[2026-08-04] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_deploy_used_time/dt=2026-08-04/rich_deploy_used_time_2026-08-04.parquet
+[2026-08-05] 데이터 추출 중...
+[2026-08-05] 성공적으로 저장되었습니다. (건수: 28,621, 소요시간: 28.04초)
+모든 작업이 성공적으로 완료되었습니다.
+2026-08-06 10:03:11 [INFO] scripts/python/extract/extract_rich_deploy_used_time.py completed successfully.
+2026-08-06 10:03:11 [INFO] Running scripts/python/extract/extract_rich_deploy_by_time.py...
+작업 기간: 2026-08-01 ~ 2026-08-05 (총 5일)
+저장 기본 경로: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_deploy_by_time
+[2026-08-01] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_deploy_by_time/dt=2026-08-01/rich_deploy_by_time_2026-08-01.parquet
+[2026-08-02] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_deploy_by_time/dt=2026-08-02/rich_deploy_by_time_2026-08-02.parquet
+[2026-08-03] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_deploy_by_time/dt=2026-08-03/rich_deploy_by_time_2026-08-03.parquet
+[2026-08-04] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_deploy_by_time/dt=2026-08-04/rich_deploy_by_time_2026-08-04.parquet
+[2026-08-05] 데이터 추출 중...
+[2026-08-05] 성공적으로 저장되었습니다. (건수: 52,392, 소요시간: 23.94초)
+모든 작업이 성공적으로 완료되었습니다.
+2026-08-06 10:03:35 [INFO] scripts/python/extract/extract_rich_deploy_by_time.py completed successfully.
+2026-08-06 10:03:35 [INFO] Running scripts/python/extract/update_tableau_obp_csv.py...
+작업 기간: 2026-08-01 ~ 2026-08-05
+신규 데이터 로드 중...
+기존 CSV 파일 로드 중: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_deploy_zone_usages/tableau/OBP(출루율).csv
+겹치는 기간(2026-08-01~2026-08-05)의 기존 데이터 49223건을 제외(대체)합니다.
+CSV 저장 중 (총 1921572건)...
+작업이 완료되었습니다.
+2026-08-06 10:03:44 [INFO] scripts/python/extract/update_tableau_obp_csv.py completed successfully.
+2026-08-06 10:03:44 [INFO] Running scripts/python/extract/update_tableau_used_time_csv.py...
+작업 기간: 2026-08-01 ~ 2026-08-05
+신규 데이터 로드 중...
+기존 CSV 파일 로드 중: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_deploy_used_time/tableau/used_time(출루까지시간).csv
+겹치는 기간(2026-08-01~2026-08-05)의 기존 데이터 104818건을 제외(대체)합니다.
+CSV 저장 중 (총 4101243건)...
+작업이 완료되었습니다.
+2026-08-06 10:04:03 [INFO] scripts/python/extract/update_tableau_used_time_csv.py completed successfully.
+2026-08-06 10:04:03 [INFO] Running scripts/python/extract/update_tableau_by_time_csv.py...
+작업 기간: 2026-08-01 ~ 2026-08-05
+신규 데이터 로드 중...
+기존 CSV 파일 로드 중: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_deploy_by_time/tableau/by_time(시간대별).csv
+겹치는 기간(2026-08-01~2026-08-05)의 기존 데이터 192018건을 제외(대체)합니다.
+CSV 저장 중 (총 6855233건)...
+작업이 완료되었습니다.
+2026-08-06 10:04:35 [INFO] scripts/python/extract/update_tableau_by_time_csv.py completed successfully.
+메시지 전송 성공: spaces/AAQAf0HeYv0/messages/dCgl7gOWzlA.dCgl7gOWzlA
+2026-08-06 10:04:36 [INFO] --- Phase 4 (Aggregation) ---
+2026-08-06 10:04:36 [INFO] Running scripts/python/extract/extract_rich_daily_statistics.py...
+총 5일 치 데이터 추출을 시작합니다.
+저장 기본 경로: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_daily_statistics
+[2026-08-01] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_daily_statistics/dt=2026-08-01/rich_daily_statistics_2026-08-01.parquet
+[2026-08-02] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_daily_statistics/dt=2026-08-02/rich_daily_statistics_2026-08-02.parquet
+[2026-08-03] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_daily_statistics/dt=2026-08-03/rich_daily_statistics_2026-08-03.parquet
+[2026-08-04] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_daily_statistics/dt=2026-08-04/rich_daily_statistics_2026-08-04.parquet
+[2026-08-05] 데이터 추출 중...
+[2026-08-05] 성공적으로 저장되었습니다. (건수: 603, 소요시간: 6.86초)
+모든 작업이 성공적으로 완료되었습니다.
+2026-08-06 10:04:44 [INFO] scripts/python/extract/extract_rich_daily_statistics.py completed successfully.
+2026-08-06 10:04:44 [INFO] Running scripts/python/extract/extract_deploy_spot_info.py...
+[2026-08-06 10:04:44.805083] 배치존 마스터 정보 추출 시작...
+[2026-08-06 10:04:46.614398] 성공적으로 저장되었습니다. (건수: 9,840, 소요시간: 1.81초)
+저장 경로: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_deploy_spot_info/deploy_spot_info.parquet
+2026-08-06 10:04:46 [INFO] scripts/python/extract/extract_deploy_spot_info.py completed successfully.
+2026-08-06 10:04:46 [INFO] Running scripts/python/extract/extract_vehicle_statistics.py...
+총 5일 치 데이터 추출을 시작합니다.
+저장 기본 경로: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike_smartops.vehicle_statistics_data
+[2026-08-01] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike_smartops.vehicle_statistics_data/dt=2026-08-01/vehicle_statistics_data_2026-08-01.parquet
+[2026-08-02] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike_smartops.vehicle_statistics_data/dt=2026-08-02/vehicle_statistics_data_2026-08-02.parquet
+[2026-08-03] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike_smartops.vehicle_statistics_data/dt=2026-08-03/vehicle_statistics_data_2026-08-03.parquet
+[2026-08-04] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike_smartops.vehicle_statistics_data/dt=2026-08-04/vehicle_statistics_data_2026-08-04.parquet
+[2026-08-05] 데이터 추출 중...
+[2026-08-05] 성공적으로 저장되었습니다. (건수: 617, 소요시간: 1.49초)
+모든 작업이 성공적으로 완료되었습니다.
+2026-08-06 10:04:48 [INFO] scripts/python/extract/extract_vehicle_statistics.py completed successfully.
+2026-08-06 10:04:48 [INFO] Running scripts/python/extract/extract_rich_task_statistics.py...
+총 5일 치 데이터 추출을 시작합니다.
+저장 기본 경로: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_task_statistics
+[2026-08-01] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_task_statistics/dt=2026-08-01/rich_task_statistics_2026-08-01.parquet
+[2026-08-02] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_task_statistics/dt=2026-08-02/rich_task_statistics_2026-08-02.parquet
+[2026-08-03] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_task_statistics/dt=2026-08-03/rich_task_statistics_2026-08-03.parquet
+[2026-08-04] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_task_statistics/dt=2026-08-04/rich_task_statistics_2026-08-04.parquet
+[2026-08-05] 데이터 추출 중...
+[2026-08-05] 성공적으로 저장되었습니다. (건수: 70, 소요시간: 1.59초)
+모든 작업이 성공적으로 완료되었습니다.
+2026-08-06 10:04:50 [INFO] scripts/python/extract/extract_rich_task_statistics.py completed successfully.
+2026-08-06 10:04:50 [INFO] Running scripts/python/extract/extract_rich_battery_data.py...
+총 5일 치 데이터 추출을 시작합니다.
+저장 기본 경로: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_battery_data
+[2026-08-01] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_battery_data/dt=2026-08-01/rich_battery_data_2026-08-01.parquet
+[2026-08-02] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_battery_data/dt=2026-08-02/rich_battery_data_2026-08-02.parquet
+[2026-08-03] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_battery_data/dt=2026-08-03/rich_battery_data_2026-08-03.parquet
+[2026-08-04] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_battery_data/dt=2026-08-04/rich_battery_data_2026-08-04.parquet
+[2026-08-05] 데이터 추출 중...
+[2026-08-05] 성공적으로 저장되었습니다. (건수: 71, 소요시간: 37.44초)
+모든 작업이 성공적으로 완료되었습니다.
+2026-08-06 10:05:28 [INFO] scripts/python/extract/extract_rich_battery_data.py completed successfully.
+2026-08-06 10:05:28 [INFO] Running scripts/python/extract/extract_smartops_weather_data.py...
+총 5일 치 날씨 데이터 추출을 시작합니다.
+저장 기본 경로: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike_smartops.weather_data
+[2026-08-01] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike_smartops.weather_data/dt=2026-08-01/smartops_weather_data_2026-08-01.parquet
+[2026-08-02] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike_smartops.weather_data/dt=2026-08-02/smartops_weather_data_2026-08-02.parquet
+[2026-08-03] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike_smartops.weather_data/dt=2026-08-03/smartops_weather_data_2026-08-03.parquet
+[2026-08-04] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike_smartops.weather_data/dt=2026-08-04/smartops_weather_data_2026-08-04.parquet
+[2026-08-05] 데이터 추출 중...
+[2026-08-05] 성공적으로 저장되었습니다. (건수: 83, 소요시간: 3.01초)
+모든 날씨 데이터 추출 작업이 성공적으로 완료되었습니다.
+2026-08-06 10:05:32 [INFO] scripts/python/extract/extract_smartops_weather_data.py completed successfully.
+메시지 전송 성공: spaces/AAQAf0HeYv0/messages/KtlIDsbkAWw.KtlIDsbkAWw
+2026-08-06 10:05:33 [INFO] --- Phase 5 (Dashboard ETL) ---
+2026-08-06 10:05:33 [INFO] Running /Users/galaxy.jang/gems_build_dashboard/gems_build_dashboard/deploy/run_etl.sh...
+bash: /Users/galaxy.jang/gems_build_dashboard/gems_build_dashboard/deploy/run_etl.sh: No such file or directory
+2026-08-06 10:05:33 [ERROR] /Users/galaxy.jang/gems_build_dashboard/gems_build_dashboard/deploy/run_etl.sh failed with exit code 127
+메시지 전송 성공: spaces/AAQAf0HeYv0/messages/P5LwFnfD0rU.P5LwFnfD0rU
+2026-08-07 10:00:03 [INFO] ================ Master Batch Pipeline Start ================
+2026-08-07 10:00:03 [INFO] Virtual environment activated.
+메시지 전송 성공: spaces/AAQAf0HeYv0/messages/PJR10bcKgMk.PJR10bcKgMk
+2026-08-07 10:00:06 [INFO] --- Phase 1 (Metadata) ---
+2026-08-07 10:00:06 [INFO] Running scripts/python/extract/extract_rich_region_hierarchy.py...
+저장 기본 경로: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_region
+데이터 추출 중...
+성공적으로 저장되었습니다. (건수: 943, 소요시간: 2.07초)
+Parquet 파일 위치: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_region/rich_region_hierarchy.parquet
+CSV 파일 위치: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_region/rich_region_hierarchy.csv
+2026-08-07 10:00:10 [INFO] scripts/python/extract/extract_rich_region_hierarchy.py completed successfully.
+2026-08-07 10:00:10 [INFO] Running scripts/python/extract/extract_rich_bicycle_asset_info.py...
+저장 기본 경로: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_bicycle
+데이터 추출 중...
+성공적으로 저장되었습니다. (건수: 134,502, 소요시간: 5.77초)
+Parquet 파일 위치: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_bicycle/rich_bicycle_asset_info.parquet
+CSV 파일 위치: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_bicycle/rich_bicycle_asset_info.csv
+2026-08-07 10:00:16 [INFO] scripts/python/extract/extract_rich_bicycle_asset_info.py completed successfully.
+메시지 전송 성공: spaces/AAQAf0HeYv0/messages/gbYj_a0PTbA.gbYj_a0PTbA
+2026-08-07 10:00:17 [INFO] --- Phase 2 (Core Data) ---
+2026-08-07 10:00:17 [INFO] Running scripts/python/extract/run_daily_batch.py...
+2026-08-07 10:00:17 [INFO] ================ Daily Batch Run Attempt (2026-08-07 10:00:17) ================
+2026-08-07 10:00:17 [INFO] 필수 데이터 검사 범위: 2026-07-24 ~ 2026-08-06
+2026-08-07 10:00:17 [INFO] 누락 데이터 존재 감지: ['2026-08-06']
+2026-08-07 10:00:17 [INFO] 누락 날짜 데이터 강제 추출 시도: 2026-08-06
+2026-08-07 10:00:17 [INFO] Starting execution of: extract_rich_orders_daily.py 2026-08-06 2026-08-06
+2026-08-07 10:00:49 [INFO] 
+--- extract_rich_orders_daily.py STDOUT ---
+총 1일 치 데이터 추출을 시작합니다.
+저장 기본 경로: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_orders
+[2026-08-06] 데이터 추출 중...
+[2026-08-06] 성공적으로 저장되었습니다. (건수: 217,246, 소요시간: 30.69초)
+
+-------------------
+2026-08-07 10:00:49 [INFO] Starting execution of: extract_rich_user_monthly.py 
+2026-08-07 10:00:56 [INFO] 
+--- extract_rich_user_monthly.py STDOUT ---
+추출 기간: 2026-08-01 ~ 2026-08-06
+저장 경로: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_user/rich_user_this_month/rich_user_this_month.parquet
+데이터 추출 중...
+성공적으로 덮어쓰기 완료되었습니다. (건수: 19,930, 소요시간: 3.82초)
+rich_user_all.parquet 파일 병합(Upsert)을 시작합니다...
+rich_user_all.parquet 업데이트 완료! (최종 유저 수: 4,104,072)
+
+-------------------
+2026-08-07 10:00:56 [INFO] Starting execution of: extract_rich_user_segment.py 
+2026-08-07 10:01:13 [INFO] 
+--- extract_rich_user_segment.py STDOUT ---
+target-date가 지정되지 않았습니다. 디폴트로 최근 3일치를 계산합니다.
+[2026-08-04 기준] 유저 세그먼트 계산을 시작합니다.
+운행 이력 로드 기간: 2025-08-04 ~ 2026-08-04
+유저별 운행 통계를 집계합니다...
+전체 유저 정보를 로드합니다...
+지역 정보를 로드하고 유저 정보와 결합합니다...
+유저 정보와 운행 통계를 병합합니다...
+고객 세그먼트를 분류합니다...
+주 이용수단을 판별합니다...
+RFM 스코어 및 CLTV를 계산합니다...
+결과가 저장되었습니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_user_segment/dt=2026-08-04/rich_user_segment_2026-08-04.parquet
+
+[세그먼트 분포 요약]
+shape: (7, 3)
+┌────────────────┬─────────┬──────────┐
+│ segment        ┆ count   ┆ ratio(%) │
+│ ---            ┆ ---     ┆ ---      │
+│ str            ┆ u32     ┆ f64      │
+╞════════════════╪═════════╪══════════╡
+│ churn_over_365 ┆ 1659090 ┆ 47.3     │
+│ churn          ┆ 647483  ┆ 18.5     │
+│ inactive       ┆ 426837  ┆ 12.2     │
+│ light_active   ┆ 325025  ┆ 9.3      │
+│ active         ┆ 272275  ┆ 7.8      │
+│ dormant        ┆ 127344  ┆ 3.6      │
+│ acquisition    ┆ 47576   ┆ 1.4      │
+└────────────────┴─────────┴──────────┘
+[2026-08-05 기준] 유저 세그먼트 계산을 시작합니다.
+운행 이력 로드 기간: 2025-08-05 ~ 2026-08-05
+유저별 운행 통계를 집계합니다...
+전체 유저 정보를 로드합니다...
+지역 정보를 로드하고 유저 정보와 결합합니다...
+유저 정보와 운행 통계를 병합합니다...
+고객 세그먼트를 분류합니다...
+주 이용수단을 판별합니다...
+RFM 스코어 및 CLTV를 계산합니다...
+결과가 저장되었습니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_user_segment/dt=2026-08-05/rich_user_segment_2026-08-05.parquet
+
+[세그먼트 분포 요약]
+shape: (7, 3)
+┌────────────────┬─────────┬──────────┐
+│ segment        ┆ count   ┆ ratio(%) │
+│ ---            ┆ ---     ┆ ---      │
+│ str            ┆ u32     ┆ f64      │
+╞════════════════╪═════════╪══════════╡
+│ churn_over_365 ┆ 1659573 ┆ 47.3     │
+│ churn          ┆ 646275  ┆ 18.4     │
+│ inactive       ┆ 427062  ┆ 12.2     │
+│ light_active   ┆ 325198  ┆ 9.3      │
+│ active         ┆ 273820  ┆ 7.8      │
+│ dormant        ┆ 128927  ┆ 3.7      │
+│ acquisition    ┆ 47641   ┆ 1.4      │
+└────────────────┴─────────┴──────────┘
+[2026-08-06 기준] 유저 세그먼트 계산을 시작합니다.
+운행 이력 로드 기간: 2025-08-06 ~ 2026-08-06
+유저별 운행 통계를 집계합니다...
+전체 유저 정보를 로드합니다...
+지역 정보를 로드하고 유저 정보와 결합합니다...
+유저 정보와 운행 통계를 병합합니다...
+고객 세그먼트를 분류합니다...
+주 이용수단을 판별합니다...
+RFM 스코어 및 CLTV를 계산합니다...
+결과가 저장되었습니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_user_segment/dt=2026-08-06/rich_user_segment_2026-08-06.parquet
+
+[세그먼트 분포 요약]
+shape: (7, 3)
+┌────────────────┬─────────┬──────────┐
+│ segment        ┆ count   ┆ ratio(%) │
+│ ---            ┆ ---     ┆ ---      │
+│ str            ┆ u32     ┆ f64      │
+╞════════════════╪═════════╪══════════╡
+│ churn_over_365 ┆ 1660410 ┆ 47.3     │
+│ churn          ┆ 645044  ┆ 18.4     │
+│ inactive       ┆ 427248  ┆ 12.2     │
+│ light_active   ┆ 326449  ┆ 9.3      │
+│ active         ┆ 274939  ┆ 7.8      │
+│ dormant        ┆ 129281  ┆ 3.7      │
+│ acquisition    ┆ 48089   ┆ 1.4      │
+└────────────────┴─────────┴──────────┘
+
+-------------------
+2026-08-07 10:01:13 [INFO] 금일 배치 작업이 모두 정상 종료되었습니다. 성공 마커 파일을 기록합니다.
+2026-08-07 10:01:13 [INFO] Removed old marker file: .daily_success_20260806
+2026-08-07 10:01:13 [INFO] ================ Daily Batch Run Completed ================
+
+2026-08-07 10:01:13 [INFO] scripts/python/extract/run_daily_batch.py completed successfully.
+메시지 전송 성공: spaces/AAQAf0HeYv0/messages/GOHQLs3UBTc.GOHQLs3UBTc
+2026-08-07 10:01:14 [INFO] --- Phase 3 (Operations & Deploy) ---
+2026-08-07 10:01:14 [INFO] Running scripts/python/extract/extract_rich_deploy_zone_usages.py...
+총 6일 치 데이터 추출을 시작합니다.
+저장 기본 경로: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_deploy_zone_usages
+[2026-08-01] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_deploy_zone_usages/dt=2026-08-01/rich_deploy_zone_usages_2026-08-01.parquet
+[2026-08-02] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_deploy_zone_usages/dt=2026-08-02/rich_deploy_zone_usages_2026-08-02.parquet
+[2026-08-03] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_deploy_zone_usages/dt=2026-08-03/rich_deploy_zone_usages_2026-08-03.parquet
+[2026-08-04] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_deploy_zone_usages/dt=2026-08-04/rich_deploy_zone_usages_2026-08-04.parquet
+[2026-08-05] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_deploy_zone_usages/dt=2026-08-05/rich_deploy_zone_usages_2026-08-05.parquet
+[2026-08-06] 데이터 추출 중...
+[2026-08-06] 성공적으로 저장되었습니다. (건수: 12,469, 소요시간: 27.11초)
+2026-08-07 10:01:42 [INFO] scripts/python/extract/extract_rich_deploy_zone_usages.py completed successfully.
+2026-08-07 10:01:42 [INFO] Running scripts/python/extract/extract_rich_deploy_used_time.py...
+작업 기간: 2026-08-02 ~ 2026-08-06 (총 5일)
+저장 기본 경로: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_deploy_used_time
+[2026-08-02] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_deploy_used_time/dt=2026-08-02/rich_deploy_used_time_2026-08-02.parquet
+[2026-08-03] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_deploy_used_time/dt=2026-08-03/rich_deploy_used_time_2026-08-03.parquet
+[2026-08-04] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_deploy_used_time/dt=2026-08-04/rich_deploy_used_time_2026-08-04.parquet
+[2026-08-05] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_deploy_used_time/dt=2026-08-05/rich_deploy_used_time_2026-08-05.parquet
+[2026-08-06] 데이터 추출 중...
+[2026-08-06] 성공적으로 저장되었습니다. (건수: 29,216, 소요시간: 12.19초)
+모든 작업이 성공적으로 완료되었습니다.
+2026-08-07 10:01:55 [INFO] scripts/python/extract/extract_rich_deploy_used_time.py completed successfully.
+2026-08-07 10:01:55 [INFO] Running scripts/python/extract/extract_rich_deploy_by_time.py...
+작업 기간: 2026-08-02 ~ 2026-08-06 (총 5일)
+저장 기본 경로: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_deploy_by_time
+[2026-08-02] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_deploy_by_time/dt=2026-08-02/rich_deploy_by_time_2026-08-02.parquet
+[2026-08-03] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_deploy_by_time/dt=2026-08-03/rich_deploy_by_time_2026-08-03.parquet
+[2026-08-04] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_deploy_by_time/dt=2026-08-04/rich_deploy_by_time_2026-08-04.parquet
+[2026-08-05] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_deploy_by_time/dt=2026-08-05/rich_deploy_by_time_2026-08-05.parquet
+[2026-08-06] 데이터 추출 중...
+[2026-08-06] 성공적으로 저장되었습니다. (건수: 53,087, 소요시간: 21.14초)
+모든 작업이 성공적으로 완료되었습니다.
+2026-08-07 10:02:16 [INFO] scripts/python/extract/extract_rich_deploy_by_time.py completed successfully.
+2026-08-07 10:02:17 [INFO] Running scripts/python/extract/update_tableau_obp_csv.py...
+작업 기간: 2026-08-02 ~ 2026-08-06
+신규 데이터 로드 중...
+기존 CSV 파일 로드 중: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_deploy_zone_usages/tableau/OBP(출루율).csv
+겹치는 기간(2026-08-02~2026-08-06)의 기존 데이터 49445건을 제외(대체)합니다.
+CSV 저장 중 (총 1932431건)...
+작업이 완료되었습니다.
+2026-08-07 10:02:26 [INFO] scripts/python/extract/update_tableau_obp_csv.py completed successfully.
+2026-08-07 10:02:26 [INFO] Running scripts/python/extract/update_tableau_used_time_csv.py...
+작업 기간: 2026-08-02 ~ 2026-08-06
+신규 데이터 로드 중...
+기존 CSV 파일 로드 중: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_deploy_used_time/tableau/used_time(출루까지시간).csv
+겹치는 기간(2026-08-02~2026-08-06)의 기존 데이터 106317건을 제외(대체)합니다.
+CSV 저장 중 (총 4139906건)...
+작업이 완료되었습니다.
+2026-08-07 10:02:44 [INFO] scripts/python/extract/update_tableau_used_time_csv.py completed successfully.
+2026-08-07 10:02:44 [INFO] Running scripts/python/extract/update_tableau_by_time_csv.py...
+작업 기간: 2026-08-02 ~ 2026-08-06
+신규 데이터 로드 중...
+기존 CSV 파일 로드 중: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_deploy_by_time/tableau/by_time(시간대별).csv
+겹치는 기간(2026-08-02~2026-08-06)의 기존 데이터 194855건을 제외(대체)합니다.
+CSV 저장 중 (총 6909846건)...
+작업이 완료되었습니다.
+2026-08-07 10:03:17 [INFO] scripts/python/extract/update_tableau_by_time_csv.py completed successfully.
+메시지 전송 성공: spaces/AAQAf0HeYv0/messages/uw1VRtx6T-U.uw1VRtx6T-U
+2026-08-07 10:03:19 [INFO] --- Phase 4 (Aggregation) ---
+2026-08-07 10:03:19 [INFO] Running scripts/python/extract/extract_rich_daily_statistics.py...
+총 6일 치 데이터 추출을 시작합니다.
+저장 기본 경로: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_daily_statistics
+[2026-08-01] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_daily_statistics/dt=2026-08-01/rich_daily_statistics_2026-08-01.parquet
+[2026-08-02] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_daily_statistics/dt=2026-08-02/rich_daily_statistics_2026-08-02.parquet
+[2026-08-03] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_daily_statistics/dt=2026-08-03/rich_daily_statistics_2026-08-03.parquet
+[2026-08-04] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_daily_statistics/dt=2026-08-04/rich_daily_statistics_2026-08-04.parquet
+[2026-08-05] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_daily_statistics/dt=2026-08-05/rich_daily_statistics_2026-08-05.parquet
+[2026-08-06] 데이터 추출 중...
+[2026-08-06] 성공적으로 저장되었습니다. (건수: 604, 소요시간: 1.14초)
+모든 작업이 성공적으로 완료되었습니다.
+2026-08-07 10:03:20 [INFO] scripts/python/extract/extract_rich_daily_statistics.py completed successfully.
+2026-08-07 10:03:20 [INFO] Running scripts/python/extract/extract_deploy_spot_info.py...
+[2026-08-07 10:03:21.396614] 배치존 마스터 정보 추출 시작...
+[2026-08-07 10:03:22.462800] 성공적으로 저장되었습니다. (건수: 9,878, 소요시간: 1.07초)
+저장 경로: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_deploy_spot_info/deploy_spot_info.parquet
+2026-08-07 10:03:22 [INFO] scripts/python/extract/extract_deploy_spot_info.py completed successfully.
+2026-08-07 10:03:22 [INFO] Running scripts/python/extract/extract_vehicle_statistics.py...
+총 6일 치 데이터 추출을 시작합니다.
+저장 기본 경로: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike_smartops.vehicle_statistics_data
+[2026-08-01] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike_smartops.vehicle_statistics_data/dt=2026-08-01/vehicle_statistics_data_2026-08-01.parquet
+[2026-08-02] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike_smartops.vehicle_statistics_data/dt=2026-08-02/vehicle_statistics_data_2026-08-02.parquet
+[2026-08-03] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike_smartops.vehicle_statistics_data/dt=2026-08-03/vehicle_statistics_data_2026-08-03.parquet
+[2026-08-04] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike_smartops.vehicle_statistics_data/dt=2026-08-04/vehicle_statistics_data_2026-08-04.parquet
+[2026-08-05] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike_smartops.vehicle_statistics_data/dt=2026-08-05/vehicle_statistics_data_2026-08-05.parquet
+[2026-08-06] 데이터 추출 중...
+[2026-08-06] 성공적으로 저장되었습니다. (건수: 617, 소요시간: 1.13초)
+모든 작업이 성공적으로 완료되었습니다.
+2026-08-07 10:03:24 [INFO] scripts/python/extract/extract_vehicle_statistics.py completed successfully.
+2026-08-07 10:03:24 [INFO] Running scripts/python/extract/extract_rich_task_statistics.py...
+총 6일 치 데이터 추출을 시작합니다.
+저장 기본 경로: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_task_statistics
+[2026-08-01] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_task_statistics/dt=2026-08-01/rich_task_statistics_2026-08-01.parquet
+[2026-08-02] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_task_statistics/dt=2026-08-02/rich_task_statistics_2026-08-02.parquet
+[2026-08-03] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_task_statistics/dt=2026-08-03/rich_task_statistics_2026-08-03.parquet
+[2026-08-04] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_task_statistics/dt=2026-08-04/rich_task_statistics_2026-08-04.parquet
+[2026-08-05] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_task_statistics/dt=2026-08-05/rich_task_statistics_2026-08-05.parquet
+[2026-08-06] 데이터 추출 중...
+[2026-08-06] 성공적으로 저장되었습니다. (건수: 71, 소요시간: 2.42초)
+모든 작업이 성공적으로 완료되었습니다.
+2026-08-07 10:03:27 [INFO] scripts/python/extract/extract_rich_task_statistics.py completed successfully.
+2026-08-07 10:03:27 [INFO] Running scripts/python/extract/extract_rich_battery_data.py...
+총 6일 치 데이터 추출을 시작합니다.
+저장 기본 경로: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_battery_data
+[2026-08-01] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_battery_data/dt=2026-08-01/rich_battery_data_2026-08-01.parquet
+[2026-08-02] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_battery_data/dt=2026-08-02/rich_battery_data_2026-08-02.parquet
+[2026-08-03] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_battery_data/dt=2026-08-03/rich_battery_data_2026-08-03.parquet
+[2026-08-04] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_battery_data/dt=2026-08-04/rich_battery_data_2026-08-04.parquet
+[2026-08-05] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_battery_data/dt=2026-08-05/rich_battery_data_2026-08-05.parquet
+[2026-08-06] 데이터 추출 중...
+[2026-08-06] 성공적으로 저장되었습니다. (건수: 71, 소요시간: 30.01초)
+모든 작업이 성공적으로 완료되었습니다.
+2026-08-07 10:03:57 [INFO] scripts/python/extract/extract_rich_battery_data.py completed successfully.
+2026-08-07 10:03:57 [INFO] Running scripts/python/extract/extract_smartops_weather_data.py...
+총 6일 치 날씨 데이터 추출을 시작합니다.
+저장 기본 경로: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike_smartops.weather_data
+[2026-08-01] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike_smartops.weather_data/dt=2026-08-01/smartops_weather_data_2026-08-01.parquet
+[2026-08-02] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike_smartops.weather_data/dt=2026-08-02/smartops_weather_data_2026-08-02.parquet
+[2026-08-03] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike_smartops.weather_data/dt=2026-08-03/smartops_weather_data_2026-08-03.parquet
+[2026-08-04] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike_smartops.weather_data/dt=2026-08-04/smartops_weather_data_2026-08-04.parquet
+[2026-08-05] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike_smartops.weather_data/dt=2026-08-05/smartops_weather_data_2026-08-05.parquet
+[2026-08-06] 데이터 추출 중...
+[2026-08-06] 성공적으로 저장되었습니다. (건수: 83, 소요시간: 0.97초)
+모든 날씨 데이터 추출 작업이 성공적으로 완료되었습니다.
+2026-08-07 10:03:59 [INFO] scripts/python/extract/extract_smartops_weather_data.py completed successfully.
+메시지 전송 성공: spaces/AAQAf0HeYv0/messages/TgTeAZOSRuA.TgTeAZOSRuA
+2026-08-07 10:04:00 [INFO] --- Phase 5 (Dashboard ETL) ---
+2026-08-07 10:04:00 [INFO] Running /Users/galaxy.jang/gems_build_dashboard/gems_build_dashboard/deploy/run_etl.sh...
+bash: /Users/galaxy.jang/gems_build_dashboard/gems_build_dashboard/deploy/run_etl.sh: No such file or directory
+2026-08-07 10:04:00 [ERROR] /Users/galaxy.jang/gems_build_dashboard/gems_build_dashboard/deploy/run_etl.sh failed with exit code 127
+메시지 전송 성공: spaces/AAQAf0HeYv0/messages/hfDSpvMUE5o.hfDSpvMUE5o
+2026-08-08 10:00:04 [INFO] ================ Master Batch Pipeline Start ================
+2026-08-08 10:00:04 [INFO] Virtual environment activated.
+메시지 전송 성공: spaces/AAQAf0HeYv0/messages/DVn93FwAzaE.DVn93FwAzaE
+2026-08-08 10:00:06 [INFO] --- Phase 1 (Metadata) ---
+2026-08-08 10:00:06 [INFO] Running scripts/python/extract/extract_rich_region_hierarchy.py...
+저장 기본 경로: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_region
+데이터 추출 중...
+Error extracting region hierarchy data: (pymysql.err.OperationalError) (2003, "Can't connect to MySQL server on 'live.st.rds.gbility.io' (timed out)")
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+추출 실패.
+2026-08-08 10:00:18 [INFO] scripts/python/extract/extract_rich_region_hierarchy.py completed successfully.
+2026-08-08 10:00:18 [INFO] Running scripts/python/extract/extract_rich_bicycle_asset_info.py...
+저장 기본 경로: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_bicycle
+데이터 추출 중...
+Error extracting bicycle asset info data: (pymysql.err.OperationalError) (2003, "Can't connect to MySQL server on 'live.st.rds.gbility.io' (timed out)")
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+추출 실패.
+2026-08-08 10:00:29 [INFO] scripts/python/extract/extract_rich_bicycle_asset_info.py completed successfully.
+메시지 전송 성공: spaces/AAQAf0HeYv0/messages/654QAMsRvc4.654QAMsRvc4
+2026-08-08 10:00:30 [INFO] --- Phase 2 (Core Data) ---
+2026-08-08 10:00:30 [INFO] Running scripts/python/extract/run_daily_batch.py...
+2026-08-08 10:00:30 [INFO] ================ Daily Batch Run Attempt (2026-08-08 10:00:30) ================
+2026-08-08 10:00:30 [INFO] 필수 데이터 검사 범위: 2026-07-25 ~ 2026-08-07
+2026-08-08 10:00:30 [INFO] 누락 데이터 존재 감지: ['2026-08-07']
+2026-08-08 10:00:30 [INFO] 누락 날짜 데이터 강제 추출 시도: 2026-08-07
+2026-08-08 10:00:30 [INFO] Starting execution of: extract_rich_orders_daily.py 2026-08-07 2026-08-07
+2026-08-08 10:00:40 [ERROR] Error running extract_rich_orders_daily.py (Exit code: 1)
+2026-08-08 10:00:40 [ERROR] STDOUT:
+총 1일 치 데이터 추출을 시작합니다.
+저장 기본 경로: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_orders
+[2026-08-07] 데이터 추출 중...
+Error extracting data for 2026-08-07: (pymysql.err.OperationalError) (2003, "Can't connect to MySQL server on 'live.st.rds.gbility.io' (timed out)")
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+[2026-08-07] 추출 실패. 다음 날짜로 넘어갑니다.
+경고: 하나 이상의 날짜 추출 또는 저장에 실패했습니다.
+
+2026-08-08 10:00:40 [ERROR] 2026-08-07 데이터 추출 단계에서 오류가 발생하여 배치 실행을 중단합니다.
+2026-08-08 10:00:40 [INFO] ================ Daily Batch Run Failed ================
+
+2026-08-08 10:00:40 [ERROR] scripts/python/extract/run_daily_batch.py failed with exit code 1
+메시지 전송 성공: spaces/AAQAf0HeYv0/messages/m3NDS4McQoM.m3NDS4McQoM
+2026-08-09 10:00:01 [INFO] ================ Master Batch Pipeline Start ================
+2026-08-09 10:00:01 [INFO] Virtual environment activated.
+메시지 전송 성공: spaces/AAQAf0HeYv0/messages/ClWCma4rrjc.ClWCma4rrjc
+2026-08-09 10:00:04 [INFO] --- Phase 1 (Metadata) ---
+2026-08-09 10:00:04 [INFO] Running scripts/python/extract/extract_rich_region_hierarchy.py...
+저장 기본 경로: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_region
+데이터 추출 중...
+Error extracting region hierarchy data: (pymysql.err.OperationalError) (2003, "Can't connect to MySQL server on 'live.st.rds.gbility.io' (timed out)")
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+추출 실패.
+2026-08-09 10:00:14 [INFO] scripts/python/extract/extract_rich_region_hierarchy.py completed successfully.
+2026-08-09 10:00:14 [INFO] Running scripts/python/extract/extract_rich_bicycle_asset_info.py...
+저장 기본 경로: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_bicycle
+데이터 추출 중...
+Error extracting bicycle asset info data: (pymysql.err.OperationalError) (2003, "Can't connect to MySQL server on 'live.st.rds.gbility.io' (timed out)")
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+추출 실패.
+2026-08-09 10:00:25 [INFO] scripts/python/extract/extract_rich_bicycle_asset_info.py completed successfully.
+메시지 전송 성공: spaces/AAQAf0HeYv0/messages/ttH8T2Rd5J0.ttH8T2Rd5J0
+2026-08-09 10:00:26 [INFO] --- Phase 2 (Core Data) ---
+2026-08-09 10:00:26 [INFO] Running scripts/python/extract/run_daily_batch.py...
+2026-08-09 10:00:26 [INFO] ================ Daily Batch Run Attempt (2026-08-09 10:00:26) ================
+2026-08-09 10:00:26 [INFO] 필수 데이터 검사 범위: 2026-07-26 ~ 2026-08-08
+2026-08-09 10:00:26 [INFO] 누락 데이터 존재 감지: ['2026-08-07', '2026-08-08']
+2026-08-09 10:00:26 [INFO] 누락 날짜 데이터 강제 추출 시도: 2026-08-07
+2026-08-09 10:00:26 [INFO] Starting execution of: extract_rich_orders_daily.py 2026-08-07 2026-08-07
+2026-08-09 10:00:37 [ERROR] Error running extract_rich_orders_daily.py (Exit code: 1)
+2026-08-09 10:00:37 [ERROR] STDOUT:
+총 1일 치 데이터 추출을 시작합니다.
+저장 기본 경로: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_orders
+[2026-08-07] 데이터 추출 중...
+Error extracting data for 2026-08-07: (pymysql.err.OperationalError) (2003, "Can't connect to MySQL server on 'live.st.rds.gbility.io' (timed out)")
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+[2026-08-07] 추출 실패. 다음 날짜로 넘어갑니다.
+경고: 하나 이상의 날짜 추출 또는 저장에 실패했습니다.
+
+2026-08-09 10:00:37 [ERROR] 2026-08-07 데이터 추출 단계에서 오류가 발생하여 배치 실행을 중단합니다.
+2026-08-09 10:00:37 [INFO] ================ Daily Batch Run Failed ================
+
+2026-08-09 10:00:37 [ERROR] scripts/python/extract/run_daily_batch.py failed with exit code 1
+메시지 전송 성공: spaces/AAQAf0HeYv0/messages/heYyZQr8EeY.heYyZQr8EeY
+2026-08-10 10:00:03 [INFO] ================ Master Batch Pipeline Start ================
+2026-08-10 10:00:03 [INFO] Virtual environment activated.
+메시지 전송 성공: spaces/AAQAf0HeYv0/messages/PPplM_NTMtY.PPplM_NTMtY
+2026-08-10 10:00:04 [INFO] --- Phase 1 (Metadata) ---
+2026-08-10 10:00:04 [INFO] Running scripts/python/extract/extract_rich_region_hierarchy.py...
+저장 기본 경로: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_region
+데이터 추출 중...
+성공적으로 저장되었습니다. (건수: 943, 소요시간: 1.23초)
+Parquet 파일 위치: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_region/rich_region_hierarchy.parquet
+CSV 파일 위치: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_region/rich_region_hierarchy.csv
+2026-08-10 10:00:06 [INFO] scripts/python/extract/extract_rich_region_hierarchy.py completed successfully.
+2026-08-10 10:00:06 [INFO] Running scripts/python/extract/extract_rich_bicycle_asset_info.py...
+저장 기본 경로: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_bicycle
+데이터 추출 중...
+성공적으로 저장되었습니다. (건수: 134,502, 소요시간: 22.26초)
+Parquet 파일 위치: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_bicycle/rich_bicycle_asset_info.parquet
+CSV 파일 위치: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_bicycle/rich_bicycle_asset_info.csv
+2026-08-10 10:00:29 [INFO] scripts/python/extract/extract_rich_bicycle_asset_info.py completed successfully.
+메시지 전송 성공: spaces/AAQAf0HeYv0/messages/IGLWOvIdAFc.IGLWOvIdAFc
+2026-08-10 10:00:30 [INFO] --- Phase 2 (Core Data) ---
+2026-08-10 10:00:30 [INFO] Running scripts/python/extract/run_daily_batch.py...
+2026-08-10 10:00:30 [INFO] ================ Daily Batch Run Attempt (2026-08-10 10:00:30) ================
+2026-08-10 10:00:30 [INFO] 필수 데이터 검사 범위: 2026-07-27 ~ 2026-08-09
+2026-08-10 10:00:30 [INFO] 누락 데이터 존재 감지: ['2026-08-07', '2026-08-08', '2026-08-09']
+2026-08-10 10:00:30 [INFO] 누락 날짜 데이터 강제 추출 시도: 2026-08-07
+2026-08-10 10:00:30 [INFO] Starting execution of: extract_rich_orders_daily.py 2026-08-07 2026-08-07
+2026-08-10 10:04:16 [INFO] 
+--- extract_rich_orders_daily.py STDOUT ---
+총 1일 치 데이터 추출을 시작합니다.
+저장 기본 경로: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_orders
+[2026-08-07] 데이터 추출 중...
+[2026-08-07] 성공적으로 저장되었습니다. (건수: 228,172, 소요시간: 225.05초)
+
+-------------------
+2026-08-10 10:04:16 [INFO] 누락 날짜 데이터 강제 추출 시도: 2026-08-08
+2026-08-10 10:04:16 [INFO] Starting execution of: extract_rich_orders_daily.py 2026-08-08 2026-08-08
+2026-08-10 10:07:44 [INFO] 
+--- extract_rich_orders_daily.py STDOUT ---
+총 1일 치 데이터 추출을 시작합니다.
+저장 기본 경로: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_orders
+[2026-08-08] 데이터 추출 중...
+[2026-08-08] 성공적으로 저장되었습니다. (건수: 199,648, 소요시간: 207.05초)
+
+-------------------
+2026-08-10 10:07:44 [INFO] 누락 날짜 데이터 강제 추출 시도: 2026-08-09
+2026-08-10 10:07:44 [INFO] Starting execution of: extract_rich_orders_daily.py 2026-08-09 2026-08-09
+2026-08-10 10:09:37 [INFO] 
+--- extract_rich_orders_daily.py STDOUT ---
+총 1일 치 데이터 추출을 시작합니다.
+저장 기본 경로: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_orders
+[2026-08-09] 데이터 추출 중...
+[2026-08-09] 성공적으로 저장되었습니다. (건수: 179,585, 소요시간: 112.33초)
+
+-------------------
+2026-08-10 10:09:37 [INFO] Starting execution of: extract_rich_user_monthly.py 
+2026-08-10 10:09:57 [INFO] 
+--- extract_rich_user_monthly.py STDOUT ---
+추출 기간: 2026-08-01 ~ 2026-08-09
+저장 경로: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_user/rich_user_this_month/rich_user_this_month.parquet
+데이터 추출 중...
+성공적으로 덮어쓰기 완료되었습니다. (건수: 30,040, 소요시간: 17.62초)
+rich_user_all.parquet 파일 병합(Upsert)을 시작합니다...
+rich_user_all.parquet 업데이트 완료! (최종 유저 수: 4,114,210)
+
+-------------------
+2026-08-10 10:09:57 [INFO] Starting execution of: extract_rich_user_segment.py 
+2026-08-10 10:10:22 [INFO] 
+--- extract_rich_user_segment.py STDOUT ---
+target-date가 지정되지 않았습니다. 디폴트로 최근 3일치를 계산합니다.
+[2026-08-07 기준] 유저 세그먼트 계산을 시작합니다.
+운행 이력 로드 기간: 2025-08-07 ~ 2026-08-07
+유저별 운행 통계를 집계합니다...
+전체 유저 정보를 로드합니다...
+지역 정보를 로드하고 유저 정보와 결합합니다...
+유저 정보와 운행 통계를 병합합니다...
+고객 세그먼트를 분류합니다...
+주 이용수단을 판별합니다...
+RFM 스코어 및 CLTV를 계산합니다...
+결과가 저장되었습니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_user_segment/dt=2026-08-07/rich_user_segment_2026-08-07.parquet
+
+[세그먼트 분포 요약]
+shape: (7, 3)
+┌────────────────┬─────────┬──────────┐
+│ segment        ┆ count   ┆ ratio(%) │
+│ ---            ┆ ---     ┆ ---      │
+│ str            ┆ u32     ┆ f64      │
+╞════════════════╪═════════╪══════════╡
+│ churn_over_365 ┆ 1660571 ┆ 47.2     │
+│ churn          ┆ 644520  ┆ 18.3     │
+│ inactive       ┆ 426412  ┆ 12.1     │
+│ light_active   ┆ 327828  ┆ 9.3      │
+│ active         ┆ 275953  ┆ 7.9      │
+│ dormant        ┆ 130891  ┆ 3.7      │
+│ acquisition    ┆ 48294   ┆ 1.4      │
+└────────────────┴─────────┴──────────┘
+[2026-08-08 기준] 유저 세그먼트 계산을 시작합니다.
+운행 이력 로드 기간: 2025-08-08 ~ 2026-08-08
+유저별 운행 통계를 집계합니다...
+전체 유저 정보를 로드합니다...
+지역 정보를 로드하고 유저 정보와 결합합니다...
+유저 정보와 운행 통계를 병합합니다...
+고객 세그먼트를 분류합니다...
+주 이용수단을 판별합니다...
+RFM 스코어 및 CLTV를 계산합니다...
+결과가 저장되었습니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_user_segment/dt=2026-08-08/rich_user_segment_2026-08-08.parquet
+
+[세그먼트 분포 요약]
+shape: (7, 3)
+┌────────────────┬─────────┬──────────┐
+│ segment        ┆ count   ┆ ratio(%) │
+│ ---            ┆ ---     ┆ ---      │
+│ str            ┆ u32     ┆ f64      │
+╞════════════════╪═════════╪══════════╡
+│ churn_over_365 ┆ 1661355 ┆ 47.2     │
+│ churn          ┆ 641492  ┆ 18.2     │
+│ inactive       ┆ 421777  ┆ 12.0     │
+│ light_active   ┆ 330223  ┆ 9.4      │
+│ active         ┆ 278218  ┆ 7.9      │
+│ dormant        ┆ 135469  ┆ 3.9      │
+│ acquisition    ┆ 49155   ┆ 1.4      │
+└────────────────┴─────────┴──────────┘
+[2026-08-09 기준] 유저 세그먼트 계산을 시작합니다.
+운행 이력 로드 기간: 2025-08-09 ~ 2026-08-09
+유저별 운행 통계를 집계합니다...
+전체 유저 정보를 로드합니다...
+지역 정보를 로드하고 유저 정보와 결합합니다...
+유저 정보와 운행 통계를 병합합니다...
+고객 세그먼트를 분류합니다...
+주 이용수단을 판별합니다...
+RFM 스코어 및 CLTV를 계산합니다...
+결과가 저장되었습니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_user_segment/dt=2026-08-09/rich_user_segment_2026-08-09.parquet
+
+[세그먼트 분포 요약]
+shape: (7, 3)
+┌────────────────┬─────────┬──────────┐
+│ segment        ┆ count   ┆ ratio(%) │
+│ ---            ┆ ---     ┆ ---      │
+│ str            ┆ u32     ┆ f64      │
+╞════════════════╪═════════╪══════════╡
+│ churn_over_365 ┆ 1662844 ┆ 47.2     │
+│ churn          ┆ 639608  ┆ 18.2     │
+│ inactive       ┆ 417434  ┆ 11.9     │
+│ light_active   ┆ 332243  ┆ 9.4      │
+│ active         ┆ 280249  ┆ 8.0      │
+│ dormant        ┆ 138329  ┆ 3.9      │
+│ acquisition    ┆ 49960   ┆ 1.4      │
+└────────────────┴─────────┴──────────┘
+
+-------------------
+2026-08-10 10:10:22 [INFO] 금일 배치 작업이 모두 정상 종료되었습니다. 성공 마커 파일을 기록합니다.
+2026-08-10 10:10:22 [INFO] Removed old marker file: .daily_success_20260807
+2026-08-10 10:10:22 [INFO] ================ Daily Batch Run Completed ================
+
+2026-08-10 10:10:22 [INFO] scripts/python/extract/run_daily_batch.py completed successfully.
+메시지 전송 성공: spaces/AAQAf0HeYv0/messages/IsuqSivLDSg.IsuqSivLDSg
+2026-08-10 10:10:23 [INFO] --- Phase 3 (Operations & Deploy) ---
+2026-08-10 10:10:23 [INFO] Running scripts/python/extract/extract_rich_deploy_zone_usages.py...
+총 9일 치 데이터 추출을 시작합니다.
+저장 기본 경로: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_deploy_zone_usages
+[2026-08-01] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_deploy_zone_usages/dt=2026-08-01/rich_deploy_zone_usages_2026-08-01.parquet
+[2026-08-02] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_deploy_zone_usages/dt=2026-08-02/rich_deploy_zone_usages_2026-08-02.parquet
+[2026-08-03] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_deploy_zone_usages/dt=2026-08-03/rich_deploy_zone_usages_2026-08-03.parquet
+[2026-08-04] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_deploy_zone_usages/dt=2026-08-04/rich_deploy_zone_usages_2026-08-04.parquet
+[2026-08-05] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_deploy_zone_usages/dt=2026-08-05/rich_deploy_zone_usages_2026-08-05.parquet
+[2026-08-06] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_deploy_zone_usages/dt=2026-08-06/rich_deploy_zone_usages_2026-08-06.parquet
+[2026-08-07] 데이터 추출 중...
+[2026-08-07] 성공적으로 저장되었습니다. (건수: 12,772, 소요시간: 161.19초)
+[2026-08-08] 데이터 추출 중...
+[2026-08-08] 성공적으로 저장되었습니다. (건수: 11,664, 소요시간: 62.90초)
+[2026-08-09] 데이터 추출 중...
+[2026-08-09] 성공적으로 저장되었습니다. (건수: 10,944, 소요시간: 24.60초)
+2026-08-10 10:14:32 [INFO] scripts/python/extract/extract_rich_deploy_zone_usages.py completed successfully.
+2026-08-10 10:14:32 [INFO] Running scripts/python/extract/extract_rich_deploy_used_time.py...
+작업 기간: 2026-08-05 ~ 2026-08-09 (총 5일)
+저장 기본 경로: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_deploy_used_time
+[2026-08-05] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_deploy_used_time/dt=2026-08-05/rich_deploy_used_time_2026-08-05.parquet
+[2026-08-06] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_deploy_used_time/dt=2026-08-06/rich_deploy_used_time_2026-08-06.parquet
+[2026-08-07] 데이터 추출 중...
+[2026-08-07] 성공적으로 저장되었습니다. (건수: 32,747, 소요시간: 14.00초)
+[2026-08-08] 데이터 추출 중...
+[2026-08-08] 성공적으로 저장되었습니다. (건수: 27,277, 소요시간: 11.62초)
+[2026-08-09] 데이터 추출 중...
+[2026-08-09] 성공적으로 저장되었습니다. (건수: 22,526, 소요시간: 12.87초)
+모든 작업이 성공적으로 완료되었습니다.
+2026-08-10 10:15:11 [INFO] scripts/python/extract/extract_rich_deploy_used_time.py completed successfully.
+2026-08-10 10:15:11 [INFO] Running scripts/python/extract/extract_rich_deploy_by_time.py...
+작업 기간: 2026-08-05 ~ 2026-08-09 (총 5일)
+저장 기본 경로: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_deploy_by_time
+[2026-08-05] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_deploy_by_time/dt=2026-08-05/rich_deploy_by_time_2026-08-05.parquet
+[2026-08-06] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_deploy_by_time/dt=2026-08-06/rich_deploy_by_time_2026-08-06.parquet
+[2026-08-07] 데이터 추출 중...
+[2026-08-07] 성공적으로 저장되었습니다. (건수: 55,185, 소요시간: 24.73초)
+[2026-08-08] 데이터 추출 중...
+[2026-08-08] 성공적으로 저장되었습니다. (건수: 48,536, 소요시간: 22.83초)
+[2026-08-09] 데이터 추출 중...
+[2026-08-09] 성공적으로 저장되었습니다. (건수: 42,895, 소요시간: 24.21초)
+모든 작업이 성공적으로 완료되었습니다.
+2026-08-10 10:16:24 [INFO] scripts/python/extract/extract_rich_deploy_by_time.py completed successfully.
+2026-08-10 10:16:24 [INFO] Running scripts/python/extract/update_tableau_obp_csv.py...
+작업 기간: 2026-08-05 ~ 2026-08-09
+신규 데이터 로드 중...
+기존 CSV 파일 로드 중: /Users/galaxy.jang/tableau_data/OBP(출루율).csv
+겹치는 기간(2026-08-05~2026-08-09)의 기존 데이터 25026건을 제외(대체)합니다.
+CSV 저장 중 (총 1897614건)...
+작업이 완료되었습니다.
+2026-08-10 10:16:32 [INFO] scripts/python/extract/update_tableau_obp_csv.py completed successfully.
+2026-08-10 10:16:32 [INFO] Running scripts/python/extract/update_tableau_used_time_csv.py...
+작업 기간: 2026-08-05 ~ 2026-08-09
+신규 데이터 로드 중...
+기존 CSV 파일 로드 중: /Users/galaxy.jang/tableau_data/used_time(출루까지시간).csv
+겹치는 기간(2026-08-05~2026-08-09)의 기존 데이터 59290건을 제외(대체)합니다.
+CSV 저장 중 (총 4197013건)...
+작업이 완료되었습니다.
+2026-08-10 10:16:52 [INFO] scripts/python/extract/update_tableau_used_time_csv.py completed successfully.
+2026-08-10 10:16:52 [INFO] Running scripts/python/extract/update_tableau_by_time_csv.py...
+작업 기간: 2026-08-05 ~ 2026-08-09
+신규 데이터 로드 중...
+기존 CSV 파일 로드 중: /Users/galaxy.jang/tableau_data/by_time(시간대별).csv
+겹치는 기간(2026-08-05~2026-08-09)의 기존 데이터 105919건을 제외(대체)합니다.
+CSV 저장 중 (총 6867184건)...
+작업이 완료되었습니다.
+2026-08-10 10:17:24 [INFO] scripts/python/extract/update_tableau_by_time_csv.py completed successfully.
+2026-08-10 10:17:24 [INFO] Running scripts/python/extract/upload_tableau_to_drive.py...
+--- Processing by_time(시간대별).csv ---
+Updating existing file in Drive: by_time(시간대별).csv (ID: 1aub0jQKa0jjotepHi7jNl5ySSAMOtCdV)
+Uploaded 10%
+Uploaded 20%
+Uploaded 30%
+Uploaded 41%
+Uploaded 51%
+Uploaded 61%
+Uploaded 72%
+Uploaded 82%
+Uploaded 92%
+Upload Complete: by_time(시간대별).csv
+--- Processing used_time(출루까지시간).csv ---
+Updating existing file in Drive: used_time(출루까지시간).csv (ID: 1F_tjZKjoKMnHNxjJcaNzPiUHOv3aLlwA)
+Uploaded 16%
+Uploaded 33%
+Uploaded 50%
+Uploaded 67%
+Uploaded 84%
+Upload Complete: used_time(출루까지시간).csv
+--- Processing OBP(출루율).csv ---
+Updating existing file in Drive: OBP(출루율).csv (ID: 11rSG7mbWMJCveWj0esIUn5vUkTFZ7nm1)
+Uploaded 38%
+Uploaded 77%
+Upload Complete: OBP(출루율).csv
+2026-08-10 10:19:38 [INFO] scripts/python/extract/upload_tableau_to_drive.py completed successfully.
+메시지 전송 성공: spaces/AAQAf0HeYv0/messages/3CGezQWncyM.3CGezQWncyM
+2026-08-10 10:19:39 [INFO] --- Phase 4 (Aggregation) ---
+2026-08-10 10:19:39 [INFO] Running scripts/python/extract/extract_rich_daily_statistics.py...
+총 9일 치 데이터 추출을 시작합니다.
+저장 기본 경로: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_daily_statistics
+[2026-08-01] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_daily_statistics/dt=2026-08-01/rich_daily_statistics_2026-08-01.parquet
+[2026-08-02] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_daily_statistics/dt=2026-08-02/rich_daily_statistics_2026-08-02.parquet
+[2026-08-03] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_daily_statistics/dt=2026-08-03/rich_daily_statistics_2026-08-03.parquet
+[2026-08-04] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_daily_statistics/dt=2026-08-04/rich_daily_statistics_2026-08-04.parquet
+[2026-08-05] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_daily_statistics/dt=2026-08-05/rich_daily_statistics_2026-08-05.parquet
+[2026-08-06] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_daily_statistics/dt=2026-08-06/rich_daily_statistics_2026-08-06.parquet
+[2026-08-07] 데이터 추출 중...
+[2026-08-07] 성공적으로 저장되었습니다. (건수: 602, 소요시간: 1.24초)
+[2026-08-08] 데이터 추출 중...
+[2026-08-08] 성공적으로 저장되었습니다. (건수: 605, 소요시간: 0.28초)
+[2026-08-09] 데이터 추출 중...
+[2026-08-09] 성공적으로 저장되었습니다. (건수: 605, 소요시간: 0.27초)
+모든 작업이 성공적으로 완료되었습니다.
+2026-08-10 10:19:41 [INFO] scripts/python/extract/extract_rich_daily_statistics.py completed successfully.
+2026-08-10 10:19:41 [INFO] Running scripts/python/extract/extract_deploy_spot_info.py...
+[2026-08-10 10:19:42.161638] 배치존 마스터 정보 추출 시작...
+[2026-08-10 10:19:43.821677] 성공적으로 저장되었습니다. (건수: 9,894, 소요시간: 1.66초)
+저장 경로: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_deploy_spot_info/deploy_spot_info.parquet
+2026-08-10 10:19:43 [INFO] scripts/python/extract/extract_deploy_spot_info.py completed successfully.
+2026-08-10 10:19:43 [INFO] Running scripts/python/extract/extract_vehicle_statistics.py...
+총 9일 치 데이터 추출을 시작합니다.
+저장 기본 경로: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike_smartops.vehicle_statistics_data
+[2026-08-01] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike_smartops.vehicle_statistics_data/dt=2026-08-01/vehicle_statistics_data_2026-08-01.parquet
+[2026-08-02] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike_smartops.vehicle_statistics_data/dt=2026-08-02/vehicle_statistics_data_2026-08-02.parquet
+[2026-08-03] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike_smartops.vehicle_statistics_data/dt=2026-08-03/vehicle_statistics_data_2026-08-03.parquet
+[2026-08-04] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike_smartops.vehicle_statistics_data/dt=2026-08-04/vehicle_statistics_data_2026-08-04.parquet
+[2026-08-05] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike_smartops.vehicle_statistics_data/dt=2026-08-05/vehicle_statistics_data_2026-08-05.parquet
+[2026-08-06] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike_smartops.vehicle_statistics_data/dt=2026-08-06/vehicle_statistics_data_2026-08-06.parquet
+[2026-08-07] 데이터 추출 중...
+[2026-08-07] 성공적으로 저장되었습니다. (건수: 617, 소요시간: 1.79초)
+[2026-08-08] 데이터 추출 중...
+[2026-08-08] 성공적으로 저장되었습니다. (건수: 615, 소요시간: 0.63초)
+[2026-08-09] 데이터 추출 중...
+[2026-08-09] 성공적으로 저장되었습니다. (건수: 616, 소요시간: 0.47초)
+모든 작업이 성공적으로 완료되었습니다.
+2026-08-10 10:19:47 [INFO] scripts/python/extract/extract_vehicle_statistics.py completed successfully.
+2026-08-10 10:19:47 [INFO] Running scripts/python/extract/extract_rich_task_statistics.py...
+총 9일 치 데이터 추출을 시작합니다.
+저장 기본 경로: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_task_statistics
+[2026-08-01] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_task_statistics/dt=2026-08-01/rich_task_statistics_2026-08-01.parquet
+[2026-08-02] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_task_statistics/dt=2026-08-02/rich_task_statistics_2026-08-02.parquet
+[2026-08-03] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_task_statistics/dt=2026-08-03/rich_task_statistics_2026-08-03.parquet
+[2026-08-04] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_task_statistics/dt=2026-08-04/rich_task_statistics_2026-08-04.parquet
+[2026-08-05] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_task_statistics/dt=2026-08-05/rich_task_statistics_2026-08-05.parquet
+[2026-08-06] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_task_statistics/dt=2026-08-06/rich_task_statistics_2026-08-06.parquet
+[2026-08-07] 데이터 추출 중...
+[2026-08-07] 성공적으로 저장되었습니다. (건수: 70, 소요시간: 3.28초)
+[2026-08-08] 데이터 추출 중...
+[2026-08-08] 성공적으로 저장되었습니다. (건수: 70, 소요시간: 0.75초)
+[2026-08-09] 데이터 추출 중...
+[2026-08-09] 성공적으로 저장되었습니다. (건수: 69, 소요시간: 0.89초)
+모든 작업이 성공적으로 완료되었습니다.
+2026-08-10 10:19:52 [INFO] scripts/python/extract/extract_rich_task_statistics.py completed successfully.
+2026-08-10 10:19:52 [INFO] Running scripts/python/extract/extract_rich_battery_data.py...
+총 9일 치 데이터 추출을 시작합니다.
+저장 기본 경로: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_battery_data
+[2026-08-01] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_battery_data/dt=2026-08-01/rich_battery_data_2026-08-01.parquet
+[2026-08-02] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_battery_data/dt=2026-08-02/rich_battery_data_2026-08-02.parquet
+[2026-08-03] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_battery_data/dt=2026-08-03/rich_battery_data_2026-08-03.parquet
+[2026-08-04] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_battery_data/dt=2026-08-04/rich_battery_data_2026-08-04.parquet
+[2026-08-05] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_battery_data/dt=2026-08-05/rich_battery_data_2026-08-05.parquet
+[2026-08-06] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_battery_data/dt=2026-08-06/rich_battery_data_2026-08-06.parquet
+[2026-08-07] 데이터 추출 중...
+[2026-08-07] 성공적으로 저장되었습니다. (건수: 69, 소요시간: 36.49초)
+[2026-08-08] 데이터 추출 중...
+[2026-08-08] 성공적으로 저장되었습니다. (건수: 69, 소요시간: 19.32초)
+[2026-08-09] 데이터 추출 중...
+[2026-08-09] 성공적으로 저장되었습니다. (건수: 70, 소요시간: 19.17초)
+모든 작업이 성공적으로 완료되었습니다.
+2026-08-10 10:21:08 [INFO] scripts/python/extract/extract_rich_battery_data.py completed successfully.
+2026-08-10 10:21:08 [INFO] Running scripts/python/extract/extract_smartops_weather_data.py...
+총 9일 치 날씨 데이터 추출을 시작합니다.
+저장 기본 경로: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike_smartops.weather_data
+[2026-08-01] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike_smartops.weather_data/dt=2026-08-01/smartops_weather_data_2026-08-01.parquet
+[2026-08-02] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike_smartops.weather_data/dt=2026-08-02/smartops_weather_data_2026-08-02.parquet
+[2026-08-03] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike_smartops.weather_data/dt=2026-08-03/smartops_weather_data_2026-08-03.parquet
+[2026-08-04] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike_smartops.weather_data/dt=2026-08-04/smartops_weather_data_2026-08-04.parquet
+[2026-08-05] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike_smartops.weather_data/dt=2026-08-05/smartops_weather_data_2026-08-05.parquet
+[2026-08-06] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike_smartops.weather_data/dt=2026-08-06/smartops_weather_data_2026-08-06.parquet
+[2026-08-07] 데이터 추출 중...
+[2026-08-07] 성공적으로 저장되었습니다. (건수: 83, 소요시간: 1.01초)
+[2026-08-08] 데이터 추출 중...
+[2026-08-08] 성공적으로 저장되었습니다. (건수: 83, 소요시간: 0.30초)
+[2026-08-09] 데이터 추출 중...
+[2026-08-09] 성공적으로 저장되었습니다. (건수: 83, 소요시간: 0.30초)
+모든 날씨 데이터 추출 작업이 성공적으로 완료되었습니다.
+2026-08-10 10:21:10 [INFO] scripts/python/extract/extract_smartops_weather_data.py completed successfully.
+메시지 전송 성공: spaces/AAQAf0HeYv0/messages/WUaUL8cf8c8.WUaUL8cf8c8
+2026-08-10 10:21:11 [INFO] --- Phase 5 (Dashboard ETL) ---
+2026-08-10 10:21:11 [INFO] Running /Users/galaxy.jang/gems_build_dashboard/deploy/run_etl.sh...
+[2026년  8월 10일 월요일 10시 21분 11초 KST] Starting ETL Process...
+Starting ETL Process...
+Processing Revenue Goal...
+Revenue Goal exported successfully.
+Processing daily_stats from /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_daily_statistics to /Users/galaxy.jang/gems_build_dashboard/frontend/public/data/daily_stats.parquet...
+Successfully processed daily_stats.
+Processing deploy_spot from /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_deploy_spot_info to /Users/galaxy.jang/gems_build_dashboard/frontend/public/data/deploy_spot.parquet...
+Successfully processed deploy_spot.
+Processing unused_72h from /Users/galaxy.jang/Google Drive/공유 드라이브/gbike_smartops.vehicle_statistics_data to /Users/galaxy.jang/gems_build_dashboard/frontend/public/data/unused_72h.parquet...
+Successfully processed unused_72h.
+Processing task_stats from /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_task_statistics to /Users/galaxy.jang/gems_build_dashboard/frontend/public/data/task_stats.parquet...
+Successfully processed task_stats.
+Processing deploy_zone_usages from /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_deploy_zone_usages to /Users/galaxy.jang/gems_build_dashboard/frontend/public/data/deploy_zone_usages.parquet...
+Successfully processed deploy_zone_usages.
+Processing deploy_used_time from /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_deploy_used_time to /Users/galaxy.jang/gems_build_dashboard/frontend/public/data/deploy_used_time.parquet...
+Successfully processed deploy_used_time.
+Processing weather_data from /Users/galaxy.jang/Google Drive/공유 드라이브/gbike_smartops.weather_data to /Users/galaxy.jang/gems_build_dashboard/frontend/public/data/weather_data.parquet...
+Successfully processed weather_data.
+Processing battery_data from /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_battery_data to /Users/galaxy.jang/gems_build_dashboard/frontend/public/data/battery_data.parquet...
+Successfully processed battery_data.
+Processing rich_orders (1 day)...
+Loading rich_orders from 2026-07-13 to 2026-08-09...
+Successfully processed rich_orders: /Users/galaxy.jang/gems_build_dashboard/frontend/public/data/orders.parquet
+ETL Process Complete.
+[2026년  8월 10일 월요일 10시 21분 20초 KST] Copying data to dist...
+[2026년  8월 10일 월요일 10시 21분 20초 KST] Pushing updated data to GitHub...
+[main bf2a9f5] Auto-update dashboard metadata/scripts and data
+ 9 files changed, 0 insertions(+), 0 deletions(-)
+remote: warning: See https://gh.io/lfs for more information.        
+remote: warning: File frontend/public/data/orders.parquet is 71.11 MB; this is larger than GitHub's recommended maximum file size of 50.00 MB        
+remote: warning: GH001: Large files detected. You may want to try Git Large File Storage - https://git-lfs.github.com.        
+To github.com:deepdawn/gems_build_dashboard.git
+   ab51743..bf2a9f5  main -> main
+[2026년  8월 10일 월요일 10시 21분 40초 KST] ETL Process Completed.
+2026-08-10 10:21:40 [INFO] /Users/galaxy.jang/gems_build_dashboard/deploy/run_etl.sh completed successfully.
+메시지 전송 성공: spaces/AAQAf0HeYv0/messages/qOB9WGOiOJQ.qOB9WGOiOJQ
+2026-08-10 10:21:42 [INFO] --- Phase 6 (Reports) ---
+2026-08-10 10:21:42 [INFO] Running scripts/python/report_daily_ststs_v1/send_weekly_report.py...
+Importing plotly failed. Interactive plots will not work.
+10:22:47 - cmdstanpy - INFO - Chain [1] start processing
+10:22:47 - cmdstanpy - INFO - Chain [1] done processing
+10:23:37 - cmdstanpy - INFO - Chain [1] start processing
+10:23:37 - cmdstanpy - INFO - Chain [1] done processing
+/Users/galaxy.jang/anti_codebase/scripts/python/utils/read_rich_user_segment_polars.py:107: PerformanceWarning: Determining the column names of a LazyFrame requires resolving its schema, which is a potentially expensive operation. Use `LazyFrame.collect_schema().names()` to get the column names without this warning.
+  columns = lf.columns
+[2026-07-27 ~ 2026-08-09] 데이터를 로드합니다...
+월말 최종 마감 예상 매출 계산 시작...
+월말 최종 마감 예상 운행수 계산 시작...
+유저 세그먼트 데이터 로드 및 차트 생성 중 (월별)...
+매출 메시지 발송 중...
+메시지 전송 성공: spaces/AAQA8O4oUkw/messages/TsC9dyL2xRQ.TsC9dyL2xRQ
+운행수 메시지 발송 중...
+메시지 전송 성공: spaces/AAQA8O4oUkw/messages/HU3vD-kgtpE.HU3vD-kgtpE
+세그먼트 메시지 발송 중...
+메시지 전송 성공: spaces/AAQA8O4oUkw/messages/dvigRDJWfLY.dvigRDJWfLY
+2026-08-10 10:23:55 [INFO] scripts/python/report_daily_ststs_v1/send_weekly_report.py completed successfully.
+메시지 전송 성공: spaces/AAQAf0HeYv0/messages/JCfRXVqGGuI.JCfRXVqGGuI
+메시지 전송 성공: spaces/AAQAf0HeYv0/messages/SIWSyAj-Yw8.SIWSyAj-Yw8
+2026-08-10 10:23:57 [INFO] ================ Master Batch Pipeline End ================
+2026-08-11 10:00:02 [INFO] ================ Master Batch Pipeline Start ================
+2026-08-11 10:00:02 [INFO] Virtual environment activated.
+메시지 전송 성공: spaces/AAQAf0HeYv0/messages/kb5DO-RnLAY.kb5DO-RnLAY
+2026-08-11 10:00:04 [INFO] --- Phase 1 (Metadata) ---
+2026-08-11 10:00:04 [INFO] Running scripts/python/extract/extract_rich_region_hierarchy.py...
+저장 기본 경로: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_region
+데이터 추출 중...
+성공적으로 저장되었습니다. (건수: 943, 소요시간: 1.29초)
+Parquet 파일 위치: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_region/rich_region_hierarchy.parquet
+CSV 파일 위치: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_region/rich_region_hierarchy.csv
+2026-08-11 10:00:07 [INFO] scripts/python/extract/extract_rich_region_hierarchy.py completed successfully.
+2026-08-11 10:00:07 [INFO] Running scripts/python/extract/extract_rich_bicycle_asset_info.py...
+저장 기본 경로: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_bicycle
+데이터 추출 중...
+성공적으로 저장되었습니다. (건수: 134,502, 소요시간: 6.82초)
+Parquet 파일 위치: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_bicycle/rich_bicycle_asset_info.parquet
+CSV 파일 위치: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_bicycle/rich_bicycle_asset_info.csv
+2026-08-11 10:00:14 [INFO] scripts/python/extract/extract_rich_bicycle_asset_info.py completed successfully.
+메시지 전송 성공: spaces/AAQAf0HeYv0/messages/9N76S6UtgX4.9N76S6UtgX4
+2026-08-11 10:00:15 [INFO] --- Phase 2 (Core Data) ---
+2026-08-11 10:00:15 [INFO] Running scripts/python/extract/run_daily_batch.py...
+2026-08-11 10:00:15 [INFO] ================ Daily Batch Run Attempt (2026-08-11 10:00:15) ================
+2026-08-11 10:00:15 [INFO] 필수 데이터 검사 범위: 2026-07-28 ~ 2026-08-10
+2026-08-11 10:00:15 [INFO] 누락 데이터 존재 감지: ['2026-08-10']
+2026-08-11 10:00:15 [INFO] 누락 날짜 데이터 강제 추출 시도: 2026-08-10
+2026-08-11 10:00:15 [INFO] Starting execution of: extract_rich_orders_daily.py 2026-08-10 2026-08-10
+2026-08-11 10:00:57 [INFO] 
+--- extract_rich_orders_daily.py STDOUT ---
+총 1일 치 데이터 추출을 시작합니다.
+저장 기본 경로: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_orders
+[2026-08-10] 데이터 추출 중...
+[2026-08-10] 성공적으로 저장되었습니다. (건수: 203,793, 소요시간: 41.10초)
+
+-------------------
+2026-08-11 10:00:57 [INFO] Starting execution of: extract_rich_user_monthly.py 
+2026-08-11 10:08:32 [INFO] 
+--- extract_rich_user_monthly.py STDOUT ---
+추출 기간: 2026-08-01 ~ 2026-08-10
+저장 경로: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_user/rich_user_this_month/rich_user_this_month.parquet
+데이터 추출 중...
+어제(2026-08-10) 운행 이력이 있는 유저 데이터를 추가로 추출합니다...
+어제 운행한 유저 수: 131,362명
+어제 운행 유저 데이터 추출 완료 (건수: 130,777)
+성공적으로 덮어쓰기 완료되었습니다. (건수: 163,773, 소요시간: 453.24초)
+rich_user_all.parquet 파일 병합(Upsert)을 시작합니다...
+rich_user_all.parquet 업데이트 완료! (최종 유저 수: 4,160,920)
+
+-------------------
+2026-08-11 10:08:32 [INFO] Starting execution of: extract_rich_user_segment.py 
+2026-08-11 10:08:50 [INFO] 
+--- extract_rich_user_segment.py STDOUT ---
+target-date가 지정되지 않았습니다. 디폴트로 최근 3일치를 계산합니다.
+[2026-08-08 기준] 유저 세그먼트 계산을 시작합니다.
+운행 이력 로드 기간: 2025-08-08 ~ 2026-08-08
+유저별 운행 통계를 집계합니다...
+전체 유저 정보를 로드합니다...
+지역 정보를 로드하고 유저 정보와 결합합니다...
+유저 정보와 운행 통계를 병합합니다...
+고객 세그먼트를 분류합니다...
+주 이용수단을 판별합니다...
+RFM 스코어 및 CLTV를 계산합니다...
+결과가 저장되었습니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_user_segment/dt=2026-08-08/rich_user_segment_2026-08-08.parquet
+
+[세그먼트 분포 요약]
+shape: (7, 3)
+┌────────────────┬─────────┬──────────┐
+│ segment        ┆ count   ┆ ratio(%) │
+│ ---            ┆ ---     ┆ ---      │
+│ str            ┆ u32     ┆ f64      │
+╞════════════════╪═════════╪══════════╡
+│ churn_over_365 ┆ 1662402 ┆ 46.6     │
+│ churn          ┆ 643245  ┆ 18.0     │
+│ inactive       ┆ 425374  ┆ 11.9     │
+│ light_active   ┆ 341052  ┆ 9.6      │
+│ active         ┆ 308122  ┆ 8.6      │
+│ dormant        ┆ 136014  ┆ 3.8      │
+│ acquisition    ┆ 49328   ┆ 1.4      │
+└────────────────┴─────────┴──────────┘
+[2026-08-09 기준] 유저 세그먼트 계산을 시작합니다.
+운행 이력 로드 기간: 2025-08-09 ~ 2026-08-09
+유저별 운행 통계를 집계합니다...
+전체 유저 정보를 로드합니다...
+지역 정보를 로드하고 유저 정보와 결합합니다...
+유저 정보와 운행 통계를 병합합니다...
+고객 세그먼트를 분류합니다...
+주 이용수단을 판별합니다...
+RFM 스코어 및 CLTV를 계산합니다...
+결과가 저장되었습니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_user_segment/dt=2026-08-09/rich_user_segment_2026-08-09.parquet
+
+[세그먼트 분포 요약]
+shape: (7, 3)
+┌────────────────┬─────────┬──────────┐
+│ segment        ┆ count   ┆ ratio(%) │
+│ ---            ┆ ---     ┆ ---      │
+│ str            ┆ u32     ┆ f64      │
+╞════════════════╪═════════╪══════════╡
+│ churn_over_365 ┆ 1663303 ┆ 46.6     │
+│ churn          ┆ 640436  ┆ 17.9     │
+│ inactive       ┆ 419188  ┆ 11.7     │
+│ light_active   ┆ 345059  ┆ 9.7      │
+│ active         ┆ 311914  ┆ 8.7      │
+│ dormant        ┆ 138578  ┆ 3.9      │
+│ acquisition    ┆ 50099   ┆ 1.4      │
+└────────────────┴─────────┴──────────┘
+[2026-08-10 기준] 유저 세그먼트 계산을 시작합니다.
+운행 이력 로드 기간: 2025-08-10 ~ 2026-08-10
+유저별 운행 통계를 집계합니다...
+전체 유저 정보를 로드합니다...
+지역 정보를 로드하고 유저 정보와 결합합니다...
+유저 정보와 운행 통계를 병합합니다...
+고객 세그먼트를 분류합니다...
+주 이용수단을 판별합니다...
+RFM 스코어 및 CLTV를 계산합니다...
+결과가 저장되었습니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_user_segment/dt=2026-08-10/rich_user_segment_2026-08-10.parquet
+
+[세그먼트 분포 요약]
+shape: (7, 3)
+┌────────────────┬─────────┬──────────┐
+│ segment        ┆ count   ┆ ratio(%) │
+│ ---            ┆ ---     ┆ ---      │
+│ str            ┆ u32     ┆ f64      │
+╞════════════════╪═════════╪══════════╡
+│ churn_over_365 ┆ 1664153 ┆ 46.6     │
+│ churn          ┆ 639850  ┆ 17.9     │
+│ inactive       ┆ 419220  ┆ 11.7     │
+│ light_active   ┆ 347414  ┆ 9.7      │
+│ active         ┆ 313677  ┆ 8.8      │
+│ dormant        ┆ 136982  ┆ 3.8      │
+│ acquisition    ┆ 50061   ┆ 1.4      │
+└────────────────┴─────────┴──────────┘
+
+-------------------
+2026-08-11 10:08:50 [INFO] Starting execution of: extract_rich_active_user_segment.py 
+2026-08-11 10:08:50 [INFO] 
+--- extract_rich_active_user_segment.py STDOUT ---
+target-date가 지정되지 않았습니다. 디폴트로 어제 날짜(2026-08-10)를 계산합니다.
+[2026-08-10] Active User Segment 추출을 시작합니다.
+2026-08-10 일자의 운행 기록(rich_orders)을 로드합니다...
+해당 일자에 운행한 활성 유저 수: 131362명
+2026-08-10 일자의 유저 세그먼트(rich_user_segment)를 로드합니다...
+Inner join 수행 중...
+조인 결과 활성 유저 세그먼트 수: 128485명
+결과가 성공적으로 저장되었습니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_active_user_segment/dt=2026-08-10/rich_active_user_segment_2026-08-10.parquet
+
+
+-------------------
+2026-08-11 10:08:50 [INFO] 금일 배치 작업이 모두 정상 종료되었습니다. 성공 마커 파일을 기록합니다.
+2026-08-11 10:08:50 [INFO] Removed old marker file: .daily_success_20260810
+2026-08-11 10:08:50 [INFO] ================ Daily Batch Run Completed ================
+
+2026-08-11 10:08:50 [INFO] scripts/python/extract/run_daily_batch.py completed successfully.
+메시지 전송 성공: spaces/AAQAf0HeYv0/messages/jmoi4SZu1j4.jmoi4SZu1j4
+2026-08-11 10:08:52 [INFO] --- Phase 3 (Operations & Deploy) ---
+2026-08-11 10:08:52 [INFO] Running scripts/python/extract/extract_rich_deploy_zone_usages.py...
+총 10일 치 데이터 추출을 시작합니다.
+저장 기본 경로: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_deploy_zone_usages
+[2026-08-01] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_deploy_zone_usages/dt=2026-08-01/rich_deploy_zone_usages_2026-08-01.parquet
+[2026-08-02] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_deploy_zone_usages/dt=2026-08-02/rich_deploy_zone_usages_2026-08-02.parquet
+[2026-08-03] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_deploy_zone_usages/dt=2026-08-03/rich_deploy_zone_usages_2026-08-03.parquet
+[2026-08-04] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_deploy_zone_usages/dt=2026-08-04/rich_deploy_zone_usages_2026-08-04.parquet
+[2026-08-05] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_deploy_zone_usages/dt=2026-08-05/rich_deploy_zone_usages_2026-08-05.parquet
+[2026-08-06] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_deploy_zone_usages/dt=2026-08-06/rich_deploy_zone_usages_2026-08-06.parquet
+[2026-08-07] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_deploy_zone_usages/dt=2026-08-07/rich_deploy_zone_usages_2026-08-07.parquet
+[2026-08-08] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_deploy_zone_usages/dt=2026-08-08/rich_deploy_zone_usages_2026-08-08.parquet
+[2026-08-09] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_deploy_zone_usages/dt=2026-08-09/rich_deploy_zone_usages_2026-08-09.parquet
+[2026-08-10] 데이터 추출 중...
+[2026-08-10] 성공적으로 저장되었습니다. (건수: 12,186, 소요시간: 73.20초)
+2026-08-11 10:10:06 [INFO] scripts/python/extract/extract_rich_deploy_zone_usages.py completed successfully.
+2026-08-11 10:10:06 [INFO] Running scripts/python/extract/extract_rich_deploy_used_time.py...
+작업 기간: 2026-08-06 ~ 2026-08-10 (총 5일)
+저장 기본 경로: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_deploy_used_time
+[2026-08-06] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_deploy_used_time/dt=2026-08-06/rich_deploy_used_time_2026-08-06.parquet
+[2026-08-07] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_deploy_used_time/dt=2026-08-07/rich_deploy_used_time_2026-08-07.parquet
+[2026-08-08] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_deploy_used_time/dt=2026-08-08/rich_deploy_used_time_2026-08-08.parquet
+[2026-08-09] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_deploy_used_time/dt=2026-08-09/rich_deploy_used_time_2026-08-09.parquet
+[2026-08-10] 데이터 추출 중...
+[2026-08-10] 성공적으로 저장되었습니다. (건수: 28,654, 소요시간: 10.74초)
+모든 작업이 성공적으로 완료되었습니다.
+2026-08-11 10:10:18 [INFO] scripts/python/extract/extract_rich_deploy_used_time.py completed successfully.
+2026-08-11 10:10:18 [INFO] Running scripts/python/extract/extract_rich_deploy_by_time.py...
+작업 기간: 2026-08-06 ~ 2026-08-10 (총 5일)
+저장 기본 경로: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_deploy_by_time
+[2026-08-06] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_deploy_by_time/dt=2026-08-06/rich_deploy_by_time_2026-08-06.parquet
+[2026-08-07] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_deploy_by_time/dt=2026-08-07/rich_deploy_by_time_2026-08-07.parquet
+[2026-08-08] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_deploy_by_time/dt=2026-08-08/rich_deploy_by_time_2026-08-08.parquet
+[2026-08-09] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_deploy_by_time/dt=2026-08-09/rich_deploy_by_time_2026-08-09.parquet
+[2026-08-10] 데이터 추출 중...
+[2026-08-10] 성공적으로 저장되었습니다. (건수: 50,429, 소요시간: 17.26초)
+모든 작업이 성공적으로 완료되었습니다.
+2026-08-11 10:10:36 [INFO] scripts/python/extract/extract_rich_deploy_by_time.py completed successfully.
+2026-08-11 10:10:36 [INFO] Running scripts/python/extract/update_tableau_obp_csv.py...
+작업 기간: 2026-08-06 ~ 2026-08-10
+신규 데이터 로드 중...
+기존 CSV 파일 로드 중: /Users/galaxy.jang/tableau_data/OBP(출루율).csv
+겹치는 기간(2026-08-06~2026-08-10)의 기존 데이터 47849건을 제외(대체)합니다.
+CSV 저장 중 (총 1909800건)...
+작업이 완료되었습니다.
+2026-08-11 10:10:45 [INFO] scripts/python/extract/update_tableau_obp_csv.py completed successfully.
+2026-08-11 10:10:45 [INFO] Running scripts/python/extract/update_tableau_used_time_csv.py...
+작업 기간: 2026-08-06 ~ 2026-08-10
+신규 데이터 로드 중...
+기존 CSV 파일 로드 중: /Users/galaxy.jang/tableau_data/used_time(출루까지시간).csv
+겹치는 기간(2026-08-06~2026-08-10)의 기존 데이터 111766건을 제외(대체)합니다.
+CSV 저장 중 (총 4225667건)...
+작업이 완료되었습니다.
+2026-08-11 10:11:04 [INFO] scripts/python/extract/update_tableau_used_time_csv.py completed successfully.
+2026-08-11 10:11:04 [INFO] Running scripts/python/extract/update_tableau_by_time_csv.py...
+작업 기간: 2026-08-06 ~ 2026-08-10
+신규 데이터 로드 중...
+기존 CSV 파일 로드 중: /Users/galaxy.jang/tableau_data/by_time(시간대별).csv
+겹치는 기간(2026-08-06~2026-08-10)의 기존 데이터 199703건을 제외(대체)합니다.
+CSV 저장 중 (총 6917613건)...
+작업이 완료되었습니다.
+2026-08-11 10:11:37 [INFO] scripts/python/extract/update_tableau_by_time_csv.py completed successfully.
+2026-08-11 10:11:37 [INFO] Running scripts/python/extract/upload_tableau_to_drive.py...
+--- Processing by_time(시간대별).csv ---
+Updating existing file in Drive: by_time(시간대별).csv (ID: 1aub0jQKa0jjotepHi7jNl5ySSAMOtCdV)
+Uploaded 10%
+Uploaded 20%
+Uploaded 30%
+Uploaded 41%
+Uploaded 51%
+Uploaded 61%
+Uploaded 71%
+Uploaded 82%
+Uploaded 92%
+Upload Complete: by_time(시간대별).csv
+--- Processing used_time(출루까지시간).csv ---
+Updating existing file in Drive: used_time(출루까지시간).csv (ID: 1F_tjZKjoKMnHNxjJcaNzPiUHOv3aLlwA)
+Uploaded 16%
+Uploaded 33%
+Uploaded 50%
+Uploaded 67%
+Uploaded 84%
+Upload Complete: used_time(출루까지시간).csv
+--- Processing OBP(출루율).csv ---
+Updating existing file in Drive: OBP(출루율).csv (ID: 11rSG7mbWMJCveWj0esIUn5vUkTFZ7nm1)
+Uploaded 38%
+Uploaded 76%
+Upload Complete: OBP(출루율).csv
+2026-08-11 10:13:39 [INFO] scripts/python/extract/upload_tableau_to_drive.py completed successfully.
+메시지 전송 성공: spaces/AAQAf0HeYv0/messages/DzbFbwveeFw.DzbFbwveeFw
+2026-08-11 10:13:41 [INFO] --- Phase 4 (Aggregation) ---
+2026-08-11 10:13:41 [INFO] Running scripts/python/extract/extract_rich_daily_statistics.py...
+총 10일 치 데이터 추출을 시작합니다.
+저장 기본 경로: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_daily_statistics
+[2026-08-01] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_daily_statistics/dt=2026-08-01/rich_daily_statistics_2026-08-01.parquet
+[2026-08-02] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_daily_statistics/dt=2026-08-02/rich_daily_statistics_2026-08-02.parquet
+[2026-08-03] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_daily_statistics/dt=2026-08-03/rich_daily_statistics_2026-08-03.parquet
+[2026-08-04] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_daily_statistics/dt=2026-08-04/rich_daily_statistics_2026-08-04.parquet
+[2026-08-05] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_daily_statistics/dt=2026-08-05/rich_daily_statistics_2026-08-05.parquet
+[2026-08-06] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_daily_statistics/dt=2026-08-06/rich_daily_statistics_2026-08-06.parquet
+[2026-08-07] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_daily_statistics/dt=2026-08-07/rich_daily_statistics_2026-08-07.parquet
+[2026-08-08] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_daily_statistics/dt=2026-08-08/rich_daily_statistics_2026-08-08.parquet
+[2026-08-09] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_daily_statistics/dt=2026-08-09/rich_daily_statistics_2026-08-09.parquet
+[2026-08-10] 데이터 추출 중...
+[2026-08-10] 성공적으로 저장되었습니다. (건수: 604, 소요시간: 1.21초)
+모든 작업이 성공적으로 완료되었습니다.
+2026-08-11 10:13:43 [INFO] scripts/python/extract/extract_rich_daily_statistics.py completed successfully.
+2026-08-11 10:13:43 [INFO] Running scripts/python/extract/extract_deploy_spot_info.py...
+[2026-08-11 10:13:43.901769] 배치존 마스터 정보 추출 시작...
+[2026-08-11 10:13:45.011161] 성공적으로 저장되었습니다. (건수: 9,939, 소요시간: 1.11초)
+저장 경로: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_deploy_spot_info/deploy_spot_info.parquet
+2026-08-11 10:13:45 [INFO] scripts/python/extract/extract_deploy_spot_info.py completed successfully.
+2026-08-11 10:13:45 [INFO] Running scripts/python/extract/extract_vehicle_statistics.py...
+총 10일 치 데이터 추출을 시작합니다.
+저장 기본 경로: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike_smartops.vehicle_statistics_data
+[2026-08-01] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike_smartops.vehicle_statistics_data/dt=2026-08-01/vehicle_statistics_data_2026-08-01.parquet
+[2026-08-02] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike_smartops.vehicle_statistics_data/dt=2026-08-02/vehicle_statistics_data_2026-08-02.parquet
+[2026-08-03] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike_smartops.vehicle_statistics_data/dt=2026-08-03/vehicle_statistics_data_2026-08-03.parquet
+[2026-08-04] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike_smartops.vehicle_statistics_data/dt=2026-08-04/vehicle_statistics_data_2026-08-04.parquet
+[2026-08-05] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike_smartops.vehicle_statistics_data/dt=2026-08-05/vehicle_statistics_data_2026-08-05.parquet
+[2026-08-06] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike_smartops.vehicle_statistics_data/dt=2026-08-06/vehicle_statistics_data_2026-08-06.parquet
+[2026-08-07] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike_smartops.vehicle_statistics_data/dt=2026-08-07/vehicle_statistics_data_2026-08-07.parquet
+[2026-08-08] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike_smartops.vehicle_statistics_data/dt=2026-08-08/vehicle_statistics_data_2026-08-08.parquet
+[2026-08-09] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike_smartops.vehicle_statistics_data/dt=2026-08-09/vehicle_statistics_data_2026-08-09.parquet
+[2026-08-10] 데이터 추출 중...
+[2026-08-10] 성공적으로 저장되었습니다. (건수: 636, 소요시간: 1.38초)
+모든 작업이 성공적으로 완료되었습니다.
+2026-08-11 10:13:47 [INFO] scripts/python/extract/extract_vehicle_statistics.py completed successfully.
+2026-08-11 10:13:47 [INFO] Running scripts/python/extract/extract_rich_task_statistics.py...
+총 10일 치 데이터 추출을 시작합니다.
+저장 기본 경로: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_task_statistics
+[2026-08-01] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_task_statistics/dt=2026-08-01/rich_task_statistics_2026-08-01.parquet
+[2026-08-02] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_task_statistics/dt=2026-08-02/rich_task_statistics_2026-08-02.parquet
+[2026-08-03] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_task_statistics/dt=2026-08-03/rich_task_statistics_2026-08-03.parquet
+[2026-08-04] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_task_statistics/dt=2026-08-04/rich_task_statistics_2026-08-04.parquet
+[2026-08-05] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_task_statistics/dt=2026-08-05/rich_task_statistics_2026-08-05.parquet
+[2026-08-06] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_task_statistics/dt=2026-08-06/rich_task_statistics_2026-08-06.parquet
+[2026-08-07] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_task_statistics/dt=2026-08-07/rich_task_statistics_2026-08-07.parquet
+[2026-08-08] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_task_statistics/dt=2026-08-08/rich_task_statistics_2026-08-08.parquet
+[2026-08-09] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_task_statistics/dt=2026-08-09/rich_task_statistics_2026-08-09.parquet
+[2026-08-10] 데이터 추출 중...
+[2026-08-10] 성공적으로 저장되었습니다. (건수: 70, 소요시간: 2.40초)
+모든 작업이 성공적으로 완료되었습니다.
+2026-08-11 10:13:50 [INFO] scripts/python/extract/extract_rich_task_statistics.py completed successfully.
+2026-08-11 10:13:50 [INFO] Running scripts/python/extract/extract_rich_battery_data.py...
+총 10일 치 데이터 추출을 시작합니다.
+저장 기본 경로: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_battery_data
+[2026-08-01] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_battery_data/dt=2026-08-01/rich_battery_data_2026-08-01.parquet
+[2026-08-02] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_battery_data/dt=2026-08-02/rich_battery_data_2026-08-02.parquet
+[2026-08-03] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_battery_data/dt=2026-08-03/rich_battery_data_2026-08-03.parquet
+[2026-08-04] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_battery_data/dt=2026-08-04/rich_battery_data_2026-08-04.parquet
+[2026-08-05] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_battery_data/dt=2026-08-05/rich_battery_data_2026-08-05.parquet
+[2026-08-06] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_battery_data/dt=2026-08-06/rich_battery_data_2026-08-06.parquet
+[2026-08-07] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_battery_data/dt=2026-08-07/rich_battery_data_2026-08-07.parquet
+[2026-08-08] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_battery_data/dt=2026-08-08/rich_battery_data_2026-08-08.parquet
+[2026-08-09] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_battery_data/dt=2026-08-09/rich_battery_data_2026-08-09.parquet
+[2026-08-10] 데이터 추출 중...
+[2026-08-10] 성공적으로 저장되었습니다. (건수: 71, 소요시간: 70.39초)
+모든 작업이 성공적으로 완료되었습니다.
+2026-08-11 10:15:01 [INFO] scripts/python/extract/extract_rich_battery_data.py completed successfully.
+2026-08-11 10:15:01 [INFO] Running scripts/python/extract/extract_smartops_weather_data.py...
+총 10일 치 날씨 데이터 추출을 시작합니다.
+저장 기본 경로: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike_smartops.weather_data
+[2026-08-01] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike_smartops.weather_data/dt=2026-08-01/smartops_weather_data_2026-08-01.parquet
+[2026-08-02] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike_smartops.weather_data/dt=2026-08-02/smartops_weather_data_2026-08-02.parquet
+[2026-08-03] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike_smartops.weather_data/dt=2026-08-03/smartops_weather_data_2026-08-03.parquet
+[2026-08-04] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike_smartops.weather_data/dt=2026-08-04/smartops_weather_data_2026-08-04.parquet
+[2026-08-05] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike_smartops.weather_data/dt=2026-08-05/smartops_weather_data_2026-08-05.parquet
+[2026-08-06] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike_smartops.weather_data/dt=2026-08-06/smartops_weather_data_2026-08-06.parquet
+[2026-08-07] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike_smartops.weather_data/dt=2026-08-07/smartops_weather_data_2026-08-07.parquet
+[2026-08-08] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike_smartops.weather_data/dt=2026-08-08/smartops_weather_data_2026-08-08.parquet
+[2026-08-09] 파일이 이미 존재하여 스킵합니다: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike_smartops.weather_data/dt=2026-08-09/smartops_weather_data_2026-08-09.parquet
+[2026-08-10] 데이터 추출 중...
+[2026-08-10] 성공적으로 저장되었습니다. (건수: 83, 소요시간: 0.99초)
+모든 날씨 데이터 추출 작업이 성공적으로 완료되었습니다.
+2026-08-11 10:15:02 [INFO] scripts/python/extract/extract_smartops_weather_data.py completed successfully.
+메시지 전송 성공: spaces/AAQAf0HeYv0/messages/U7DRLsdLmIE.U7DRLsdLmIE
+2026-08-11 10:15:03 [INFO] --- Phase 5 (Dashboard ETL) ---
+2026-08-11 10:15:03 [INFO] Running /Users/galaxy.jang/gems_build_dashboard/deploy/run_etl.sh...
+[2026년  8월 11일 화요일 10시 15분 03초 KST] Starting ETL Process...
+Starting ETL Process...
+Processing Revenue Goal...
+Revenue Goal exported successfully.
+Processing daily_stats from /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_daily_statistics to /Users/galaxy.jang/gems_build_dashboard/frontend/public/data/daily_stats.parquet...
+Successfully processed daily_stats.
+Processing deploy_spot from /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_deploy_spot_info to /Users/galaxy.jang/gems_build_dashboard/frontend/public/data/deploy_spot.parquet...
+Error processing deploy_spot: Binder Error: Referenced column "date" not found in FROM clause!
+Candidate bindings: "updated_at", "lat", "location", "created_at", "deleted_at"
+
+LINE 1: ...', hive_partitioning=true, union_by_name=true) WHERE CAST(date AS DATE) >= DATE '2026-01-01'
+                                                                     ^
+Processing unused_72h from /Users/galaxy.jang/Google Drive/공유 드라이브/gbike_smartops.vehicle_statistics_data to /Users/galaxy.jang/gems_build_dashboard/frontend/public/data/unused_72h.parquet...
+Successfully processed unused_72h.
+Processing task_stats from /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_task_statistics to /Users/galaxy.jang/gems_build_dashboard/frontend/public/data/task_stats.parquet...
+Successfully processed task_stats.
+Processing deploy_zone_usages from /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_deploy_zone_usages to /Users/galaxy.jang/gems_build_dashboard/frontend/public/data/deploy_zone_usages.parquet...
+Successfully processed deploy_zone_usages.
+Processing deploy_used_time from /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_deploy_used_time to /Users/galaxy.jang/gems_build_dashboard/frontend/public/data/deploy_used_time.parquet...
+Successfully processed deploy_used_time.
+Processing weather_data from /Users/galaxy.jang/Google Drive/공유 드라이브/gbike_smartops.weather_data to /Users/galaxy.jang/gems_build_dashboard/frontend/public/data/weather_data.parquet...
+Successfully processed weather_data.
+Processing battery_data from /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_battery_data to /Users/galaxy.jang/gems_build_dashboard/frontend/public/data/battery_data.parquet...
+Successfully processed battery_data.
+Processing active_user_segment from /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_active_user_segment to /Users/galaxy.jang/gems_build_dashboard/frontend/public/data/active_user_segment.parquet...
+Successfully processed active_user_segment.
+Processing rich_orders (1 day)...
+Loading rich_orders from 2026-07-14 to 2026-08-10...
+Successfully processed rich_orders: /Users/galaxy.jang/gems_build_dashboard/frontend/public/data/orders.parquet
+ETL Process Complete.
+[2026년  8월 11일 화요일 10시 15분 22초 KST] Copying data to dist...
+[2026년  8월 11일 화요일 10시 15분 23초 KST] Pushing updated data to GitHub...
+[main 5dbfa7c] Auto-update dashboard metadata/scripts and data
+ 16 files changed, 0 insertions(+), 0 deletions(-)
+remote: warning: See https://gh.io/lfs for more information.        
+remote: warning: File frontend/public/data/orders.parquet is 71.05 MB; this is larger than GitHub's recommended maximum file size of 50.00 MB        
+remote: warning: GH001: Large files detected. You may want to try Git Large File Storage - https://git-lfs.github.com.        
+To github.com:deepdawn/gems_build_dashboard.git
+   b970b5c..5dbfa7c  main -> main
+[2026년  8월 11일 화요일 10시 15분 45초 KST] ETL Process Completed.
+2026-08-11 10:15:45 [INFO] /Users/galaxy.jang/gems_build_dashboard/deploy/run_etl.sh completed successfully.
+메시지 전송 성공: spaces/AAQAf0HeYv0/messages/nll3Z8_8fa0.nll3Z8_8fa0
+2026-08-11 10:15:46 [INFO] --- Phase 6 (Reports) ---
+2026-08-11 10:15:46 [INFO] Running scripts/python/report_daily_ststs_v1/send_weekly_report.py...
+Importing plotly failed. Interactive plots will not work.
+10:16:35 - cmdstanpy - INFO - Chain [1] start processing
+10:16:35 - cmdstanpy - INFO - Chain [1] done processing
+10:17:29 - cmdstanpy - INFO - Chain [1] start processing
+10:17:29 - cmdstanpy - INFO - Chain [1] done processing
+/Users/galaxy.jang/anti_codebase/scripts/python/utils/read_rich_user_segment_polars.py:107: PerformanceWarning: Determining the column names of a LazyFrame requires resolving its schema, which is a potentially expensive operation. Use `LazyFrame.collect_schema().names()` to get the column names without this warning.
+  columns = lf.columns
+[2026-07-28 ~ 2026-08-10] 데이터를 로드합니다...
+월말 최종 마감 예상 매출 계산 시작...
+월말 최종 마감 예상 운행수 계산 시작...
+유저 세그먼트 데이터 로드 및 차트 생성 중 (월별)...
+매출 메시지 발송 중...
+메시지 전송 성공: spaces/AAQA8O4oUkw/messages/KhHyRHP3ofE.KhHyRHP3ofE
+운행수 메시지 발송 중...
+메시지 전송 성공: spaces/AAQA8O4oUkw/messages/2v6VSPWC4aM.2v6VSPWC4aM
+세그먼트 메시지 발송 중...
+메시지 전송 성공: spaces/AAQA8O4oUkw/messages/gquAld0SP48.gquAld0SP48
+2026-08-11 10:17:44 [INFO] scripts/python/report_daily_ststs_v1/send_weekly_report.py completed successfully.
+메시지 전송 성공: spaces/AAQAf0HeYv0/messages/BeCqGMV4wIk.BeCqGMV4wIk
+메시지 전송 성공: spaces/AAQAf0HeYv0/messages/cOR_l5b0k3A.cOR_l5b0k3A
+2026-08-11 10:17:46 [INFO] ================ Master Batch Pipeline End ================

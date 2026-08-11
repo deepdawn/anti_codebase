@@ -1,0 +1,154 @@
+저장 기본 경로: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_region
+데이터 추출 중...
+성공적으로 저장되었습니다. (건수: 885, 소요시간: 0.73초)
+Parquet 파일 위치: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_region/rich_region_hierarchy.parquet
+CSV 파일 위치: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_region/rich_region_hierarchy.csv
+저장 기본 경로: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_region
+데이터 추출 중...
+성공적으로 저장되었습니다. (건수: 885, 소요시간: 0.85초)
+Parquet 파일 위치: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_region/rich_region_hierarchy.parquet
+CSV 파일 위치: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_region/rich_region_hierarchy.csv
+저장 기본 경로: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_region
+데이터 추출 중...
+Error extracting region hierarchy data: (pymysql.err.OperationalError) (2003, "Can't connect to MySQL server on 'live.st.rds.gbility.io' (timed out)")
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+추출 실패.
+저장 기본 경로: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_region
+데이터 추출 중...
+Error extracting region hierarchy data: (pymysql.err.OperationalError) (2003, "Can't connect to MySQL server on 'live.st.rds.gbility.io' (timed out)")
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+추출 실패.
+저장 기본 경로: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_region
+데이터 추출 중...
+성공적으로 저장되었습니다. (건수: 885, 소요시간: 1.22초)
+Parquet 파일 위치: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_region/rich_region_hierarchy.parquet
+CSV 파일 위치: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_region/rich_region_hierarchy.csv
+저장 기본 경로: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_region
+데이터 추출 중...
+성공적으로 저장되었습니다. (건수: 885, 소요시간: 0.49초)
+Parquet 파일 위치: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_region/rich_region_hierarchy.parquet
+CSV 파일 위치: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_region/rich_region_hierarchy.csv
+저장 기본 경로: /Users/galaxy/Google Drive/공유 드라이브/gbike.rich_region
+저장 기본 경로: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_region
+데이터 추출 중...
+성공적으로 저장되었습니다. (건수: 930, 소요시간: 1.84초)
+Parquet 파일 위치: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_region/rich_region_hierarchy.parquet
+CSV 파일 위치: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_region/rich_region_hierarchy.csv
+저장 기본 경로: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_region
+데이터 추출 중...
+성공적으로 저장되었습니다. (건수: 930, 소요시간: 2.11초)
+Parquet 파일 위치: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_region/rich_region_hierarchy.parquet
+CSV 파일 위치: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_region/rich_region_hierarchy.csv
+저장 기본 경로: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_region
+데이터 추출 중...
+Error extracting region hierarchy data: (pymysql.err.OperationalError) (2003, "Can't connect to MySQL server on 'live.st.rds.gbility.io' (timed out)")
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+추출 실패.
+저장 기본 경로: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_region
+데이터 추출 중...
+Error extracting region hierarchy data: (pymysql.err.OperationalError) (2003, "Can't connect to MySQL server on 'live.st.rds.gbility.io' (timed out)")
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+추출 실패.
+저장 기본 경로: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_region
+데이터 추출 중...
+Error extracting region hierarchy data: (pymysql.err.OperationalError) (2003, "Can't connect to MySQL server on 'live.st.rds.gbility.io' (timed out)")
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+추출 실패.
+저장 기본 경로: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_region
+데이터 추출 중...
+성공적으로 저장되었습니다. (건수: 930, 소요시간: 1.51초)
+Parquet 파일 위치: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_region/rich_region_hierarchy.parquet
+CSV 파일 위치: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_region/rich_region_hierarchy.csv
+저장 기본 경로: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_region
+데이터 추출 중...
+Error extracting region hierarchy data: (pymysql.err.OperationalError) (2003, "Can't connect to MySQL server on 'live.st.rds.gbility.io' (timed out)")
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+추출 실패.
+저장 기본 경로: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_region
+데이터 추출 중...
+성공적으로 저장되었습니다. (건수: 936, 소요시간: 0.76초)
+Parquet 파일 위치: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_region/rich_region_hierarchy.parquet
+CSV 파일 위치: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_region/rich_region_hierarchy.csv
+저장 기본 경로: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_region
+데이터 추출 중...
+성공적으로 저장되었습니다. (건수: 936, 소요시간: 0.55초)
+Parquet 파일 위치: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_region/rich_region_hierarchy.parquet
+CSV 파일 위치: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_region/rich_region_hierarchy.csv
+저장 기본 경로: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_region
+데이터 추출 중...
+성공적으로 저장되었습니다. (건수: 936, 소요시간: 0.79초)
+Parquet 파일 위치: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_region/rich_region_hierarchy.parquet
+CSV 파일 위치: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_region/rich_region_hierarchy.csv
+저장 기본 경로: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_region
+데이터 추출 중...
+성공적으로 저장되었습니다. (건수: 936, 소요시간: 0.63초)
+Parquet 파일 위치: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_region/rich_region_hierarchy.parquet
+CSV 파일 위치: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_region/rich_region_hierarchy.csv
+저장 기본 경로: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_region
+데이터 추출 중...
+성공적으로 저장되었습니다. (건수: 936, 소요시간: 2.98초)
+Parquet 파일 위치: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_region/rich_region_hierarchy.parquet
+CSV 파일 위치: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_region/rich_region_hierarchy.csv
+저장 기본 경로: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_region
+데이터 추출 중...
+Error extracting region hierarchy data: (pymysql.err.OperationalError) (2003, "Can't connect to MySQL server on 'live.st.rds.gbility.io' (timed out)")
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+추출 실패.
+저장 기본 경로: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_region
+데이터 추출 중...
+Error extracting region hierarchy data: (pymysql.err.OperationalError) (2003, "Can't connect to MySQL server on 'live.st.rds.gbility.io' (timed out)")
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+추출 실패.
+저장 기본 경로: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_region
+데이터 추출 중...
+성공적으로 저장되었습니다. (건수: 936, 소요시간: 0.73초)
+Parquet 파일 위치: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_region/rich_region_hierarchy.parquet
+CSV 파일 위치: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_region/rich_region_hierarchy.csv
+저장 기본 경로: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_region
+데이터 추출 중...
+성공적으로 저장되었습니다. (건수: 936, 소요시간: 0.57초)
+Parquet 파일 위치: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_region/rich_region_hierarchy.parquet
+CSV 파일 위치: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_region/rich_region_hierarchy.csv
+저장 기본 경로: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_region
+데이터 추출 중...
+Error extracting region hierarchy data: "None of [Index(['소지역명', '행정구역'], dtype='str')] are in the [columns]"
+추출 실패.
+저장 기본 경로: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_region
+데이터 추출 중...
+Error extracting region hierarchy data: "None of [Index(['소지역명', '행정구역'], dtype='str')] are in the [columns]"
+추출 실패.
+저장 기본 경로: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_region
+데이터 추출 중...
+Error extracting region hierarchy data: "None of [Index(['소지역명', '행정구역'], dtype='str')] are in the [columns]"
+추출 실패.
+저장 기본 경로: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_region
+데이터 추출 중...
+Error extracting region hierarchy data: (pymysql.err.OperationalError) (2003, "Can't connect to MySQL server on 'live.st.rds.gbility.io' (timed out)")
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+추출 실패.
+저장 기본 경로: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_region
+데이터 추출 중...
+Error extracting region hierarchy data: (pymysql.err.OperationalError) (2003, "Can't connect to MySQL server on 'live.st.rds.gbility.io' (timed out)")
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+추출 실패.
+저장 기본 경로: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_region
+데이터 추출 중...
+Error extracting region hierarchy data: "None of [Index(['소지역명', '행정구역'], dtype='str')] are in the [columns]"
+추출 실패.
+저장 기본 경로: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_region
+데이터 추출 중...
+Error extracting region hierarchy data: "None of [Index(['소지역명', '행정구역'], dtype='str')] are in the [columns]"
+추출 실패.
+저장 기본 경로: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_region
+데이터 추출 중...
+Error extracting region hierarchy data: "None of [Index(['소지역명', '행정구역'], dtype='str')] are in the [columns]"
+추출 실패.
+저장 기본 경로: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_region
+데이터 추출 중...
+Error extracting region hierarchy data: "None of [Index(['소지역명', '행정구역'], dtype='str')] are in the [columns]"
+추출 실패.
+저장 기본 경로: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_region
+데이터 추출 중...
+성공적으로 저장되었습니다. (건수: 941, 소요시간: 1.80초)
+Parquet 파일 위치: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_region/rich_region_hierarchy.parquet
+CSV 파일 위치: /Users/galaxy.jang/Google Drive/공유 드라이브/gbike.rich_region/rich_region_hierarchy.csv
