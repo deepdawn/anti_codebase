@@ -28,3 +28,5 @@ Thumbs.db
 scripts/python/maco_googlesheet/credentials.json
 scripts/python/extract/log/
 scripts/python/maco_googlesheet/log/
+.DS_Store
+*.log
