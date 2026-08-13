@@ -198,7 +198,7 @@ from	gbike.rich_region r
 join	gbike.rich_region rr on r.parent_id = rr.region_id
 join	gbike.rich_region rrr on rr.parent_id = rrr.region_id
 where	1=1
-and		rr.region_name like '원주캠프'
+and		rr.region_name like '서초캠프'
 -- and		rrr.region_name = '강남RS팀'
 -- and		r.region_id = 223
 ), bike as ( -- 바이크 구분
@@ -270,7 +270,8 @@ select
 -- 		r.`대지역`,
 -- 		r.`중지역`,
 		b.one_category,
-		u.gender,u.age_group,
+		u.gender,
+		u.age_group,
 		count(o.order_id) as ord_cnt,
 		count(distinct o.bicycle_sn) as bi_cnt,
 		count(distinct o.user_id) as user_cnt,
@@ -289,8 +290,8 @@ FROM
   join user u on u.user_id = o.user_id 
 WHERE 1=1                                                                                
   and o.order_state = 2                                                               
-  AND o.add_time BETWEEN UNIX_TIMESTAMP(CONVERT_TZ('2026-04-01 00:00:00', 'Asia/Seoul', 'UTC')) 
-  AND UNIX_TIMESTAMP(CONVERT_TZ('2026-04-13 23:59:59', 'Asia/Seoul', 'UTC'))
+  AND o.add_time BETWEEN UNIX_TIMESTAMP(CONVERT_TZ('2026-08-01 00:00:00', 'Asia/Seoul', 'UTC'))
+  AND UNIX_TIMESTAMP(CONVERT_TZ('2026-08-11 23:59:59', 'Asia/Seoul', 'UTC'))
 --   and O.bicycle_id  = 73344 -- bicycle_sn 390102
 --   and O.region_id = 1168
   and u.age_group not in ('알수없음')
