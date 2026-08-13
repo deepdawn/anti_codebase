@@ -5,7 +5,7 @@ from datetime import datetime, timedelta
 import polars as pl
 
 # utils 패키지 경로 추가
-sys.path.append(os.path.join(os.path.dirname(__file__), '../utils'))
+sys.path.append(os.path.join(os.path.dirname(__file__), '../../utils'))
 from read_rich_orders_polars import load_rich_orders_polars
 
 def extract_active_user_segment(target_date_str):
@@ -60,7 +60,29 @@ if __name__ == "__main__":
     if args.target_date:
         extract_active_user_segment(args.target_date)
     else:
-        # 기본값: 어제 날짜
-        dt_str = (datetime.now() - timedelta(days=1)).strftime("%Y-%m-%d")
-        print(f"target-date가 지정되지 않았습니다. 디폴트로 어제 날짜({dt_str})를 계산합니다.")
-        extract_active_user_segment(dt_str)
+        print("target-date가 지정되지 않았습니다. 누락된 날짜를 탐색하여 자동 보완(Backfill)을 진행합니다.")
+        base_output_dir = f"{os.path.expanduser('~')}/Google Drive/공유 드라이브/gbike.rich_active_user_segment"
+        
+        # 어제 날짜까지 확인 (마이크로초 차이 방지를 위해 .date() 사용)
+        today_date = datetime.now().date()
+        end_date = today_date - timedelta(days=1)
+        # 백필 기준 시작일 지정 (7일 이전부터 어제자까지 스캔)
+        start_date = today_date - timedelta(days=8)
+        
+        curr_date = start_date
+        missing_dates = []
+        while curr_date <= end_date:
+            dt_str = curr_date.strftime("%Y-%m-%d")
+            file_path = os.path.join(base_output_dir, f"dt={dt_str}", f"rich_active_user_segment_{dt_str}.parquet")
+            
+            if not os.path.exists(file_path):
+                missing_dates.append(dt_str)
+                
+            curr_date += timedelta(days=1)
+            
+        if not missing_dates:
+            print(f"{start_date.strftime('%Y-%m-%d')} 부터 {end_date.strftime('%Y-%m-%d')} 까지 모든 파케이 파일이 정상적으로 존재합니다.")
+        else:
+            print(f"총 {len(missing_dates)}일치의 누락 데이터를 감지하여 자동 추출을 시작합니다.")
+            for dt_str in missing_dates:
+                extract_active_user_segment(dt_str)

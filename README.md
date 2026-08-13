@@ -15,8 +15,6 @@
 
 `user_global` 규칙에 따라 다음과 같은 구조를 유지합니다:
 
-- `/base_data/primary_data`: 수정 불가능한 원본 데이터 파일
-- `/base_data/secondary_data`: 전처리되거나 파생된 데이터셋 (태스크 그룹별 접두사 사용)
 - `/scripts/orchestrator`: 쉘 기반 마스터 파이프라인 및 스케줄링 오케스트레이터
 - `/scripts/python/engineering`: 데이터 파이프라인 엔지니어링 스크립트 모음
   - `/extract`: 원천 데이터 추출

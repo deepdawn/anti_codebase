@@ -5,7 +5,7 @@ from datetime import datetime, timedelta
 import polars as pl
 
 # utils 패키지 경로 추가
-sys.path.append(os.path.join(os.path.dirname(__file__), '../utils'))
+sys.path.append(os.path.join(os.path.dirname(__file__), '../../utils'))
 from read_rich_orders_polars import load_rich_orders_polars
 
 def calculate_user_segments(target_date_str):
@@ -171,10 +171,11 @@ if __name__ == "__main__":
         print("target-date가 지정되지 않았습니다. 누락된 날짜를 탐색하여 자동 보완(Backfill)을 진행합니다.")
         base_output_dir = f"{os.path.expanduser('~')}/Google Drive/공유 드라이브/gbike.rich_user_segment"
         
-        # 어제 날짜까지 확인
-        end_date = datetime.now() - timedelta(days=1)
+        # 어제 날짜까지 확인 (마이크로초 차이 방지를 위해 .date() 사용)
+        today_date = datetime.now().date()
+        end_date = today_date - timedelta(days=1)
         # 백필 기준 시작일 지정 (7일 이전부터 어제자까지 스캔)
-        start_date = datetime.now() - timedelta(days=8)
+        start_date = today_date - timedelta(days=8)
         
         curr_date = start_date
         missing_dates = []

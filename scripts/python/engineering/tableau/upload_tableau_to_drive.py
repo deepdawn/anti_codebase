@@ -6,7 +6,7 @@ from googleapiclient.http import MediaFileUpload
 
 # 인증 정보 설정
 current_dir = os.path.dirname(os.path.abspath(__file__))
-SERVICE_ACCOUNT_FILE = os.path.abspath(os.path.join(current_dir, '..', 'maco_googlesheet', 'credentials.json'))
+SERVICE_ACCOUNT_FILE = os.path.abspath(os.path.join(current_dir, '..', '..', 'maco_googlesheet', 'credentials.json'))
 SCOPES = ['https://www.googleapis.com/auth/drive']
 
 def get_drive_service():

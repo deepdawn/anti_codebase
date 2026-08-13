@@ -74,13 +74,16 @@ def main():
         start_date_str = args[1]
         end_date = args[2]
     else:
-        # 인자가 없으면 이번 달 1일부터 전일자까지 추출
-        target_dt = datetime.now() - timedelta(days=1)
-        end_date = target_dt.strftime('%Y-%m-%d')
+        # 인자가 없으면 어제자까지 추출
+        today_date = datetime.now().date()
+        end_date_dt = today_date - timedelta(days=1)
+        end_date = end_date_dt.strftime('%Y-%m-%d')
         
-        # 이번 달 1일 계산
-        curr_month_dt = datetime.now().replace(day=1)
-        start_date_str = curr_month_dt.strftime('%Y-%m-%d')
+        # 이번 달 1일과 14일 전 중 더 이른 날짜부터 스캔
+        month_start_dt = end_date_dt.replace(day=1)
+        fourteen_days_ago_dt = today_date - timedelta(days=14)
+        start_dt = min(month_start_dt, fourteen_days_ago_dt)
+        start_date_str = start_dt.strftime('%Y-%m-%d')
         
     # date_range 생성
     date_list = pd.date_range(start=start_date_str, end=end_date, freq='D')
