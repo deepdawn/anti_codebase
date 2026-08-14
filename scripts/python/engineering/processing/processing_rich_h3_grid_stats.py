@@ -100,6 +100,9 @@ def process_h3_grid_stats(target_date_str):
         pl.col("demo_group").fill_null("알수없음")
     ])
     
+    # "가맹영업팀" 제외 처리
+    df_joined = df_joined.filter(pl.col("대지역") != "가맹영업팀")
+    
     # 6. 출발지 집계 (Departures)
     # 최빈값(Mode) 추출 로직은 Polars의 mode() 사용 (list 반환하므로 first를 취함)
     group_cols = [pl.lit(target_date_str).alias("dt"), "time_slot", "대지역", "중지역", "소지역", "vehicle_type"]
@@ -143,13 +146,28 @@ def process_h3_grid_stats(target_date_str):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("--target-date", type=str, default=None)
+    parser.add_argument("--target-date", type=str, default=None, help="특정 일자 처리 (예: 2026-08-12)")
+    parser.add_argument("--start-date", type=str, default=None, help="백필 시작 일자 (예: 2026-01-01)")
+    parser.add_argument("--end-date", type=str, default=None, help="백필 종료 일자 (예: 2026-08-12)")
     args = parser.parse_args()
     
     if args.target_date:
         process_h3_grid_stats(args.target_date)
+    elif args.start_date and args.end_date:
+        print(f"{args.start_date} 부터 {args.end_date} 까지 명시적 백필(Backfill)을 진행합니다.")
+        start_dt = datetime.strptime(args.start_date, "%Y-%m-%d").date()
+        end_dt = datetime.strptime(args.end_date, "%Y-%m-%d").date()
+        
+        curr_dt = start_dt
+        while curr_dt <= end_dt:
+            dt_str = curr_dt.strftime("%Y-%m-%d")
+            try:
+                process_h3_grid_stats(dt_str)
+            except Exception as e:
+                print(f"[{dt_str}] 처리 중 오류 발생: {e}")
+            curr_dt += timedelta(days=1)
     else:
-        print("target-date가 지정되지 않았습니다. 자동 보완(Backfill)을 진행합니다.")
+        print("명시적 인자가 없습니다. 최근 8일치 누락본 자동 보완(Backfill)을 진행합니다.")
         base_output_dir = os.path.expanduser("~/Google Drive/공유 드라이브/gbike.rich_h3_grid_stats")
         
         today_date = datetime.now().date()
