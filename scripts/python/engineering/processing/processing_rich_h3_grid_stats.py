@@ -104,29 +104,43 @@ def process_h3_grid_stats(target_date_str):
     df_joined = df_joined.filter(pl.col("대지역") != "가맹영업팀")
     
     # 6. 출발지 집계 (Departures)
-    # 최빈값(Mode) 추출 로직은 Polars의 mode() 사용 (list 반환하므로 first를 취함)
     group_cols = [pl.lit(target_date_str).alias("dt"), "time_slot", "대지역", "중지역", "소지역", "vehicle_type"]
     
     df_departures = df_joined.group_by(group_cols + ["start_h3"]).agg([
-        pl.count().alias("departure_count"),
-        pl.col("duration_minutes").mean().alias("avg_duration_minutes"),
-        pl.col("demo_group").mode().first().alias("main_user_group")
+        pl.len().alias("departure_count"),
+        pl.col("duration_minutes").mean().alias("avg_duration_minutes")
     ]).rename({"start_h3": "h3_index"})
     
     # 7. 도착지 집계 (Arrivals)
     df_arrivals = df_joined.group_by(group_cols + ["end_h3"]).agg([
-        pl.count().alias("arrival_count")
+        pl.len().alias("arrival_count")
     ]).rename({"end_h3": "h3_index"})
     
-    # 8. 출발/도착 데이터 결합 (Outer Join)
+    # 7.5. 출발+도착 통합 최빈 유저 그룹 산출 ("알수없음" 제외)
+    df_start_users = df_joined.select(group_cols + ["start_h3", "demo_group"]).rename({"start_h3": "h3_index"})
+    df_end_users = df_joined.select(group_cols + ["end_h3", "demo_group"]).rename({"end_h3": "h3_index"})
+    
+    df_all_users = pl.concat([df_start_users, df_end_users])
+    
+    # 알수없음 및 null h3 제외
+    df_valid_users = df_all_users.drop_nulls(subset=["h3_index"]).filter(pl.col("demo_group") != "알수없음")
+    
+    # 그리드별 최빈 유저 그룹 산출
+    df_user_mode = df_valid_users.group_by(group_cols + ["h3_index"]).agg([
+        pl.col("demo_group").mode().first().alias("main_user_group")
+    ])
+    
+    # 8. 출발/도착 데이터 결합 및 최빈값 병합 (Outer Join)
     join_keys = ["dt", "time_slot", "대지역", "중지역", "소지역", "vehicle_type", "h3_index"]
     
     df_final = df_departures.join(df_arrivals, on=join_keys, how="full", coalesce=True)
+    df_final = df_final.join(df_user_mode, on=join_keys, how="left")
     
     # NULL 값 0으로 채우고 Int32로 캐스팅 (Kepler.gl Arrow 호환성)
     df_final = df_final.with_columns([
         pl.col("departure_count").fill_null(0).cast(pl.Int32),
-        pl.col("arrival_count").fill_null(0).cast(pl.Int32)
+        pl.col("arrival_count").fill_null(0).cast(pl.Int32),
+        pl.col("main_user_group").fill_null("알수없음")
     ])
     
     # 9. 결과 저장 (Kepler.gl 연동 호환성을 위해 fastparquet 엔진 사용)

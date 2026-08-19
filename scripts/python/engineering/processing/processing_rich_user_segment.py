@@ -53,7 +53,12 @@ def calculate_user_segments(target_date_str):
     print("지역 정보를 로드하고 유저 정보와 결합합니다...")
     region_path = f"{os.path.expanduser('~')}/Google Drive/공유 드라이브/gbike.rich_region/rich_region_hierarchy.parquet"
     df_region = pl.scan_parquet(region_path).select(["region_id", "대지역", "중지역", "소지역"]).collect()
-    df_users = df_users.join(df_region, on="region_id", how="inner")
+    df_users = df_users.join(df_region, on="region_id", how="left")
+    df_users = df_users.with_columns([
+        pl.col("대지역").fill_null("알수없음"),
+        pl.col("중지역").fill_null("알수없음"),
+        pl.col("소지역").fill_null("알수없음")
+    ])
     
     # 4. Join
     print("유저 정보와 운행 통계를 병합합니다...")

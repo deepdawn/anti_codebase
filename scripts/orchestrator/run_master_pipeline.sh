@@ -118,6 +118,7 @@ FAILED_PROCESS=0
 run_python "scripts/python/engineering/processing/processing_rich_user_segment.py" || FAILED_PROCESS=1
 run_python "scripts/python/engineering/processing/processing_rich_active_user_segment.py" || FAILED_PROCESS=1
 run_python "scripts/python/engineering/processing/processing_rich_h3_grid_stats.py" || FAILED_PROCESS=1
+run_python "scripts/python/utils/gen_operation_region_polygon.py" || FAILED_PROCESS=1
 
 if [ $FAILED_PROCESS -eq 0 ]; then
     send_chat "✅ $PHASE 완료"

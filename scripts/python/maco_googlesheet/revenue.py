@@ -93,7 +93,7 @@ def get_redshift_data():
         SUM(order_count) AS "운행수",
         SUM((calculated_pay_amount + calculated_out_of_area_charge) / 1.1) AS "revenue"
     FROM gbike.rich_daily_statistics
-    WHERE date BETWEEN '2026-06-01' AND '2026-12-31'
+    WHERE date >= '2026-08-01' 
     AND middle_region_name NOT LIKE '%폐기%'
     GROUP BY 1, 2, 3, 4, 5
     ORDER BY 1, 2, 3, 4, 5;
