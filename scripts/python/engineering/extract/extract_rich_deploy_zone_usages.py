@@ -17,6 +17,7 @@ def extract_deploy_count(target_date_str, engine):
         G.region_name AS `대지역`,
         E.region_name AS `중지역`,
         R.region_name AS `소지역`,
+        S.id AS `zone_id`,
         S.name AS `배치존명`,
         S.lat AS `위도`,
         S.lng AS `경도`,
@@ -44,7 +45,7 @@ def extract_deploy_count(target_date_str, engine):
         and mhr_maint.model_id is null
         AND S.deleted_at IS NULL
         AND G.region_name in ('남부RS팀','RS그룹','서울RS팀','중앙RS팀','경상RS팀','강남RS팀','프로젝트_루미')
-    GROUP BY 1, 2, 3, 4, 5, 6, 7, 8, 9
+    GROUP BY 1, 2, 3, 4, 5, 6, 7, 8, 9, 10
     """
     
     try:
@@ -66,6 +67,7 @@ def extract_release_count(target_date_str, engine):
         G.region_name AS `대지역`,
         E.region_name AS `중지역`,
         R.region_name AS `소지역`,
+        S.id AS `zone_id`,
         S.name AS `배치존명`,
         S.lat AS `위도`,
         S.lng AS `경도`,
@@ -84,7 +86,7 @@ def extract_release_count(target_date_str, engine):
         D.released_at >= CONVERT_TZ('{target_date_str} 00:00:00', 'Asia/Seoul', 'UTC')
         AND D.released_at <= CONVERT_TZ('{target_date_str} 23:59:59', 'Asia/Seoul', 'UTC')
         AND G.region_name in ('남부RS팀','RS그룹','서울RS팀','중앙RS팀','경상RS팀','강남RS팀','프로젝트_루미')
-    GROUP BY 1, 2, 3, 4, 5, 6, 7, 8, 9
+    GROUP BY 1, 2, 3, 4, 5, 6, 7, 8, 9, 10
     """
     
     try:
@@ -106,16 +108,10 @@ def merge_usages(df_deploy, df_release):
     if df_release is None or df_release.empty:
         return df_deploy.assign(출루수=0)
         
-    # 조인 키 (위도, 경도 제외)
-    join_keys = ['date', '배치 구분', '기종', '대지역', '중지역', '소지역', '배치존명']
+    # 조인 키에 zone_id, 위도, 경도 모두 포함하여 Cartesian Product 방지
+    join_keys = ['date', '배치 구분', '기종', '대지역', '중지역', '소지역', 'zone_id', '배치존명', '위도', '경도']
     
-    merged_df = pd.merge(df_deploy, df_release, on=join_keys, how='outer', suffixes=('_deploy', '_release'))
-    
-    # 위도, 경도 합치기
-    if '위도_deploy' in merged_df.columns and '위도_release' in merged_df.columns:
-        merged_df['위도'] = merged_df['위도_deploy'].fillna(merged_df['위도_release'])
-        merged_df['경도'] = merged_df['경도_deploy'].fillna(merged_df['경도_release'])
-        merged_df.drop(columns=['위도_deploy', '위도_release', '경도_deploy', '경도_release'], inplace=True)
+    merged_df = pd.merge(df_deploy, df_release, on=join_keys, how='outer')
     
     # NaN 결측치 0으로 처리 및 정수 변환
     merged_df['배치수'] = merged_df['배치수'].fillna(0).astype(int)

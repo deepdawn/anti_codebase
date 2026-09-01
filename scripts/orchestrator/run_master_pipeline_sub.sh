@@ -75,21 +75,21 @@ send_chat() {
 
 send_chat "🚀 Master Batch Pipeline 시작합니다."
 
-# ---------------------------------------------------------
-# Phase 0: VPN 연결 (사내망 접근)
-# ---------------------------------------------------------
-PHASE="Phase 0 (VPN Connection)"
-log "--- $PHASE ---"
-# 기존 연결과 충돌을 막기 위해 앱 종료 후 재실행
-osascript -e 'tell application "FortiClient" to quit'
-sleep 3
-if run_python "scripts/python/utils/auto_vpn_connect.py"; then
-    log "✅ VPN 접속 성공"
-else
-    log_err "❌ VPN 접속 실패. 파이프라인 진행이 불가능합니다."
-    send_chat "❌ VPN 연결 스크립트가 실패했습니다. 파이프라인을 중단합니다."
-    exit 1
-fi
+# # ---------------------------------------------------------
+# # Phase 0: VPN 연결 (사내망 접근)
+# # ---------------------------------------------------------
+# PHASE="Phase 0 (VPN Connection)"
+# log "--- $PHASE ---"
+# # 기존 연결과 충돌을 막기 위해 앱 종료 후 재실행
+# osascript -e 'tell application "FortiClient" to quit'
+# sleep 3
+# if run_python "scripts/python/utils/auto_vpn_connect.py"; then
+#     log "✅ VPN 접속 성공"
+# else
+#     log_err "❌ VPN 접속 실패. 파이프라인 진행이 불가능합니다."
+#     send_chat "❌ VPN 연결 스크립트가 실패했습니다. 파이프라인을 중단합니다."
+#     exit 1
+# fi
 
 # ---------------------------------------------------------
 # Phase 1: 1차 원천 데이터 추출 (Extraction)

@@ -1,6 +1,7 @@
 import os
 import sys
 import time
+import socket
 import subprocess
 import pyautogui
 import pyotp
@@ -19,6 +20,14 @@ CONNECT_BTN_IMG = os.path.join(current_dir, "forticlient_connect_btn.png")
 def log(msg):
     print(f"[{time.strftime('%Y-%m-%d %H:%M:%S')}] {msg}", flush=True)
 
+def check_vpn_connection(host="live.st.rds.gbility.io", port=3306, timeout=3):
+    """사내망(DB) 접속이 가능한지 포트 체크로 확인"""
+    try:
+        socket.create_connection((host, port), timeout=timeout)
+        return True
+    except OSError:
+        return False
+
 def main():
     if not all([VPN_ID, VPN_PW, VPN_TOTP_SECRET]):
         log("오류: .env 파일에 VPN_ID, VPN_PW, VPN_TOTP_SECRET가 설정되지 않았습니다.")
@@ -27,6 +36,12 @@ def main():
     if not os.path.exists(CONNECT_BTN_IMG):
         log(f"오류: Connect 버튼 이미지({CONNECT_BTN_IMG})를 찾을 수 없습니다. 캡처본을 저장해주세요.")
         sys.exit(1)
+
+    # 0. 이미 연결되어 있는지 확인
+    log("현재 VPN 연결 상태를 확인합니다...")
+    if check_vpn_connection(timeout=2):
+        log("✅ 이미 VPN에 연결되어 있습니다. 로그인 절차를 생략합니다.")
+        sys.exit(0)
 
     # 1. FortiClient 앱 활성화
     log("FortiClient 앱을 실행/활성화합니다.")
@@ -88,12 +103,25 @@ def main():
     time.sleep(0.5)
     pyautogui.press('enter')
 
-    # 6. 완료 대기
-    log("로그인 완료 대기 (5초)...")
+    # 6. 완료 대기 및 실제 접속 확인
+    log("로그인 처리를 대기합니다 (5초)...")
     time.sleep(5)
     
-    log("VPN 자동 연결 스크립트 실행이 종료되었습니다.")
+    log("사내망 접근(DB 핑 테스트)이 가능한지 확인합니다...")
+    connected = False
+    for i in range(6):  # 최대 60초(10초 x 6번) 동안 재시도하며 확인
+        if check_vpn_connection():
+            connected = True
+            break
+        log("VPN 연결을 기다리는 중...")
+        time.sleep(10)
+        
+    if connected:
+        log("✅ VPN이 정상적으로 연결되었으며 사내망 접근이 확인되었습니다.")
+    else:
+        log("❌ VPN 연결에 실패했거나 사내망 접근이 불가능합니다.")
+        sys.exit(1)
 
 if __name__ == "__main__":
-    pyautogui.FAILSAFE = True
+    pyautogui.FAILSAFE = False
     main()
