@@ -63,7 +63,7 @@ def main():
         # 인자가 없으면 이번 달 1일부터 전일자까지 추출
         target_dt = datetime.now() - timedelta(days=1)
         end_date = target_dt.strftime('%Y-%m-%d')
-        curr_month_dt = datetime.now().replace(day=1)
+        curr_month_dt = target_dt.replace(day=1)
         start_date_str = curr_month_dt.strftime('%Y-%m-%d')
         
     base_save_path = f"{os.path.expanduser('~')}/Google Drive/공유 드라이브/gbike.rich_daily_statistics"

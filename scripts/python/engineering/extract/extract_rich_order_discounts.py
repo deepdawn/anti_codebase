@@ -76,7 +76,7 @@ def main():
         end_date = target_dt.strftime('%Y-%m-%d')
         
         # 이번 달 1일 계산
-        curr_month_dt = datetime.now().replace(day=1)
+        curr_month_dt = target_dt.replace(day=1)
         start_date_str = curr_month_dt.strftime('%Y-%m-%d')
         
     date_list = pd.date_range(start=start_date_str, end=end_date, freq='D')

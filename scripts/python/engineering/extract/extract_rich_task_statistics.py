@@ -60,7 +60,7 @@ def main():
         # 인자가 없을 시 이번달 1일부터 어제자까지
         target_dt = datetime.now() - timedelta(days=1)
         end_date = target_dt.strftime('%Y-%m-%d')
-        curr_month_dt = datetime.now().replace(day=1)
+        curr_month_dt = target_dt.replace(day=1)
         start_date_str = curr_month_dt.strftime('%Y-%m-%d')
         
     base_save_path = f"{os.path.expanduser('~')}/Google Drive/공유 드라이브/gbike.rich_task_statistics"

@@ -132,7 +132,7 @@ def main():
         target_dt = datetime.now() - timedelta(days=1)
         end_date = target_dt.strftime('%Y-%m-%d')
         
-        curr_month_dt = datetime.now().replace(day=1)
+        curr_month_dt = target_dt.replace(day=1)
         start_date_str = curr_month_dt.strftime('%Y-%m-%d')
         
     date_list = pd.date_range(start=start_date_str, end=end_date, freq='D')
