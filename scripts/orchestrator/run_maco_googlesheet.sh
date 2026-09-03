@@ -58,6 +58,7 @@ for script in "${SCRIPTS[@]}"; do
     STATUS=$?
     if [ $STATUS -ne 0 ]; then
         log_err "$script failed with exit code $STATUS"
+        python "$UTILS_DIR/send_google_chat_msg.py" --space "$CHAT_SPACE" --msg "❌ $script 구글시트 업데이트 스크립트 실패 (exit code: $STATUS)" >> "$LOG_FILE" 2>&1
     else
         log "$script completed successfully."
     fi

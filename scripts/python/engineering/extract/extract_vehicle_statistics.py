@@ -25,6 +25,8 @@ def extract_vehicle_statistics(target_date_str, engine):
         SUM(deactivate_24h_count)/count(distinct hour) AS deactivate_24h_count,
         SUM(deactivate_48h_count)/count(distinct hour) AS deactivate_48h_count,
         SUM(deactivate_72h_count)/count(distinct hour) AS deactivate_72h_count,
+        SUM(need_inspection_count)/count(distinct hour) AS '노란 스페너',
+        SUM(need_maintenance_count)/count(distinct hour) AS '빨간 스페너',
         SUM(total_vehicle_count)/count(distinct hour) AS total_vehicle_count
     FROM gbike_smartops.vehicle_statistics_data
     WHERE date = '{target_date_str}'
