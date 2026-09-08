@@ -35,10 +35,10 @@ fi
 
 SCRIPTS_DIR="$HOME/anti_codebase/scripts/python/maco_googlesheet"
 UTILS_DIR="$HOME/anti_codebase/scripts/python/utils"
-CHAT_SPACE="AAQAf0HeYv0"
+SLACK_CHANNEL="C0C04B1TH4N"
 
 # 작업 시작 알림
-python "$UTILS_DIR/send_google_chat_msg.py" --space "$CHAT_SPACE" --msg "🚀 스프레드시트 자동 업데이트 프로세스 시작" >> "$LOG_FILE" 2>&1
+python "$UTILS_DIR/send_slack_msg.py" --channel "$SLACK_CHANNEL" --msg "🚀 스프레드시트 자동 업데이트 프로세스 시작" >> "$LOG_FILE" 2>&1
 
 
 # 실행할 스크립트 목록 (요청하신 7개 파일)
@@ -58,7 +58,7 @@ for script in "${SCRIPTS[@]}"; do
     STATUS=$?
     if [ $STATUS -ne 0 ]; then
         log_err "$script failed with exit code $STATUS"
-        python "$UTILS_DIR/send_google_chat_msg.py" --space "$CHAT_SPACE" --msg "❌ $script 구글시트 업데이트 스크립트 실패 (exit code: $STATUS)" >> "$LOG_FILE" 2>&1
+        python "$UTILS_DIR/send_slack_msg.py" --channel "$SLACK_CHANNEL" --msg "❌ $script 구글시트 업데이트 스크립트 실패 (exit code: $STATUS)" >> "$LOG_FILE" 2>&1
     else
         log "$script completed successfully."
     fi
@@ -67,4 +67,4 @@ done
 log "================ Maco Googlesheet Batch End ================"
 
 # 작업 완료 알림
-python "$UTILS_DIR/send_google_chat_msg.py" --space "$CHAT_SPACE" --msg "✅ 스프레드시트 자동 업데이트 프로세스 완료" >> "$LOG_FILE" 2>&1
+python "$UTILS_DIR/send_slack_msg.py" --channel "$SLACK_CHANNEL" --msg "✅ 스프레드시트 자동 업데이트 프로세스 완료" >> "$LOG_FILE" 2>&1

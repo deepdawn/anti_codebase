@@ -70,7 +70,7 @@ run_bash() {
 
 send_chat() {
     local msg=$1
-    python scripts/python/utils/send_google_chat_msg.py --space "AAQAf0HeYv0" --msg "$msg" >> "$LOG_FILE" 2>&1
+    python scripts/python/utils/send_slack_msg.py --channel "C0C04B1TH4N" --msg "$msg" >> "$LOG_FILE" 2>&1
 }
 
 send_chat "🚀 Master Batch Pipeline 시작합니다."
