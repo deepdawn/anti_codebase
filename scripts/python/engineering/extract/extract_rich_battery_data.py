@@ -17,7 +17,7 @@ def extract_rich_battery_data(target_date_str, engine):
         region_1 AS `대지역`,
         region_2 AS `중지역`,
         CASE
-            WHEN bicycle_type IN (1, 14, 15, 16, 17, 18, 22, 24) THEN 'bicycle'
+            WHEN bicycle_type IN (1, 14, 15, 17, 18, 22, 24) THEN 'bicycle'
             WHEN bicycle_type IN (9, 10, 11, 12, 13, 16, 19, 23) THEN 'scooter'
             ELSE 'OTHER'
         END AS `기기타입`,
